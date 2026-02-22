@@ -1,4 +1,4 @@
-# 🎮 Hướng dẫn thêm game mới vào FNAF Unblocked Games
+# 🎮 Hướng dẫn thêm game mới vào FNAF Games
 
 ## 🎯 **Cách thêm game mới (ĐƠN GIẢN):**
 

@@ -36,7 +36,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 	CServices.HIWORD = function (ul)
 	{
-		return ul >> 16;
+		return ul>> 16;
 	}
 	CServices.LOWORD = function (ul)
 	{
@@ -48,11 +48,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CServices.getRValueFlash = function (rgb)
 	{
-		return (rgb >>> 16) & 0xFF;
+		return (rgb>>> 16) & 0xFF;
 	}
 	CServices.getGValueFlash = function (rgb)
 	{
-		return (rgb >>> 8) & 0xFF;
+		return (rgb>>> 8) & 0xFF;
 	}
 	CServices.getBValueFlash = function (rgb)
 	{
@@ -64,8 +64,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CServices.swapRGB = function (rgb)
 	{
-		var r = (rgb >>> 16) & 0xFF;
-		var g = (rgb >>> 8) & 0xFF;
+		var r = (rgb>>> 16) & 0xFF;
+		var g = (rgb>>> 8) & 0xFF;
 		var b = rgb & 0xFF;
 		return (b & 0xFF) << 16 | (g & 0xFF) << 8 | (r & 0xFF);
 	}
@@ -75,8 +75,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CServices.getColorString = function (rgb)
 	{
-		var r = ((rgb >>> 16) & 0xFF).toString(16);
-		var g = ((rgb >>> 8) & 0xFF).toString(16);
+		var r = ((rgb>>> 16) & 0xFF).toString(16);
+		var g = ((rgb>>> 8) & 0xFF).toString(16);
 		var b = (rgb & 0xFF).toString(16);
 		while (r.length < 2)
 			r = '0' + r;
@@ -107,10 +107,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 		var kappa = .5522848;
 		ox = (w / 2) * kappa, // control point offset horizontal
 			oy = (h / 2) * kappa, // control point offset vertical
-			xe = x + w,           // x-end
-			ye = y + h,           // y-end
-			xm = x + w / 2,       // x-middle
-			ym = y + h / 2;       // y-middle
+			xe = x + w,      // x-end
+			ye = y + h,      // y-end
+			xm = x + w / 2,    // x-middle
+			ym = y + h / 2;    // y-middle
 
 		ctx.beginPath();
 		ctx.moveTo(x, ym);
@@ -157,7 +157,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	CServices.parseName = function (name)
 	{
 		var pos = name.lastIndexOf("\\");
-		if (pos > 0)
+		if (pos> 0)
 		{
 			name = name.substring(pos + 1);
 		}
@@ -210,11 +210,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 	CServices.heightNormalToLF = function (height)
 	{
-	    if (height < CServices.MAX_HEIGHTS)
-	    {
-	        return CServices.aHeightNormalToLF[height];
-	    }
-	    return Math.round((height * 96) / 72);
+	  if (height < CServices.MAX_HEIGHTS)
+	  {
+	    return CServices.aHeightNormalToLF[height];
+	  }
+	  return Math.round((height * 96) / 72);
 	}
 
 	CServices.DT_LEFT = 0x0000;
@@ -246,11 +246,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 		var char10 = String.fromCharCode(10);
 		var char13 = String.fromCharCode(13);
 
-	    // Is there a "new line" character?
+	  // Is there a "new line" character?
 		var index = s.indexOf(char10);
-		if (index >= 0)
+		if (index>= 0)
 		{
-	        // Yes, draw lines one by one
+	    // Yes, draw lines one by one
 			var rc2 = new CRect();
 			rc2.copyRect(rc);
 			var sub;
@@ -281,18 +281,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 				prevIndex = nextIndex + 1;
 				index = -1;
 				if (prevIndex < s.length) {
-				    index = s.indexOf(char10, prevIndex);
+				  index = s.indexOf(char10, prevIndex);
 				}
 				else {
-	                // Draw an empty line if the text ends with CR/LF characters
-				    h = CServices.drawIt(context, "", flags, rc2, displayArray, font);
-				    maxWidth = Math.max(maxWidth, rc2.right - rc2.left);
-				    maxHeight += h;
-				    rc2.top += h;
-				    rc2.bottom = rc.bottom;
-				    rc2.right = rc.right;
+	        // Draw an empty line if the text ends with CR/LF characters
+				  h = CServices.drawIt(context, "", flags, rc2, displayArray, font);
+				  maxWidth = Math.max(maxWidth, rc2.right - rc2.left);
+				  maxHeight += h;
+				  rc2.top += h;
+				  rc2.bottom = rc.bottom;
+				  rc2.right = rc.right;
 				}
-			} while (index >= 0);
+			} while (index>= 0);
 			if (prevIndex < s.length)
 			{
 				sub = s.substring(prevIndex);
@@ -309,7 +309,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return maxHeight;
 		}
 
-	    // No "new line" character, draw a single line
+	  // No "new line" character, draw a single line
 		maxHeight = CServices.drawIt(context, s, (flags | CServices.DT_VALIGN), rc, displayArray, font);
 		return maxHeight;
 	}
@@ -354,7 +354,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			hCalcul++;
 		}
-		/*    if ((flags & CServices.DT_VALIGN) != 0)
+		/*  if ((flags & CServices.DT_VALIGN) != 0)
 		 {
 		 if ((flags & CServices.DT_VCENTER) != 0)
 		 {
@@ -393,10 +393,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 					sx = font.measureText(ss);
 				else
 					sx = context.measureText(ss).width;
-				if (x + sx > rectWidth)
+				if (x + sx> rectWidth)
 				{
 					currentXPos--;
-					if (currentXPos > 0)
+					if (currentXPos> 0)
 					{
 						sx -= spaceWidth;
 						x -= spaceWidth;
@@ -410,10 +410,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 							sx = font.measureText(s.substring(c, c + 1));
 						else
 							sx = context.measureText(s.substring(c, c + 1)).width;
-						if (x + sx >= rectWidth)
+						if (x + sx>= rectWidth)
 						{
 							c--;
-							if (c > 0)
+							if (c> 0)
 							{
 								width = Math.max(x, width);
 								if ((flags & CServices.DT_CALCRECT) == 0)
@@ -448,7 +448,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								currentSpace = -1;
 							}
 							bQuit = true;
-							if (currentSpace >= 0)
+							if (currentSpace>= 0)
 							{
 								bContinue = true;
 							}
@@ -462,7 +462,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					break;
 				}
 				x += sx;
-				if (x + spaceWidth > rectWidth)
+				if (x + spaceWidth> rectWidth)
 				{
 					break;
 				}
@@ -544,7 +544,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		if ((displayFlags & CCounter.CPTDISPFLAG_INTNDIGITS) != 0)
 		{
 			var nDigits = displayFlags & CCounter.CPTDISPFLAG_INTNDIGITS;
-			if (s.length > nDigits)
+			if (s.length> nDigits)
 			{
 				s = s.substring(s.length - nDigits);
 			}
@@ -569,11 +569,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 		else
 		{
 			var bRemoveTrailingZeros = false;
-			var nDigits = Math.floor(((displayFlags & CCounter.CPTDISPFLAG_FLOATNDIGITS) >> CCounter.CPTDISPFLAG_FLOATNDIGITS_SHIFT) + 1);
+			var nDigits = Math.floor(((displayFlags & CCounter.CPTDISPFLAG_FLOATNDIGITS)>> CCounter.CPTDISPFLAG_FLOATNDIGITS_SHIFT) + 1);
 			var nDecimals = -1;
 			if ((displayFlags & CCounter.CPTDISPFLAG_FLOAT_USENDECIMALS) != 0)
-				nDecimals = ((displayFlags & CCounter.CPTDISPFLAG_FLOATNDECIMALS) >> CCounter.CPTDISPFLAG_FLOATNDECIMALS_SHIFT);
-			else if (value != 0.0 && value > -1.0 && value < 1.0)
+				nDecimals = ((displayFlags & CCounter.CPTDISPFLAG_FLOATNDECIMALS)>> CCounter.CPTDISPFLAG_FLOATNDECIMALS_SHIFT);
+			else if (value != 0.0 && value> -1.0 && value < 1.0)
 			{
 				nDecimals = nDigits;
 				bRemoveTrailingZeros = true;
@@ -622,7 +622,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		var tempDest = destination;
 		var tempSource = source;
 		var pos = tempSource.indexOf("\\");
-		while (pos >= 0)
+		while (pos>= 0)
 		{
 			if (tempDest.substring(0, pos) == tempSource.substring(0, pos))
 			{
@@ -661,23 +661,23 @@ window['Runtime'] = (function Runtime(__can, __path){
 		var script = document.createElement('script');
 		script.type = "text/vbscript";
 		script.innerHTML = 'Function BinFileReaderImpl_IE_VBAjaxLoader(fileName)\n\
-	                Dim xhr\n\
-	                Set xhr = CreateObject("Microsoft.XMLHTTP")\n\
-	                xhr.Open "GET", fileName, False\n\
-	                xhr.setRequestHeader "Accept-Charset", "x-user-defined"\n\
-	                xhr.send\n\
-	                Dim byteArray()\n\
-	                if xhr.Status = 200 Then\n\
-	                    Dim byteString\n\
-	                    Dim i\n\
-	                    byteString=xhr.responseBody\n\
-	                    ReDim byteArray(LenB(byteString))\n\
-	                    For i = 1 To LenB(byteString)\n\
-	                        byteArray(i-1) = AscB(MidB(byteString, i, 1))\n\
-	                    Next\n\
-	                End If\n\
-	                BinFileReaderImpl_IE_VBAjaxLoader=byteArray\n\
-	            End Function';
+	        Dim xhr\n\
+	        Set xhr = CreateObject("Microsoft.XMLHTTP")\n\
+	        xhr.Open "GET", fileName, False\n\
+	        xhr.setRequestHeader "Accept-Charset", "x-user-defined"\n\
+	        xhr.send\n\
+	        Dim byteArray()\n\
+	        if xhr.Status = 200 Then\n\
+	          Dim byteString\n\
+	          Dim i\n\
+	          byteString=xhr.responseBody\n\
+	          ReDim byteArray(LenB(byteString))\n\
+	          For i = 1 To LenB(byteString)\n\
+	            byteArray(i-1) = AscB(MidB(byteString, i, 1))\n\
+	          Next\n\
+	        End If\n\
+	        BinFileReaderImpl_IE_VBAjaxLoader=byteArray\n\
+	      End Function';
 
 		document.head.appendChild(script);
 	}
@@ -686,7 +686,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		try
 		{
 			bUseBlob = typeof new XMLHttpRequest()["responseType"] === 'string';
-			if (navigator.userAgent.toLowerCase().indexOf('safari') >= 0)
+			if (navigator.userAgent.toLowerCase().indexOf('safari')>= 0)
 				bUseBlob = false;
 		}
 		catch (e)
@@ -723,7 +723,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			return this.ccfBytes.charCodeAt(this.pointer++) & 0xFF;
 		},
-		getChecksum:      function ()
+		getChecksum:   function ()
 		{
 			var n;
 			var count = 0;
@@ -731,10 +731,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				count += (this.ccfBytes.charCodeAt(n) & 0xFF) ^ 0xAA;
 			return count;
 		},
-		getFile:          function (fileName, callback, size)
+		getFile:     function (fileName, callback, size)
 		{
 			this.callback = callback;
-	        
+	    
 			if (!bUseAjax)
 			{
 				var request = new XMLHttpRequest();
@@ -799,7 +799,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					var array = BinFileReaderImpl_IE_VBAjaxLoader(fileName)['toArray']()
 					var n;
 					var length = array.length;
-					if (length > size)
+					if (length> size)
 						length = size;
 					for (n = 0; n < length; n++)
 						this.ccfBytes += String.fromCharCode(array[n]);
@@ -811,7 +811,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		openFileASync:    function (fileName, parent)
+		openFileASync:  function (fileName, parent)
 		{
 			this.parent = parent;
 			var request = new XMLHttpRequest();
@@ -836,11 +836,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			request.send(null);
 		},
-		getBytes:         function ()
+		getBytes:     function ()
 		{
 			return this.ccfBytes;
 		},
-		setBinary:        function (binary)
+		setBinary:    function (binary)
 		{
 			this.ccfBytes = binary;
 			this.end = binary.length;
@@ -850,7 +850,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return that.ccfBytes.charCodeAt(that.pointer++) & 0xFF;
 			}
 		},
-		createFromFile:   function (offset, length)
+		createFromFile:  function (offset, length)
 		{
 			var file = new CFile();
 			file.ccfBytes = this.ccfBytes;
@@ -877,16 +877,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var b3 = this.readUnsignedByte();
 			if (b1 == 0xFF && b2 == 0xFE)
 			{
-				this.bUnicode = true;               // UTF16
+				this.bUnicode = true;        // UTF16
 				this.pointer--;
 			}
 			else if (b1 == 0xEF && b2 == 0xBB && b3 == 0xBF)
 			{
-				this.bUnicode = false;              // UTF8
+				this.bUnicode = false;       // UTF8
 			}
 			else
 			{
-				this.bUnicode = false;              // ASCII
+				this.bUnicode = false;       // ASCII
 				this.pointer -= 3;
 			}
 		},
@@ -905,7 +905,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		isEOF: function ()
 		{
-			return this.pointer >= this.end;
+			return this.pointer>= this.end;
 		},
 
 		readInString: function (len)
@@ -1001,7 +1001,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			b3 = this.readUnsignedByte();
 			b4 = this.readUnsignedByte();
 			var total = b4 * 0x01000000 + b3 * 0x00010000 + b2 * 0x00000100 + b1;
-			if (total > 0x80000000)
+			if (total> 0x80000000)
 			{
 				total -= 0xFFFFFFFF;
 			}
@@ -1022,14 +1022,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			b8 = this.readUnsignedByte();
 
 			var total = b8 * 0x0100000000000000 + b7 * 0x0001000000000000 + b6 * 0x0000010000000000 + b5 * 0x0000000100000000 + b4 * 0x01000000 + b3 * 0x00010000 + b2 * 0x00000100 + b1;
-			if (total > 0x8000000000000000)
+			if (total> 0x8000000000000000)
 			{
 				total -= 0xFFFFFFFFFFFFFFFF;
 			}
 			return total / 0x100000000;
 		},
 
-		readAString:    function (length)
+		readAString:  function (length)
 		{
 			var string = "";
 			if (!this.bUnicode)
@@ -1130,7 +1130,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (b != 10 && b != 13)
 					delta = 0;
 
-				if (end > debut + delta)
+				if (end> debut + delta)
 				{
 					ret = this.readAString(end - debut - delta);
 				}
@@ -1163,7 +1163,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				delta = 2;
 				if (b != 10 && b != 13)
 					delta = 0;
-				if (end > debut + delta)
+				if (end> debut + delta)
 					ret = this.readAString((end - debut - delta) / 2);
 
 				if (b == 10 || b == 13)
@@ -1205,7 +1205,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		seek: function (pos)
 		{
-			if (pos >= this.end)
+			if (pos>= this.end)
 			{
 				pos = this.end;
 			}
@@ -1264,19 +1264,19 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CArrayList.prototype =
 	{
-		add:          function (o)
+		add:     function (o)
 		{
 			this.array.push(o);
 		},
-		isEmpty:      function ()
+		isEmpty:   function ()
 		{
 			return this.array.length();
 		},
-		insert:       function (index, o)
+		insert:    function (index, o)
 		{
 			this.array.splice(index, 0, o);
 		},
-		get:          function (index)
+		get:     function (index)
 		{
 			if (index < this.array.length)
 			{
@@ -1284,43 +1284,43 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return null;
 		},
-		put:          function (index, o)
+		put:     function (index, o)
 		{
 			this.array[index] = o;
 		},
-		set:          function (index, o)
+		set:     function (index, o)
 		{
 			if (index < this.array.length)
 			{
 				this.array[index] = o;
 			}
 		},
-		removeIndex:  function (index)
+		removeIndex: function (index)
 		{
 			if (index < this.array.length)
 			{
 				this.array.splice(index, 1);
 			}
 		},
-		indexOf:      function (o)
+		indexOf:   function (o)
 		{
 			return this.array.indexOf(o);
 		},
-		contains:     function (o)
+		contains:   function (o)
 		{
-			return this.array.indexOf(o) >= 0;
+			return this.array.indexOf(o)>= 0;
 		},
 		removeObject: function (o)
 		{
 			var n = this.array.indexOf(o);
-			if (n >= 0)
+			if (n>= 0)
 				this.array.splice(n, 1);
 		},
-		size:         function ()
+		size:     function ()
 		{
 			return this.array.length;
 		},
-		clear:        function ()
+		clear:    function ()
 		{
 			this.array.length = 0;
 		}
@@ -1370,16 +1370,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		ptInRect: function (x, y)
 		{
-			if (x >= this.left && x < this.right && y >= this.top && y < this.bottom)
+			if (x>= this.left && x < this.right && y>= this.top && y < this.bottom)
 				return true;
 			return false;
 		},
 
 		intersectRect: function (rc)
 		{
-			if ((this.left >= rc.left && this.left < rc.right) || (this.right >= rc.left && this.right < rc.right) || (rc.left >= this.left && rc.left < this.right) || (rc.right >= this.left && rc.right < this.right))
+			if ((this.left>= rc.left && this.left < rc.right) || (this.right>= rc.left && this.right < rc.right) || (rc.left>= this.left && rc.left < this.right) || (rc.right>= this.left && rc.right < this.right))
 			{
-				if ((this.top >= rc.top && this.top < rc.bottom) || (this.bottom >= rc.top && this.bottom < rc.bottom) || (rc.top >= this.top && rc.top < this.bottom) || (rc.bottom >= this.top && rc.bottom < this.bottom))
+				if ((this.top>= rc.top && this.top < rc.bottom) || (this.bottom>= rc.top && this.bottom < rc.bottom) || (rc.top>= this.top && rc.top < this.bottom) || (rc.bottom>= this.top && rc.bottom < this.bottom))
 				{
 					return true;
 				}
@@ -1419,7 +1419,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CFontInfo.prototype =
 	{
-		copy:    function (f)
+		copy:  function (f)
 		{
 			this.lfHeight = f.lfHeight;
 			this.lfWeight = f.lfWeight;
@@ -1447,7 +1447,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		getHeight: function () {
-		    return this.lfHeight + Math.ceil(this.lfHeight / 8);
+		  return this.lfHeight + Math.ceil(this.lfHeight / 8);
 		},
 
 		init: function ()
@@ -1457,7 +1457,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.lfWeight = 400;
 			this.lfItalic = 0;
 		},
-		readLogFont:   function (file)
+		readLogFont:  function (file)
 		{
 			this.lfHeight = file.readAInt();
 			if (this.lfHeight < 0)
@@ -1503,7 +1503,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CIni.prototype =
 	{
-		saveIni:     function ()
+		saveIni:   function ()
 		{
 			if (this.strings != null && this.currentFileName != null)
 			{
@@ -1514,7 +1514,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				localStorage.setItem(this.currentFileName, value);
 			}
 		},
-		loadIni:     function (fileName)
+		loadIni:   function (fileName)
 		{
 			var reload = true;
 			if (this.currentFileName != null)
@@ -1536,7 +1536,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					var begin = 0;
 					var end = value.indexOf(CIni.separator, 0);
-					while (end >= 0)
+					while (end>= 0)
 					{
 						this.strings.add(value.substring(begin, end));
 						begin = end + CIni.separator.length;
@@ -1546,7 +1546,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				else
 				{
-					/*		     	var cFile=new CFile();
+					/*		   	var cFile=new CFile();
 					 cFile.openFile(this.currentFileName);
 					 if (cFile.getLength()==0)
 					 {
@@ -1564,22 +1564,22 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 					if (cFile)
 					{
-					    var utf8 = false;
-					    cFile.detectUnicode();
+					  var utf8 = false;
+					  cFile.detectUnicode();
 						if (typeof this.flags != 'undefined')
 						{
-						    if (this.flags & CIni.INIFLAG_UTF8) {
-						        this.bUnicode = false;
-						        utf8 = true;
-						    }
-						    if (this.flags & CIni.INIFLAG_UTF16)
+						  if (this.flags & CIni.INIFLAG_UTF8) {
+						    this.bUnicode = false;
+						    utf8 = true;
+						  }
+						  if (this.flags & CIni.INIFLAG_UTF16)
 								this.bUnicode = true;
 						}
 						while (cFile.isEOF() == false)
 						{
 							var currentLine = cFile.readAStringEOL();
 							if (utf8)
-							    currentLine = this.decodeUtf8(currentLine);
+							  currentLine = this.decodeUtf8(currentLine);
 							if (currentLine.substring(0, 1) == "<")
 							{
 								this.strings.clear();
@@ -1595,37 +1595,37 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-	    /**
-	     * http://www.webtoolkit.info/javascript-utf8.html
-	     */
+	  /**
+	   * http://www.webtoolkit.info/javascript-utf8.html
+	   */
 		decodeUtf8: function (utftext) {
-		    var string = "";
-		    var i = 0;
-		    var c = 0, c1 = 0, c2 = 0, c3 = 0;
+		  var string = "";
+		  var i = 0;
+		  var c = 0, c1 = 0, c2 = 0, c3 = 0;
 
-		    while (i < utftext.length) {
+		  while (i < utftext.length) {
 
-		        c = utftext.charCodeAt(i);
+		    c = utftext.charCodeAt(i);
 
-		        if (c < 128) {
-		            string += String.fromCharCode(c);
-		            i++;
-		        }
-		        else if ((c > 191) && (c < 224)) {
-		            c2 = utftext.charCodeAt(i + 1);
-		            string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
-		            i += 2;
-		        }
-		        else {
-		            c2 = utftext.charCodeAt(i + 1);
-		            c3 = utftext.charCodeAt(i + 2);
-		            string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-		            i += 3;
-		        }
-
+		    if (c < 128) {
+		      string += String.fromCharCode(c);
+		      i++;
+		    }
+		    else if ((c> 191) && (c < 224)) {
+		      c2 = utftext.charCodeAt(i + 1);
+		      string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+		      i += 2;
+		    }
+		    else {
+		      c2 = utftext.charCodeAt(i + 1);
+		      c3 = utftext.charCodeAt(i + 2);
+		      string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+		      i += 3;
 		    }
 
-		    return string;
+		  }
+
+		  return string;
 		},
 		findSection: function (sectionName)
 		{
@@ -1637,7 +1637,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (s.charAt(0) == "[")
 				{
 					var last = s.lastIndexOf("]");
-					if (last >= 1)
+					if (last>= 1)
 					{
 						s2 = s.substring(1, last);
 						if (CServices.compareStringsIgnoreCase(sectionName, s2))
@@ -1662,18 +1662,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return -1;
 				}
 				last = s.indexOf('=');
-				if (last >= 0)
+				if (last>= 0)
 				{
 					var start = 0;
 					while (start < last && s.charCodeAt(start) == 32)
 					{
 						start++;
 					}
-					while (last > start && s.charCodeAt(last - 1) == 32)
+					while (last> start && s.charCodeAt(last - 1) == 32)
 					{
 						last--;
 					}
-					if (last > start)
+					if (last> start)
 					{
 						s2 = s.substring(0, last);
 						if (CServices.compareStringsIgnoreCase(s2, keyName))
@@ -1691,10 +1691,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.loadIni(fileName);
 
 			var l = this.findSection(sectionName);
-			if (l >= 0)
+			if (l>= 0)
 			{
 				l = this.findKey(l + 1, keyName);
-				if (l >= 0)
+				if (l>= 0)
 				{
 					var s = this.strings.get(l);
 					var last = s.indexOf("=");
@@ -1716,16 +1716,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.strings.add(s);
 				s = keyName + "=" + name;
 				this.strings.add(s);
-				//            this.saveIni();
+				//      this.saveIni();
 				return;
 			}
 
 			var key = this.findKey(section + 1, keyName);
-			if (key >= 0)
+			if (key>= 0)
 			{
 				s = keyName + "=" + name;
 				this.strings.set(key, s);
-				//            this.saveIni();
+				//      this.saveIni();
 				return;
 			}
 
@@ -1736,13 +1736,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					s = keyName + "=" + name;
 					this.strings.insert(key, s);
-					//	            this.saveIni();
+					//	      this.saveIni();
 					return;
 				}
 			}
 			s = keyName + "=" + name;
 			this.strings.add(s);
-			//        this.saveIni();
+			//    this.saveIni();
 		},
 
 		deleteItem: function (group, item, iniName)
@@ -1750,10 +1750,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.loadIni(iniName);
 
 			var s = this.findSection(group);
-			if (s >= 0)
+			if (s>= 0)
 			{
 				var k = this.findKey(s + 1, item);
-				if (k >= 0)
+				if (k>= 0)
 				{
 					this.strings.removeIndex(k);
 				}
@@ -1766,13 +1766,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.loadIni(iniName);
 
 			var s = this.findSection(group);
-			if (s >= 0)
+			if (s>= 0)
 			{
 				this.strings.removeIndex(s);
 				while (true)
 				{
 					s++;
-					if (s >= this.strings.size())
+					if (s>= this.strings.size())
 					{
 						break;
 					}
@@ -1801,7 +1801,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTextSurface.prototype =
 	{
-		measureText:    function (text, font)
+		measureText:  function (text, font)
 		{
 			font = this.app.getGraphicFont(font);
 			if (font.isGraphic)
@@ -1809,7 +1809,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.canvasContext.font = font.getFont();
 			return this.canvasContext.measureText(text).width;
 		},
-		setText:        function (text, dtflags, rectangle, font, color)
+		setText:    function (text, dtflags, rectangle, font, color)
 		{
 			/* TODO : fix rect comparison */
 
@@ -1846,7 +1846,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			return ht;
 		},
-		manualClear:    function (color)
+		manualClear:  function (color)
 		{
 			if (!color)
 			{
@@ -1892,7 +1892,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		resize:         function (w, h)
+		resize:     function (w, h)
 		{
 			if (w != this.width || h != this.height)
 			{
@@ -1902,7 +1902,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.canvas.height = h;
 			}
 		},
-		draw:           function (context, x, y, inkEffect, inkEffectParam)
+		draw:      function (context, x, y, inkEffect, inkEffectParam)
 		{
 			context.renderSimpleImage(this.canvas, x, y, this.width, this.height, inkEffect, inkEffectParam);
 		}
@@ -1913,160 +1913,160 @@ window['Runtime'] = (function Runtime(__can, __path){
 	BrowserDetect.dataBrowser =
 		[
 			{
-				string:    navigator.userAgent,
+				string:  navigator.userAgent,
 				subString: "Chrome",
-				identity:  "Chrome"
+				identity: "Chrome"
 			},
-			{    string:       navigator.userAgent,
-				subString:     "OmniWeb",
+			{  string:    navigator.userAgent,
+				subString:   "OmniWeb",
 				versionSearch: "OmniWeb/",
-				identity:      "OmniWeb"
-			},
-			{
-				string:        navigator.vendor,
-				subString:     "Apple",
-				identity:      "Safari",
-				versionSearch: "Version"
-			},
-			{
-				prop:          window.opera,
-				identity:      "Opera",
-				versionSearch: "Version"
+				identity:   "OmniWeb"
 			},
 			{
 				string:    navigator.vendor,
+				subString:   "Apple",
+				identity:   "Safari",
+				versionSearch: "Version"
+			},
+			{
+				prop:     window.opera,
+				identity:   "Opera",
+				versionSearch: "Version"
+			},
+			{
+				string:  navigator.vendor,
 				subString: "iCab",
-				identity:  "iCab"
+				identity: "iCab"
 			},
 			{
-				string:    navigator.vendor,
+				string:  navigator.vendor,
 				subString: "KDE",
-				identity:  "Konqueror"
+				identity: "Konqueror"
 			},
 			{
-				string:    navigator.userAgent,
+				string:  navigator.userAgent,
 				subString: "Firefox",
-				identity:  "Firefox"
+				identity: "Firefox"
 			},
 			{
-				string:    navigator.vendor,
+				string:  navigator.vendor,
 				subString: "Camino",
-				identity:  "Camino"
+				identity: "Camino"
 			},
 			{		// for newer Netscapes (6+)
-				string:    navigator.userAgent,
+				string:  navigator.userAgent,
 				subString: "Netscape",
-				identity:  "Netscape"
+				identity: "Netscape"
 			},
 			{
-				string:        navigator.userAgent,
-				subString:     "MSIE",
-				identity:      "Explorer",
+				string:    navigator.userAgent,
+				subString:   "MSIE",
+				identity:   "Explorer",
 				versionSearch: "MSIE"
 			},
 			{
-				string:        navigator.userAgent,
-				subString:     "Gecko",
-				identity:      "Mozilla",
+				string:    navigator.userAgent,
+				subString:   "Gecko",
+				identity:   "Mozilla",
 				versionSearch: "rv"
 			},
 			{ 		// for older Netscapes (4-)
-				string:        navigator.userAgent,
-				subString:     "Mozilla",
-				identity:      "Netscape",
+				string:    navigator.userAgent,
+				subString:   "Mozilla",
+				identity:   "Netscape",
 				versionSearch: "Mozilla"
 			}
 		];
 	BrowserDetect.dataOS =
 		[
 			{
-				string:    navigator.platform,
+				string:  navigator.platform,
 				subString: "Win",
-				identity:  "Windows"
+				identity: "Windows"
 			},
 			{
-				string:    navigator.platform,
+				string:  navigator.platform,
 				subString: "Mac",
-				identity:  "MacOS"
+				identity: "MacOS"
 			},
 			{
-				string:    navigator.userAgent,
+				string:  navigator.userAgent,
 				subString: "iPhone",
-				identity:  "iOS"
+				identity: "iOS"
 			},
 			{
-				string:    navigator.userAgent,
+				string:  navigator.userAgent,
 				subString: "iPod",
-				identity:  "iOS"
+				identity: "iOS"
 			},
 			{
-				string:    navigator.userAgent,
+				string:  navigator.userAgent,
 				subString: "iPad",
-				identity:  "iOS"
+				identity: "iOS"
 			},
 			{
-				string:    navigator.userAgent,
+				string:  navigator.userAgent,
 				subString: "Android",
-				identity:  "Android"
+				identity: "Android"
 			},
 			{
-				string:    navigator.platform,
+				string:  navigator.platform,
 				subString: "Windows Phone",
-				identity:  "Windows Phone"
+				identity: "Windows Phone"
 			},
 			{
-				string:    navigator.platform,
+				string:  navigator.platform,
 				subString: "Linux",
-				identity:  "Linux"
+				identity: "Linux"
 			}
 		];
 	function BrowserDetect()
 	{
-	    // New detection, taken from http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+	  // New detection, taken from http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 
-	    // Opera 8.0+
-	    this.isOpera = (!!window['opr'] && !!opr.addons) || !!window['opera'] || navigator.userAgent.indexOf(' OPR/') >= 0;
+	  // Opera 8.0+
+	  this.isOpera = (!!window['opr'] && !!opr.addons) || !!window['opera'] || navigator.userAgent.indexOf(' OPR/')>= 0;
 
-	    // Firefox 1.0+
-	    this.isFirefox = typeof InstallTrigger !== 'undefined';
+	  // Firefox 1.0+
+	  this.isFirefox = typeof InstallTrigger !== 'undefined';
 
-	    // Safari 3.0+ "[object HTMLElementConstructor]" 
-	    this.isSafari = Object.prototype.toString.call(window['HTMLElement']).indexOf('Constructor') > 0 || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari['pushNotification']);
+	  // Safari 3.0+ "[object HTMLElementConstructor]" 
+	  this.isSafari = Object.prototype.toString.call(window['HTMLElement']).indexOf('Constructor')> 0 || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari['pushNotification']);
 
-	    // Internet Explorer 6-11
-	    this.isIE = /*@cc_on!@*/false || !!document.documentMode;
+	  // Internet Explorer 6-11
+	  this.isIE = /*@cc_on!@*/false || !!document.documentMode;
 
-	    // Edge 20+
-	    this.isEdge = !this.isIE && !!window['StyleMedia'];
+	  // Edge 20+
+	  this.isEdge = !this.isIE && !!window['StyleMedia'];
 
-	    // Chrome 1+
-	    this.isChrome = !!window.chrome && !!window.chrome.webstore;
+	  // Chrome 1+
+	  this.isChrome = !!window.chrome && !!window.chrome.webstore;
 
-	    if (this.isChrome)
-	        this.browser = "Chrome";
-	    else if (this.isEdge)
-	        this.browser = "Edge";
-	    else if (this.isIE)
-	        this.browser = "Explorer";
-	    else if (this.isFirefox)
-	        this.browser = "Firefox";
-	    else if (this.isOpera)
-	        this.browser = "Opera";
-	    else if (this.isSafari)
-	        this.browser = "Safari";
+	  if (this.isChrome)
+	    this.browser = "Chrome";
+	  else if (this.isEdge)
+	    this.browser = "Edge";
+	  else if (this.isIE)
+	    this.browser = "Explorer";
+	  else if (this.isFirefox)
+	    this.browser = "Firefox";
+	  else if (this.isOpera)
+	    this.browser = "Opera";
+	  else if (this.isSafari)
+	    this.browser = "Safari";
 
-	    // Old version
-	    else
-	        this.browser = this.searchString(BrowserDetect.dataBrowser) || "Unknown browser";
+	  // Old version
+	  else
+	    this.browser = this.searchString(BrowserDetect.dataBrowser) || "Unknown browser";
 
-	    this.version = this.searchVersion(navigator.userAgent)
+	  this.version = this.searchVersion(navigator.userAgent)
 			|| this.searchVersion(navigator.appVersion)
 			|| "Unknown version";
 		this.OS = this.searchString(BrowserDetect.dataOS) || "Unknown OS";
 	}
 	BrowserDetect.prototype =
 	{
-		searchString:  function (data)
+		searchString: function (data)
 		{
 			for (var i = 0; i < data.length; i++)
 			{
@@ -2132,9 +2132,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			// Parcourir la liste
 			do
 			{
-				if (pHoFirst.roc.rcImage != -1 && pHoFirst.roc.rcImage > this.dwMax)
+				if (pHoFirst.roc.rcImage != -1 && pHoFirst.roc.rcImage> this.dwMax)
 					this.dwMax = pHoFirst.roc.rcImage;
-				if (pHoFirst.roc.rcOldImage != -1 && pHoFirst.roc.rcOldImage > this.dwMax)
+				if (pHoFirst.roc.rcOldImage != -1 && pHoFirst.roc.rcOldImage> this.dwMax)
 					this.dwMax = pHoFirst.roc.rcOldImage;
 
 				// Le dernier?
@@ -2210,12 +2210,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 			// Mark OI to reload
 			poi.oiLoadFlags |= COI.OILF_TORELOAD;
 		},
-		enumerate:    function (num)
+		enumerate:  function (num)
 		{
 			switch (this.mode)
 			{
 				case 0:
-					if (num > this.dwMax)
+					if (num> this.dwMax)
 						this.dwMax = num;
 					return -1;
 				case 1:
@@ -2250,11 +2250,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				image.width, image.height);
 		}
 		var imageData = context.getImageData(0, 0, image.width, image.height);
-		var newR = (destColor >> 16) & 0xFF;
-		var newG = (destColor >> 8) & 0xFF;
+		var newR = (destColor>> 16) & 0xFF;
+		var newG = (destColor>> 8) & 0xFF;
 		var newB = destColor & 0xFF;
-		var oldR = (sourceColor >> 16) & 0xFF;
-		var oldG = (sourceColor >> 8) & 0xFF;
+		var oldR = (sourceColor>> 16) & 0xFF;
+		var oldG = (sourceColor>> 8) & 0xFF;
 		var oldB = sourceColor & 0xFF;
 		var index, x, y;
 		for (y = 0; y < image.height; y++)
@@ -2325,14 +2325,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (b1 != b2)
 				return false;
 			b1 = (this.fontFlags & CGraphicFont.FONTFLAG_BOLD) != 0;
-			b2 = (font.lfWeight) > 400;
+			b2 = (font.lfWeight)> 400;
 			if (b1 != b2)
 				return false;
 			return true;
 		},
 
 		getHeight: function () {
-		    return this.height + this.interline;
+		  return this.height + this.interline;
 		},
 
 		measureText: function (s)
@@ -2343,7 +2343,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (n = 0; n < l; n++)
 			{
 				index = this.characters.indexOf(s.charAt(n));
-				if (index >= 0)
+				if (index>= 0)
 				{
 					w += this.charWidths[index] + this.interchar;
 				}
@@ -2359,7 +2359,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var w;
 			var index = characters.indexOf(String.fromCharCode(c));
-			if (index >= 0)
+			if (index>= 0)
 				w = this.charWidths[index] + this.interchar;
 			else
 				w = this.width;
@@ -2378,7 +2378,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				for (n = 0; n < l; n++)
 				{
 					index = this.characters.indexOf(s.charAt(n));
-					if (index >= 0)
+					if (index>= 0)
 					{
 						line = Math.floor(index / this.nChars);
 						col = index - (line * this.nChars);
@@ -2387,7 +2387,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 						if (image.mosaic == 0)
 						{
-						    context.drawImage(image.img, xs, ys, this.width, this.height, Math.round(x), Math.round(y), this.width, this.height);
+						  context.drawImage(image.img, xs, ys, this.width, this.height, Math.round(x), Math.round(y), this.width, this.height);
 						}
 						else
 						{
@@ -2408,10 +2408,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 			{
 				x += this.measureText(s);
-				for (n = l - 1; n >= 0; n--)
+				for (n = l - 1; n>= 0; n--)
 				{
 					index = this.characters.indexOf(s.charAt(n));
-					if (index >= 0)
+					if (index>= 0)
 					{
 						x -= (this.charWidths[index] + this.interchar);
 						line = index / this.nChars;
@@ -2420,7 +2420,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						xs = col * (this.width + 1);
 						if (image.mosaic == 0)
 						{
-						    context.drawImage(image.img, xs, ys, this.width, this.height, Math.round(x), Math.round(y), this.width, this.height);
+						  context.drawImage(image.img, xs, ys, this.width, this.height, Math.round(x), Math.round(y), this.width, this.height);
 						}
 						else
 						{
@@ -2454,7 +2454,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	ObjectSelection.prototype =
 	{
 		//Selects *all* objects of the given object-type
-		selectAll:                 function (OiList)
+		selectAll:         function (OiList)
 		{
 			var pObjectInfo = this.OiList[OiList];
 			pObjectInfo.oilNumOfSelected = pObjectInfo.oilNObjects;
@@ -2471,7 +2471,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		//Resets all objects of the given object-type
-		selectNone:                function (OiList)
+		selectNone:        function (OiList)
 		{
 			var pObjectInfo = this.OiList[OiList];
 			if (pObjectInfo == null)
@@ -2482,7 +2482,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		//Resets the SOL and inserts only one given object
-		selectOneObject:           function (object)
+		selectOneObject:      function (object)
 		{
 			var pObjectInfo = object.hoOiList;
 			pObjectInfo.oilNumOfSelected = 1;
@@ -2492,7 +2492,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		//Resets the SOL and inserts the given list of objects
-		selectObjects:             function (OiList, objects)
+		selectObjects:       function (OiList, objects)
 		{
 			var pObjectInfo = this.OiList[OiList];
 
@@ -2518,7 +2518,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		//Run a custom filter on the SOL (via function callback)
-		filterObjects:             function (rdPtr, OiList, negate, filter)
+		filterObjects:       function (rdPtr, OiList, negate, filter)
 		{
 			if ((OiList & 0x8000) != 0)
 			{
@@ -2528,7 +2528,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		//Filter qualifier objects
-		filterQualifierObjects:    function (rdPtr, OiList, negate, filter)
+		filterQualifierObjects:  function (rdPtr, OiList, negate, filter)
 		{
 			var CurrentQualToOi = this.QualToOiList[OiList];
 
@@ -2605,7 +2605,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		//Return the number of selected objects for the given object-type
-		getNumberOfSelected:       function (OiList)
+		getNumberOfSelected:    function (OiList)
 		{
 			if ((OiList & 0x8000) != 0)
 			{
@@ -2651,7 +2651,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 
 		//Returns the object-info structure from a given object-type
-		GetOILFromOI:   function (Oi)
+		GetOILFromOI:  function (Oi)
 		{
 			for (i = 0; i < this.run.rhMaxOI; ++i)
 			{
@@ -2674,62 +2674,62 @@ window['Runtime'] = (function Runtime(__can, __path){
 	//
 	//----------------------------------------------------------------------------------
 	function CTokenizer(text, delimiter) {
-	    this.tokens = new CArrayList();
+	  this.tokens = new CArrayList();
 
-	    var oldPos = 0;
-	    var pos = text.indexOf(delimiter);
+	  var oldPos = 0;
+	  var pos = text.indexOf(delimiter);
 
-	    // Special case: if delimiter = \n, then remove \r from end of tokens
-	    if (delimiter.length == 1 && delimiter.charCodeAt(0) == 10) {
-	        while (pos >= 0) {
-	            if (pos > oldPos) {
-	                var str = text.substring(oldPos, pos);
-	                if (str.length > 0 && str.charCodeAt(str.length - 1) == 13)
-	                    str = str.substr(0, str.length - 1);
-	                this.tokens.add(str);
-	            }
-	            oldPos = pos + delimiter.length;
-	            pos = text.indexOf(delimiter, oldPos);
-	        }
-
-	        if (text.length > oldPos) {
-	            var str = text.substring(oldPos, text.length);
-	            if (str.length > 0 && str.charCodeAt(str.length - 1) == 13)
-	                str = str.substr(0, str.length - 1);
-	            this.tokens.add(str);
-	        }
-	    }
-	    else {
-	        while (pos >= 0) {
-	            if (pos > oldPos) {
-	                this.tokens.add(text.substring(oldPos, pos));
-	            }
-	            oldPos = pos + delimiter.length;
-	            pos = text.indexOf(delimiter, oldPos);
-	        }
-
-	        if (text.length > oldPos) {
-	            this.tokens.add(text.substring(oldPos, text.length));
-	        }
+	  // Special case: if delimiter = \n, then remove \r from end of tokens
+	  if (delimiter.length == 1 && delimiter.charCodeAt(0) == 10) {
+	    while (pos>= 0) {
+	      if (pos> oldPos) {
+	        var str = text.substring(oldPos, pos);
+	        if (str.length> 0 && str.charCodeAt(str.length - 1) == 13)
+	          str = str.substr(0, str.length - 1);
+	        this.tokens.add(str);
+	      }
+	      oldPos = pos + delimiter.length;
+	      pos = text.indexOf(delimiter, oldPos);
 	    }
 
-	    this.numToken = 0;
+	    if (text.length> oldPos) {
+	      var str = text.substring(oldPos, text.length);
+	      if (str.length> 0 && str.charCodeAt(str.length - 1) == 13)
+	        str = str.substr(0, str.length - 1);
+	      this.tokens.add(str);
+	    }
+	  }
+	  else {
+	    while (pos>= 0) {
+	      if (pos> oldPos) {
+	        this.tokens.add(text.substring(oldPos, pos));
+	      }
+	      oldPos = pos + delimiter.length;
+	      pos = text.indexOf(delimiter, oldPos);
+	    }
+
+	    if (text.length> oldPos) {
+	      this.tokens.add(text.substring(oldPos, text.length));
+	    }
+	  }
+
+	  this.numToken = 0;
 	}
 	CTokenizer.prototype =
 	{
-	    countTokens: function () {
-	        return this.tokens.size();
-	    },
-	    nextToken: function () {
-	        if (this.numToken < this.tokens.size()) {
-	            var s = this.tokens.get(this.numToken++);
-	            if (s == null) {
-	                return "";
-	            }
-	            return s;
-	        }
+	  countTokens: function () {
+	    return this.tokens.size();
+	  },
+	  nextToken: function () {
+	    if (this.numToken < this.tokens.size()) {
+	      var s = this.tokens.get(this.numToken++);
+	      if (s == null) {
 	        return "";
+	      }
+	      return s;
 	    }
+	    return "";
+	  }
 	}
 
 	// CAct object
@@ -2770,17 +2770,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 	CAct.ACT_STARTLOOP = ((14 << 16) | 0xFFFF);
 	CAct.create = function (app)
 	{
-	    var bSetVarGConst = false;
-	    var bAddVarGConst = false;
-	    var bSubVarGConst = false;
-	    var bExtSetVar = false;
-	    var bExtAddVar = false;
-	    var bExtSubVar = false;
-	    var bExtSetFlag = false;
-	    var bExtClrFlag = false;
-	    var bExtChgFlag = false;
+	  var bSetVarGConst = false;
+	  var bAddVarGConst = false;
+	  var bSubVarGConst = false;
+	  var bExtSetVar = false;
+	  var bExtAddVar = false;
+	  var bExtSubVar = false;
+	  var bExtSetFlag = false;
+	  var bExtClrFlag = false;
+	  var bExtChgFlag = false;
 
-	    var debut = app.file.getFilePointer();
+	  var debut = app.file.getFilePointer();
 
 		var size = app.file.readAShort()
 		var act = null;
@@ -2829,49 +2829,49 @@ window['Runtime'] = (function Runtime(__can, __path){
 			case ((24 << 16) | 0xFFFF):
 				act = new ACT_SKIP();
 				break;
-		    case ((27 << 16) | 0xFFFF):
-		        act = new ACT_SETVARGCONST();
-		        bSetVarGConst = true;
-		        break;
-		    case ((28 << 16) | 0xFFFF):
-		        act = new ACT_SETVARG();
-		        break;
-		    case ((29 << 16) | 0xFFFF):
-		        act = new ACT_SETVARGCONST();
-		        bSetVarGConst = true;
-		        break;
-		    case ((30 << 16) | 0xFFFF):
-		        act = new ACT_SETVARG();
-		        break;
-		    case ((31 << 16) | 0xFFFF):
-		        act = new ACT_ADDVARGCONST();
-		        bAddVarGConst = true;
-		        break;
-		    case ((32 << 16) | 0xFFFF):
-		        act = new ACT_ADDVARG();
-		        break;
-		    case ((33 << 16) | 0xFFFF):
-		        act = new ACT_ADDVARGCONST();
-		        bAddVarGConst = true;
-		        break;
-		    case ((34 << 16) | 0xFFFF):
-		        act = new ACT_ADDVARG();
-		        break;
-		    case ((35 << 16) | 0xFFFF):
-		        act = new ACT_SUBVARGCONST();
-		        bSubVarGConst = true;
-		        break;
-		    case ((36 << 16) | 0xFFFF):
-		        act = new ACT_SUBVARG();
-		        break;
-		    case ((37 << 16) | 0xFFFF):
-		        act = new ACT_SUBVARGCONST();
-		        bSubVarGConst = true;
-		        break;
-		    case ((38 << 16) | 0xFFFF):
-		        act = new ACT_SUBVARG();
-		        break;
-		    case ((0 << 16) | 0xFFFE):
+		  case ((27 << 16) | 0xFFFF):
+		    act = new ACT_SETVARGCONST();
+		    bSetVarGConst = true;
+		    break;
+		  case ((28 << 16) | 0xFFFF):
+		    act = new ACT_SETVARG();
+		    break;
+		  case ((29 << 16) | 0xFFFF):
+		    act = new ACT_SETVARGCONST();
+		    bSetVarGConst = true;
+		    break;
+		  case ((30 << 16) | 0xFFFF):
+		    act = new ACT_SETVARG();
+		    break;
+		  case ((31 << 16) | 0xFFFF):
+		    act = new ACT_ADDVARGCONST();
+		    bAddVarGConst = true;
+		    break;
+		  case ((32 << 16) | 0xFFFF):
+		    act = new ACT_ADDVARG();
+		    break;
+		  case ((33 << 16) | 0xFFFF):
+		    act = new ACT_ADDVARGCONST();
+		    bAddVarGConst = true;
+		    break;
+		  case ((34 << 16) | 0xFFFF):
+		    act = new ACT_ADDVARG();
+		    break;
+		  case ((35 << 16) | 0xFFFF):
+		    act = new ACT_SUBVARGCONST();
+		    bSubVarGConst = true;
+		    break;
+		  case ((36 << 16) | 0xFFFF):
+		    act = new ACT_SUBVARG();
+		    break;
+		  case ((37 << 16) | 0xFFFF):
+		    act = new ACT_SUBVARGCONST();
+		    bSubVarGConst = true;
+		    break;
+		  case ((38 << 16) | 0xFFFF):
+		    act = new ACT_SUBVARG();
+		    break;
+		  case ((0 << 16) | 0xFFFE):
 				act = new ACT_PLAYSAMPLE();
 				break;
 			case ((1 << 16) | 0xFFFE):
@@ -3211,7 +3211,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				act = new ACT_CCASETHEIGHT();
 				break;
 
-			    // Actions pour les objets extensions 
+			  // Actions pour les objets extensions 
 			default:
 			{
 				switch (c & 0xFFFF0000)
@@ -3405,13 +3405,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					case (61 << 16):
 						act = new ACT_EXTMOVETOLAYER();
 						break;
-					case (62 << 16):				//  ACT_EXTADDTODEBUGGER		
+					case (62 << 16):				// ACT_EXTADDTODEBUGGER		
 						act = new ACT_SKIP();
 						break;
 					case (63 << 16):
 						act = new ACT_EXTSETEFFECT();
 						break;
-					case (64 << 16):  //  ACT_EXTSETEFFECTPARAM
+					case (64 << 16): // ACT_EXTSETEFFECTPARAM
 						act = new ACT_SKIP();
 						break;
 					case (65 << 16):
@@ -3420,7 +3420,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					case (66 << 16):
 						act = new ACT_EXTSETRGBCOEF();
 						break;
-					case (67 << 16):  // ACT_EXTSETEFFECTPARAMTEXTURE
+					case (67 << 16): // ACT_EXTSETEFFECTPARAMTEXTURE
 						act = new ACT_SKIP();
 						break;
 					case (68 << 16):
@@ -3459,7 +3459,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					case (79 << 16):
 						act = new ACT_EXTSTOPTORQUE();
 						break;
-				    default:
+				  default:
 						act = new CActExtension();
 						break;
 				}
@@ -3476,7 +3476,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			act.evtNParams = app.file.readAByte();
 			act.evtDefType = app.file.readAByte();
 
-			if (act.evtNParams > 0)
+			if (act.evtNParams> 0)
 			{
 				act.evtParams = new Array(act.evtNParams);
 				var n;
@@ -3488,93 +3488,93 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			// Optimization of operations on global values for constant values
 			if (bSetVarGConst || bAddVarGConst || bSubVarGConst)
-	        {
-		        var pParam = act.evtParams[0];
-		        act.num = pParam.value;
+	    {
+		    var pParam = act.evtParams[0];
+		    act.num = pParam.value;
 
-		        var pExp1 = act.evtParams[1];
-		        act.value = pExp1.tokens[0].value;
+		    var pExp1 = act.evtParams[1];
+		    act.value = pExp1.tokens[0].value;
 			}
 
-		    // Optimization of operations on alterable values for constant values
+		  // Optimization of operations on alterable values for constant values
 			if (bExtSetVar || bExtAddVar || bExtSubVar) {
-			    var newAct = null;
-			    var pParam = act.evtParams[0];
-			    if (pParam.code != 53) {
-			        // Value number = constant
-			        var num = pParam.value;
+			  var newAct = null;
+			  var pParam = act.evtParams[0];
+			  if (pParam.code != 53) {
+			    // Value number = constant
+			    var num = pParam.value;
 
-			        // Parameter = simple constant?
-			        var pExp1 = act.evtParams[1];
-			        if (num >= 0 && pExp1.tokens.length == 2 && (pExp1.tokens[1].code <= 0 || pExp1.tokens[1].code >= 0x00140000)) {
-			            // INT
-			            if (pExp1.tokens[0].code == ((0 << 16) | 65535) || pExp1.tokens[0].code == ((23 << 16) | 65535)) {
-			                if (bExtSetVar) {
-			                    newAct = new ACT_EXTSETVARCONST();
-			                    newAct.num = num;
-			                    newAct.value = pExp1.tokens[0].value;
-			                }
-			                else if (bExtAddVar) {
-			                    newAct = new ACT_EXTADDVARCONST();
-			                    newAct.num = num;
-			                    newAct.value = pExp1.tokens[0].value;
-			                }
-			                else if (bExtSubVar) {
-			                    newAct = new ACT_EXTSUBVARCONST();
-			                    newAct.num = num;
-			                    newAct.value = pExp1.tokens[0].value;
-			                }
-			            }
+			    // Parameter = simple constant?
+			    var pExp1 = act.evtParams[1];
+			    if (num>= 0 && pExp1.tokens.length == 2 && (pExp1.tokens[1].code <= 0 || pExp1.tokens[1].code>= 0x00140000)) {
+			      // INT
+			      if (pExp1.tokens[0].code == ((0 << 16) | 65535) || pExp1.tokens[0].code == ((23 << 16) | 65535)) {
+			        if (bExtSetVar) {
+			          newAct = new ACT_EXTSETVARCONST();
+			          newAct.num = num;
+			          newAct.value = pExp1.tokens[0].value;
 			        }
-			        if (newAct != null) {
-			            newAct.evtCode = act.evtCode;
-			            newAct.evtOi = act.evtOi;
-			            newAct.evtOiList = act.evtOiList;
-			            newAct.evtFlags = act.evtFlags;
-			            newAct.evtFlags2 = act.evtFlags2;
-			            newAct.evtNParams = act.evtNParams;
-			            newAct.evtDefType = act.evtDefType;
-			            newAct.evtParams = act.evtParams;
-
-			            act = newAct;
+			        else if (bExtAddVar) {
+			          newAct = new ACT_EXTADDVARCONST();
+			          newAct.num = num;
+			          newAct.value = pExp1.tokens[0].value;
 			        }
-			    }
-			}
-
-		    // Optimization of operations on alterable flags for constant flag numbers
-			if (bExtSetFlag || bExtClrFlag || bExtChgFlag) {
-			    var newAct = null;
-
-			    // Flag number = simple constant?
-			    var pExp = act.evtParams[0];
-			    if (pExp.tokens.length == 2 && (pExp.tokens[1].code <= 0 || pExp.tokens[1].code >= 0x00140000) && pExp.tokens[0].code == ((0 << 16) | 65535)) {
-			        if (bExtSetFlag) {
-			            newAct = new ACT_EXTSETFLAGCONST();
-			            newAct.mask = (1 << pExp.tokens[0].value);
+			        else if (bExtSubVar) {
+			          newAct = new ACT_EXTSUBVARCONST();
+			          newAct.num = num;
+			          newAct.value = pExp1.tokens[0].value;
 			        }
-			        else if (bExtClrFlag) {
-			            newAct = new ACT_EXTCLRFLAGCONST();
-			            newAct.mask = (1 << pExp.tokens[0].value);
-			        }
-			        else if (bExtChgFlag) {
-			            newAct = new ACT_EXTCHGFLAGCONST();
-			            newAct.mask = (1 << pExp.tokens[0].value);
-			        }
+			      }
 			    }
 			    if (newAct != null) {
-			        newAct.evtCode = act.evtCode;
-			        newAct.evtOi = act.evtOi;
-			        newAct.evtOiList = act.evtOiList;
-			        newAct.evtFlags = act.evtFlags;
-			        newAct.evtFlags2 = act.evtFlags2;
-			        newAct.evtNParams = act.evtNParams;
-			        newAct.evtDefType = act.evtDefType;
-			        newAct.evtParams = act.evtParams;
+			      newAct.evtCode = act.evtCode;
+			      newAct.evtOi = act.evtOi;
+			      newAct.evtOiList = act.evtOiList;
+			      newAct.evtFlags = act.evtFlags;
+			      newAct.evtFlags2 = act.evtFlags2;
+			      newAct.evtNParams = act.evtNParams;
+			      newAct.evtDefType = act.evtDefType;
+			      newAct.evtParams = act.evtParams;
 
-			        act = newAct;
+			      act = newAct;
 			    }
+			  }
 			}
-	    }
+
+		  // Optimization of operations on alterable flags for constant flag numbers
+			if (bExtSetFlag || bExtClrFlag || bExtChgFlag) {
+			  var newAct = null;
+
+			  // Flag number = simple constant?
+			  var pExp = act.evtParams[0];
+			  if (pExp.tokens.length == 2 && (pExp.tokens[1].code <= 0 || pExp.tokens[1].code>= 0x00140000) && pExp.tokens[0].code == ((0 << 16) | 65535)) {
+			    if (bExtSetFlag) {
+			      newAct = new ACT_EXTSETFLAGCONST();
+			      newAct.mask = (1 << pExp.tokens[0].value);
+			    }
+			    else if (bExtClrFlag) {
+			      newAct = new ACT_EXTCLRFLAGCONST();
+			      newAct.mask = (1 << pExp.tokens[0].value);
+			    }
+			    else if (bExtChgFlag) {
+			      newAct = new ACT_EXTCHGFLAGCONST();
+			      newAct.mask = (1 << pExp.tokens[0].value);
+			    }
+			  }
+			  if (newAct != null) {
+			    newAct.evtCode = act.evtCode;
+			    newAct.evtOi = act.evtOi;
+			    newAct.evtOiList = act.evtOiList;
+			    newAct.evtFlags = act.evtFlags;
+			    newAct.evtFlags2 = act.evtFlags2;
+			    newAct.evtNParams = act.evtNParams;
+			    newAct.evtDefType = act.evtDefType;
+			    newAct.evtParams = act.evtParams;
+
+			    act = newAct;
+			  }
+			}
+	  }
 		app.file.seek(debut + size);
 		return act;
 	}
@@ -3638,7 +3638,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	ACT_GRPACTIVATE.prototype =
 	{
-		execute:     function (rhPtr)
+		execute:   function (rhPtr)
 		{
 			var p = this.evtParams[0];
 			var evg = p.pointer;
@@ -3742,7 +3742,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	ACT_GRPDEACTIVATE.prototype =
 	{
-		execute:       function (rhPtr)
+		execute:    function (rhPtr)
 		{
 			var p = this.evtParams[0];
 			var evg = p.pointer;
@@ -4256,7 +4256,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var channel = rhPtr.get_EventExpressionInt(this.evtParams[0]);
 			var position = rhPtr.get_EventExpressionInt(this.evtParams[1]);
-			if (position >= 0)
+			if (position>= 0)
 				rhPtr.rhApp.soundPlayer.setPositionChannel(channel - 1, position);
 		}
 	}
@@ -4271,7 +4271,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var channel = rhPtr.get_EventExpressionInt(this.evtParams[0]);
 			var freq = rhPtr.get_EventExpressionInt(this.evtParams[1]);
-			if (freq >= 0)
+			if (freq>= 0)
 				rhPtr.rhApp.soundPlayer.setFrequencyChannel(channel - 1, freq);
 		}
 	}
@@ -4286,7 +4286,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var channel = rhPtr.get_EventExpressionInt(this.evtParams[0]);
 			var volume = rhPtr.get_EventExpressionInt(this.evtParams[1]);
-			if (volume >= 0 && volume <= 100)
+			if (volume>= 0 && volume <= 100)
 				rhPtr.rhApp.soundPlayer.setVolumeChannel(channel - 1, volume);
 		}
 	}
@@ -4313,7 +4313,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		execute: function (rhPtr)
 		{
 			var volume = rhPtr.get_EventExpressionInt(this.evtParams[0]);
-			if (volume >= 0 && volume <= 100)
+			if (volume>= 0 && volume <= 100)
 				rhPtr.rhApp.soundPlayer.setMainVolume(volume);
 		}
 	}
@@ -4328,7 +4328,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var sample = this.evtParams[0].sndHandle;
 			var position = rhPtr.get_EventExpressionInt(this.evtParams[1]);
-			if (position >= 0)
+			if (position>= 0)
 				rhPtr.rhApp.soundPlayer.setPositionSample(sample, position);
 		}
 	}
@@ -4343,7 +4343,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var sample = this.evtParams[0].sndHandle;
 			var freq = rhPtr.get_EventExpressionInt(this.evtParams[1]);
-			if (freq >= 0)
+			if (freq>= 0)
 				rhPtr.rhApp.soundPlayer.setFrequencySample(sample, freq);
 		}
 	}
@@ -4358,7 +4358,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var sample = this.evtParams[0].sndHandle;
 			var volume = rhPtr.get_EventExpressionInt(this.evtParams[1]);
-			if (volume >= 0 && volume <= 100)
+			if (volume>= 0 && volume <= 100)
 				rhPtr.rhApp.soundPlayer.setVolumeSample(sample, volume);
 		}
 	}
@@ -4465,11 +4465,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var p = this.evtParams[1];
 			var num = rhPtr.txtDoDisplay(this, p.value);
-			if (num >= 0)
+			if (num>= 0)
 			{
 				var p2 = this.evtParams[2];
 				var hoPtr = rhPtr.rhObjectList[num];
-				if (p2.code == 2)        // PARAM_TIME
+				if (p2.code == 2)    // PARAM_TIME
 				{
 					hoPtr.ros.rsFlash = p2.timer;
 					hoPtr.ros.rsFlashCpt = p2.timer;
@@ -5013,12 +5013,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 		execute: function (rhPtr)
 		{
 			var input = rhPtr.get_EventExpressionInt(this.evtParams[0]);
-			if (input > CRunApp.CTRLTYPE_KEYBOARD)
+			if (input> CRunApp.CTRLTYPE_KEYBOARD)
 				return;
 			if (input == CRunApp.CTRLTYPE_MOUSE)
 				input = CRunApp.CTRLTYPE_KEYBOARD;
 			var joueur = this.evtOi;
-			if (joueur >= 4)
+			if (joueur>= 4)
 				return;
 			rhPtr.rhApp.getCtrlType()[joueur] = input;
 
@@ -5034,10 +5034,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 		execute: function (rhPtr)
 		{
 			var touche = rhPtr.get_EventExpressionInt(this.evtParams[0]);
-			if (touche >= 8)
+			if (touche>= 8)
 				return;
 			var joueur = this.evtOi;
-			if (joueur >= 4)
+			if (joueur>= 4)
 				return;
 			var key = this.evtParams[1].key;
 			rhPtr.rhApp.pcCtrlKeys[joueur * CRunApp.MAX_KEY + touche] = key;
@@ -5067,7 +5067,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		execute: function (rhPtr)
 		{
 			var joueur = this.evtOi;
-			if (joueur >= CRunApp.MAX_PLAYER)
+			if (joueur>= CRunApp.MAX_PLAYER)
 				return;
 			var pString = rhPtr.get_EventExpressionString(this.evtParams[0]);
 			rhPtr.rhApp.playerNames[joueur] = pString;
@@ -5118,7 +5118,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var scores = rhPtr.rhApp.getScores();
 			scores[joueur] -= value;
 			if (scores[joueur] < 0)
-			    scores[joueur] = 0;
+			  scores[joueur] = 0;
 			rhPtr.update_PlayerObjects(joueur, COI.OBJ_SCORE, scores[joueur]);
 		}
 	}
@@ -5382,7 +5382,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 			{
 				level = rhPtr.get_EventExpressionInt(this.evtParams[0]) - 1;
-				if (level < 0 || level >= 4096)
+				if (level < 0 || level>= 4096)
 					return;
 				if (rhPtr.rhApp.bShiftFrameNumber)
 					level++;
@@ -5503,7 +5503,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			// TODO		
 			/*		var pFilename:String;
-			 if ( evtParams[0].code==63 )	    // PARAM_FILENAME2
+			 if ( evtParams[0].code==63 )	  // PARAM_FILENAME2
 			 pFilename=(PARAM_STRING(evtParams[0])).string;
 			 else
 			 pFilename=rhPtr.get_EventExpressionString(evtParams[0]);
@@ -5588,7 +5588,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			if (newHeight < rhPtr.rhFrame.leHeight)
 				newHeight = rhPtr.rhFrame.leHeight;
-			if (newHeight > 0x7FFFF000)
+			if (newHeight> 0x7FFFF000)
 				newHeight = 0x7FFFF000;
 
 			if (rhPtr.rhFrame.leVirtualRect.bottom != newHeight)
@@ -5608,7 +5608,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			if (newWidth < rhPtr.rhFrame.leWidth)
 				newWidth = rhPtr.rhFrame.leWidth;
-			if (newWidth > 0x7FFFF000)
+			if (newWidth> 0x7FFFF000)
 				newWidth = 0x7FFFF000;
 
 			if (rhPtr.rhFrame.leVirtualRect.right != newWidth)
@@ -5667,7 +5667,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var nAngle = rhPtr.get_EventExpressionInt(this.evtParams[0]);
 			nAngle %= 360;
 			if (nAngle < 0)
-			    nAngle += 360;
+			  nAngle += 360;
 
 			// If physical movement
 			var pMBase = rhPtr.GetMBase(pHo);
@@ -5726,7 +5726,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 
 			var newColor;
-			if (this.evtParams[1].code == 24)	    // PARAM_COLOUR)
+			if (this.evtParams[1].code == 24)	  // PARAM_COLOUR)
 				newColor = this.evtParams[1].color;
 			else
 			{
@@ -5852,7 +5852,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	ACT_QASK.prototype =
 	{
-		execute:   function (rhPtr)
+		execute:  function (rhPtr)
 		{
 			if ((this.evtOiList & 0x8000) == 0)
 			{
@@ -5929,14 +5929,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.evtFlags &= ~CAct.ACTFLAGS_REPEAT;
 				}
 				var number = rhPtr.f_CreateObject(pEvp.cdpHFII, pEvp.cdpOi, pInfo.x, pInfo.y, pInfo.dir, 0, pInfo.layer, -1);
-				if (number >= 0)
+				if (number>= 0)
 				{
 					var pHo = rhPtr.rhObjectList[number];
 					rhPtr.rhEvtProg.evt_AddCurrentObject(pHo);
 
-				    // Build 283.2: add physics attractor
-					if (pHo && pHo.hoType >= 32)
-					    rhPtr.addPhysicsAttractor(pHo);
+				  // Build 283.2: add physics attractor
+					if (pHo && pHo.hoType>= 32)
+					  rhPtr.addPhysicsAttractor(pHo);
 
 					var mBase = rhPtr.GetMBase(pHo);
 					if (mBase)
@@ -5976,7 +5976,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				var oiPtr;
 				for (oiPtr = rhPtr.rhApp.OIList.getFirstOI(); oiPtr != null; oiPtr = rhPtr.rhApp.OIList.getNextOI())
 				{
-					if (oiPtr.oiType >= 2)
+					if (oiPtr.oiType>= 2)
 					{
 						if (CServices.compareStringsIgnoreCase(oiPtr.oiName, pName))
 							break;
@@ -5984,24 +5984,24 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 
 				if (oiPtr != null) {
-				    var number = rhPtr.f_CreateObject(-1, oiPtr.oiHandle, pInfo.x, pInfo.y, pInfo.dir, 0, pInfo.layer, -1);
-				    if (number >= 0) {
-				        var pHo = rhPtr.rhObjectList[number];
-				        rhPtr.rhEvtProg.evt_AddCurrentObject(pHo);
+				  var number = rhPtr.f_CreateObject(-1, oiPtr.oiHandle, pInfo.x, pInfo.y, pInfo.dir, 0, pInfo.layer, -1);
+				  if (number>= 0) {
+				    var pHo = rhPtr.rhObjectList[number];
+				    rhPtr.rhEvtProg.evt_AddCurrentObject(pHo);
 
-				        // Build 283.2: add physics attractor
-				        if (pHo && pHo.hoType >= 32)
-				            rhPtr.addPhysicsAttractor(pHo);
+				    // Build 283.2: add physics attractor
+				    if (pHo && pHo.hoType>= 32)
+				      rhPtr.addPhysicsAttractor(pHo);
 
-				        var mBase = rhPtr.GetMBase(pHo);
-				        if (mBase)
-				            mBase.CreateBody();
-				        else {
-				            if (rhPtr.rhBox2DBase != null) {
-				                rhPtr.rh4Box2DBase.rAddNormalObject(pHo);
-				            }
-				        }
+				    var mBase = rhPtr.GetMBase(pHo);
+				    if (mBase)
+				      mBase.CreateBody();
+				    else {
+				      if (rhPtr.rhBox2DBase != null) {
+				        rhPtr.rh4Box2DBase.rAddNormalObject(pHo);
+				      }
 				    }
+				  }
 				}
 			}
 		}
@@ -6238,9 +6238,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				pBuffer.value = rhPtr.get_EventExpressionInt(this.evtParams[1]);
 			else
 				pBuffer.value++;
-			if (num >= 0 && pHo.rov != null)
+			if (num>= 0 && pHo.rov != null)
 			{
-				if (num >= pHo.rov.rvValues.length)
+				if (num>= pHo.rov.rvValues.length)
 					pHo.rov.growValues(num + 10);
 				pHo.rov.rvValues[num] = pBuffer.value;
 			}
@@ -6264,7 +6264,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				pHo.ros.obHide();
 				pHo.ros.rsFlags &= ~CRSpr.RSFLAG_VISIBLE;
 
-				if (this.evtParams[0].code == 2)        // PARAM_TIME
+				if (this.evtParams[0].code == 2)    // PARAM_TIME
 				{
 					pHo.ros.rsFlash = this.evtParams[0].timer;
 					pHo.ros.rsFlashCpt = this.evtParams[0].timer;
@@ -6549,7 +6549,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				var nLayer = rhPtr.get_EventExpressionInt(this.evtParams[0]);
 
-				if (nLayer > 0 && nLayer <= rhPtr.rhFrame.nLayers && hoPtr.hoLayer != nLayer - 1)
+				if (nLayer> 0 && nLayer <= rhPtr.rhFrame.nLayers && hoPtr.hoLayer != nLayer - 1)
 				{
 					nLayer -= 1;
 
@@ -7135,7 +7135,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				var val = rhPtr.get_EventExpressionInt(this.evtParams[0]);
 				if (val < 0) val = 0;
-				if (val > 128) val = 128;
+				if (val> 128) val = 128;
 
 				pHo.roc.rcChanged = true;
 				pHo.ros.setSemiTransparency(val);
@@ -7206,9 +7206,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				num = this.evtParams[0].value;
 
-			if (num >= 0 && pHo.rov != null)
+			if (num>= 0 && pHo.rov != null)
 			{
-				if (num >= pHo.rov.rvValues.length)
+				if (num>= pHo.rov.rvValues.length)
 					pHo.rov.growValues(num + 10);
 				var pValue2 = rhPtr.get_EventExpressionAny(this.evtParams[1]);
 				pHo.rov.rvValues[num] = pValue2;
@@ -7228,9 +7228,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (pHo == null)
 				return;
 
-			if (this.num >= 0 && pHo.rov != null)
+			if (this.num>= 0 && pHo.rov != null)
 			{
-				if (this.num >= pHo.rov.rvValues.length)
+				if (this.num>= pHo.rov.rvValues.length)
 					pHo.rov.growValues(this.num + 10);
 				pHo.rov.rvValues[this.num] = this.value;
 			}
@@ -7255,9 +7255,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				num = this.evtParams[0].value;
 
-			if (num >= 0 && pHo.rov != null)
+			if (num>= 0 && pHo.rov != null)
 			{
-				if (num > pHo.rov.rvStrings.length)
+				if (num> pHo.rov.rvStrings.length)
 					pHo.rov.rvStrings.growStrings(num + 10);
 				pHo.rov.rvStrings[num] = rhPtr.get_EventExpressionString(this.evtParams[1]);
 			}
@@ -7532,9 +7532,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				num = this.evtParams[0].value;
 
-			if (num >= 0 && pHo.rov != null)
+			if (num>= 0 && pHo.rov != null)
 			{
-				if (num >= pHo.rov.rvValues.length)
+				if (num>= pHo.rov.rvValues.length)
 					pHo.rov.growValues(num + 10);
 				var pValue2 = rhPtr.get_EventExpressionAny(this.evtParams[1]);
 				pHo.rov.rvValues[num] += pValue2;
@@ -7553,9 +7553,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var pHo = rhPtr.rhEvtProg.get_ActionObjects(this);
 			if (pHo == null) return;
 
-			if (this.num >= 0 && pHo.rov != null)
+			if (this.num>= 0 && pHo.rov != null)
 			{
-				if (this.num >= pHo.rov.rvValues.length)
+				if (this.num>= pHo.rov.rvValues.length)
 					pHo.rov.growValues(this.num + 10);
 				pHo.rov.rvValues[this.num] += this.value;
 			}
@@ -7579,9 +7579,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				num = this.evtParams[0].value;
 
-			if (num >= 0 && pHo.rov != null)
+			if (num>= 0 && pHo.rov != null)
 			{
-				if (num >= pHo.rov.rvValues.length)
+				if (num>= pHo.rov.rvValues.length)
 					pHo.rov.growValues(num + 10);
 				var pValue2 = rhPtr.get_EventExpressionAny(this.evtParams[1]);
 				pHo.rov.rvValues[num] -= pValue2;
@@ -7600,9 +7600,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var pHo = rhPtr.rhEvtProg.get_ActionObjects(this);
 			if (pHo == null) return;
 
-			if (this.num >= 0 && pHo.rov != null)
+			if (this.num>= 0 && pHo.rov != null)
 			{
-				if (this.num >= pHo.rov.rvValues.length)
+				if (this.num>= pHo.rov.rvValues.length)
 					pHo.rov.growValues(this.num + 10);
 				pHo.rov.rvValues[this.num] -= this.value;
 			}
@@ -7870,46 +7870,46 @@ window['Runtime'] = (function Runtime(__can, __path){
 		var c = app.file.readAInt();
 		switch (c)
 		{
-		    case ((-40 << 16) | 0xFFFF):
-		        cnd = new CND_RUNNINGAS();
-		        break;
-		    case ((-39 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_GT();
-		        break;
-		    case ((-38 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_GE();
-		        break;
-		    case ((-37 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_LT();
-		        break;
-		    case ((-36 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_LE();
-		        break;
-		    case ((-35 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_NE();
-		        break;
-		    case ((-34 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_EQ();
-		        break;
-		    case ((-33 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_GT();
-		        break;
-		    case ((-32 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_GE();
-		        break;
-		    case ((-31 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_LT();
-		        break;
-		    case ((-30 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_LE();
-		        break;
-		    case ((-29 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_NE();
-		        break;
-		    case ((-28 << 16) | 0xFFFF):
-		        cnd = new CND_COMPAREGCONST_EQ();
-		        break;
-		    case ((-27 << 16) | 0xFFFF):    // ELSE IF
+		  case ((-40 << 16) | 0xFFFF):
+		    cnd = new CND_RUNNINGAS();
+		    break;
+		  case ((-39 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_GT();
+		    break;
+		  case ((-38 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_GE();
+		    break;
+		  case ((-37 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_LT();
+		    break;
+		  case ((-36 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_LE();
+		    break;
+		  case ((-35 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_NE();
+		    break;
+		  case ((-34 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_EQ();
+		    break;
+		  case ((-33 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_GT();
+		    break;
+		  case ((-32 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_GE();
+		    break;
+		  case ((-31 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_LT();
+		    break;
+		  case ((-30 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_LE();
+		    break;
+		  case ((-29 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_NE();
+		    break;
+		  case ((-28 << 16) | 0xFFFF):
+		    cnd = new CND_COMPAREGCONST_EQ();
+		    break;
+		  case ((-27 << 16) | 0xFFFF):  // ELSE IF
 				cnd = new CND_NEVER();
 				break;
 			case ((-26 << 16) | 0xFFFF):
@@ -8173,13 +8173,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 			default:
 				switch (c & 0xFFFF0000)
 				{
-				    case (-43 << 16):
-				        cnd = new CND_EXTCMPVARCONST();
-				        break;
-				    case (-42 << 16):
-				        cnd = new CND_EXTCMPVARCONST();
-				        break;
-				    case (-41 << 16):
+				  case (-43 << 16):
+				    cnd = new CND_EXTCMPVARCONST();
+				    break;
+				  case (-42 << 16):
+				    cnd = new CND_EXTCMPVARCONST();
+				    break;
+				  case (-41 << 16):
 						cnd = new CND_EXTONLOOP();
 						break;
 					case (-40 << 16):
@@ -8318,7 +8318,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			cnd.evtDefType = app.file.readAByte();
 			cnd.evtIdentifier = app.file.readAShort();
 
-			if (cnd.evtNParams > 0)
+			if (cnd.evtNParams> 0)
 			{
 				cnd.evtParams = new Array(cnd.evtNParams);
 				var n;
@@ -8434,7 +8434,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CCnd.prototype =
 	{
-		compute_NoRepeat:  function (pHo)
+		compute_NoRepeat: function (pHo)
 		{
 			return CCnd.compute_NoRepeatCol(this.evtIdentifier, pHo);
 		},
@@ -8458,7 +8458,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return true;
 			return false;
 		},
-		evaChooseValue:    function (rhPtr, pRoutine)
+		evaChooseValue:  function (rhPtr, pRoutine)
 		{
 			var cpt = 0;
 
@@ -8478,7 +8478,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return true;
 			return false;
 		},
-		evaExpObject:      function (rhPtr, pRoutine)
+		evaExpObject:   function (rhPtr, pRoutine)
 		{
 			var pHo = rhPtr.rhEvtProg.evt_FirstObject(this.evtOiList);
 			var cpt = rhPtr.rhEvtProg.evtNSelectedObjects;
@@ -8516,7 +8516,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return true;
 			return false;
 		},
-		evaObject:         function (rhPtr, pRoutine)
+		evaObject:     function (rhPtr, pRoutine)
 		{
 			var pHo = rhPtr.rhEvtProg.evt_FirstObject(this.evtOiList);
 			var cpt = rhPtr.rhEvtProg.evtNSelectedObjects;
@@ -8533,13 +8533,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return true;
 			return false;
 		},
-		compareCondition:  function (rhPtr, param, v)
+		compareCondition: function (rhPtr, param, v)
 		{
 			var value2 = rhPtr.get_EventExpressionAny(this.evtParams[param]);
 			var comp = this.evtParams[param].comparaison;
 			return CRun.compareTo(v, value2, comp);
 		},
-		isColliding:       function (rhPtr)
+		isColliding:    function (rhPtr)
 		{
 			if (rhPtr.rhEvtProg.rh4ConditionsFalse)
 			{
@@ -8559,7 +8559,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			var oi = this.evtParams[0].oi;
 			var oi2List;
-			if (oi >= 0)
+			if (oi>= 0)
 			{
 				rhPtr.isColArray[0] = oi;
 				rhPtr.isColArray[1] = this.evtParams[0].oiList;
@@ -8685,9 +8685,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var param1 = rhPtr.get_EventExpressionInt(this.evtParams[0]);
 			var param2 = rhPtr.get_EventExpressionInt(this.evtParams[1]);
-			if (param1 >= param2)
-			    return true;
-			if (param2 >= 1 && param1 > 0 && param1 <= param2)
+			if (param1>= param2)
+			  return true;
+			if (param2>= 1 && param1> 0 && param1 <= param2)
 			{
 				var rnd = rhPtr.random(param2);
 				if (rnd <= param1)
@@ -8748,16 +8748,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_COMPAREGCONST_EQ.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var num = this.evtParams[0].value;
-	        var gValue = rhPtr.rhApp.getGlobalValueAt(num);
-	        var p = this.evtParams[1];
-	        var value = p.tokens[0].value;
-	        return gValue == value;
-	    }
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var num = this.evtParams[0].value;
+	    var gValue = rhPtr.rhApp.getGlobalValueAt(num);
+	    var p = this.evtParams[1];
+	    var value = p.tokens[0].value;
+	    return gValue == value;
+	  }
 	}
 	// -- CUT
 
@@ -8765,16 +8765,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_COMPAREGCONST_NE.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var num = this.evtParams[0].value;
-	        var gValue = rhPtr.rhApp.getGlobalValueAt(num);
-	        var p = this.evtParams[1];
-	        var value = p.tokens[0].value;
-	        return gValue != value;
-	    }
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var num = this.evtParams[0].value;
+	    var gValue = rhPtr.rhApp.getGlobalValueAt(num);
+	    var p = this.evtParams[1];
+	    var value = p.tokens[0].value;
+	    return gValue != value;
+	  }
 	}
 	// -- CUT
 
@@ -8782,16 +8782,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_COMPAREGCONST_LE.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var num = this.evtParams[0].value;
-	        var gValue = rhPtr.rhApp.getGlobalValueAt(num);
-	        var p = this.evtParams[1];
-	        var value = p.tokens[0].value;
-	        return gValue <= value;
-	    }
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var num = this.evtParams[0].value;
+	    var gValue = rhPtr.rhApp.getGlobalValueAt(num);
+	    var p = this.evtParams[1];
+	    var value = p.tokens[0].value;
+	    return gValue <= value;
+	  }
 	}
 	// -- CUT
 
@@ -8799,16 +8799,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_COMPAREGCONST_LT.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var num = this.evtParams[0].value;
-	        var gValue = rhPtr.rhApp.getGlobalValueAt(num);
-	        var p = this.evtParams[1];
-	        var value = p.tokens[0].value;
-	        return gValue < value;
-	    }
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var num = this.evtParams[0].value;
+	    var gValue = rhPtr.rhApp.getGlobalValueAt(num);
+	    var p = this.evtParams[1];
+	    var value = p.tokens[0].value;
+	    return gValue < value;
+	  }
 	}
 	// -- CUT
 
@@ -8816,16 +8816,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_COMPAREGCONST_GE.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var num = this.evtParams[0].value;
-	        var gValue = rhPtr.rhApp.getGlobalValueAt(num);
-	        var p = this.evtParams[1];
-	        var value = p.tokens[0].value;
-	        return gValue >= value;
-	    }
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var num = this.evtParams[0].value;
+	    var gValue = rhPtr.rhApp.getGlobalValueAt(num);
+	    var p = this.evtParams[1];
+	    var value = p.tokens[0].value;
+	    return gValue>= value;
+	  }
 	}
 	// -- CUT
 
@@ -8833,16 +8833,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_COMPAREGCONST_GT.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var num = this.evtParams[0].value;
-	        var gValue = rhPtr.rhApp.getGlobalValueAt(num);
-	        var p = this.evtParams[1];
-	        var value = p.tokens[0].value;
-	        return gValue > value;
-	    }
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var num = this.evtParams[0].value;
+	    var gValue = rhPtr.rhApp.getGlobalValueAt(num);
+	    var p = this.evtParams[1];
+	    var value = p.tokens[0].value;
+	    return gValue> value;
+	  }
 	}
 	// CUT
 
@@ -9148,11 +9148,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CHOOSEFLAGRESET.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:     function (rhPtr, hoPtr)
+			eva1:   function (rhPtr, hoPtr)
 			{
 				return this.eva2(rhPtr);
 			},
-			eva2:     function (rhPtr)
+			eva2:   function (rhPtr)
 			{
 				return this.evaChooseValue(rhPtr, this);
 			},
@@ -9173,11 +9173,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CHOOSEFLAGRESET_OLD.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:     function (rhPtr, hoPtr)
+			eva1:   function (rhPtr, hoPtr)
 			{
 				return this.eva2(rhPtr);
 			},
-			eva2:     function (rhPtr)
+			eva2:   function (rhPtr)
 			{
 				return this.evaChooseValueOld(rhPtr, this);
 			},
@@ -9198,11 +9198,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CHOOSEFLAGSET.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:     function (rhPtr, hoPtr)
+			eva1:   function (rhPtr, hoPtr)
 			{
 				return this.eva2(rhPtr);
 			},
-			eva2:     function (rhPtr)
+			eva2:   function (rhPtr)
 			{
 				return this.evaChooseValue(rhPtr, this);
 			},
@@ -9223,11 +9223,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CHOOSEFLAGSET_OLD.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:     function (rhPtr, hoPtr)
+			eva1:   function (rhPtr, hoPtr)
 			{
 				return this.eva2(rhPtr);
 			},
-			eva2:     function (rhPtr)
+			eva2:   function (rhPtr)
 			{
 				return this.evaChooseValueOld(rhPtr, this);
 			},
@@ -9588,7 +9588,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				if (CServices.compareStringsIgnoreCase(pForEach.name, pName))
 				{
-				    if (pForEach.oi == this.evtOiList)
+				  if (pForEach.oi == this.evtOiList)
 					{
 						var index = pForEach.index % pForEach.number;
 						pHo2 = pForEach.objects[index];
@@ -9600,7 +9600,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				if (CServices.compareStringsIgnoreCase(pForEach.name, pName))
 				{
-				    if (pForEach.oi == this.evtOiList)
+				  if (pForEach.oi == this.evtOiList)
 					{
 						var index = pForEach.index % pForEach.number;
 						pHo2 = pForEach.objects[index];
@@ -9722,13 +9722,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 	{
 		eva1: function (rhPtr, hoPtr)
 		{
-			if (rhPtr.rhLoopCount > 2)
+			if (rhPtr.rhLoopCount> 2)
 				return false;
 			return true;
 		},
 		eva2: function (rhPtr)
 		{
-			if (rhPtr.rhLoopCount > 2)
+			if (rhPtr.rhLoopCount> 2)
 				return false;
 			return true;
 		}
@@ -9767,7 +9767,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var p = this.evtParams[0];
 			p.compteur -= rhPtr.rhTimerDelta;
-			if (p.compteur > 0)
+			if (p.compteur> 0)
 				return false;
 			p.compteur += p.delay;
 			return true;
@@ -9792,7 +9792,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				time = this.evtParams[0].timer;
 
-			if (rhPtr.rh4TimeOut > time)
+			if (rhPtr.rh4TimeOut> time)
 				return true;
 			return false;
 		}
@@ -9807,7 +9807,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		eva1: function (rhPtr, hoPtr)
 		{
 			if ((this.evtFlags & CEvent.EVFLAGS_DONE) != 0)
-				return  false;
+				return false;
 
 			var time = this.evtParams[0].timer;
 			if (rhPtr.rhTimer < time)
@@ -9839,7 +9839,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				time = this.evtParams[0].timer;
 
-			if (rhPtr.rhTimer > time)
+			if (rhPtr.rhTimer> time)
 				return false;
 
 			return true;
@@ -9906,7 +9906,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				time = this.evtParams[0].timer;
 
 			var param2 = this.evtParams[1];
-			if (rhPtr.rhTimer >= time)
+			if (rhPtr.rhTimer>= time)
 			{
 				if (param2.value == rhPtr.rhLoopCount)
 				{
@@ -9938,7 +9938,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				time = this.evtParams[0].timer;
 
-			if (rhPtr.rhTimer > time)
+			if (rhPtr.rhTimer> time)
 				return true;
 
 			return false;
@@ -10144,7 +10144,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (this.evtParams[0].value == key)
 			{
 				var p = this.evtParams[1];
-				if (rhPtr.rh2MouseX >= p.x1 && rhPtr.rh2MouseX < p.x2 && rhPtr.rh2MouseY >= p.y1 && rhPtr.rh2MouseY < p.y2)
+				if (rhPtr.rh2MouseX>= p.x1 && rhPtr.rh2MouseX < p.x2 && rhPtr.rh2MouseY>= p.y1 && rhPtr.rh2MouseY < p.y2)
 				{
 					return true;
 				}
@@ -10156,7 +10156,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (this.evtParams[0].value == rhPtr.rhEvtProg.rh2CurrentClick)
 			{
 				var p = this.evtParams[1];
-				if (rhPtr.rh2MouseX >= p.x1 && rhPtr.rh2MouseX < p.x2 && rhPtr.rh2MouseY >= p.y1 && rhPtr.rh2MouseY < p.y2)
+				if (rhPtr.rh2MouseX>= p.x1 && rhPtr.rh2MouseX < p.x2 && rhPtr.rh2MouseY>= p.y1 && rhPtr.rh2MouseY < p.y2)
 				{
 					return true;
 				}
@@ -10225,7 +10225,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		eva2: function (rhPtr)
 		{
 			var p = this.evtParams[0];
-			if (rhPtr.rh2MouseX >= p.x1 && rhPtr.rh2MouseX < p.x2 && rhPtr.rh2MouseY >= p.y1 && rhPtr.rh2MouseY < p.y2)
+			if (rhPtr.rh2MouseX>= p.x1 && rhPtr.rh2MouseX < p.x2 && rhPtr.rh2MouseY>= p.y1 && rhPtr.rh2MouseY < p.y2)
 				return CCnd.negaTRUE(this);
 			return CCnd.negaFALSE(this);
 		}
@@ -10522,11 +10522,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CCAAPPFINISHED.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -10542,11 +10542,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CCAFRAMECHANGED.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -10562,11 +10562,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CCAISPAUSED.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -10582,11 +10582,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_CCAISVISIBLE.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -10637,11 +10637,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTHIDDEN.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -10659,7 +10659,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTANIMENDOF.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				var ani;
 				if (this.evtParams[0].code == 10)
@@ -10672,7 +10672,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				rhPtr.rhEvtProg.evt_AddCurrentObject(hoPtr);
 				return true;
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				if (this.evtParams[0].code == 10)
 					return this.evaObject(rhPtr, this);
@@ -10687,7 +10687,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return true;
 				return false;
 			},
-			evaExpRoutine:    function (hoPtr, value, comp)
+			evaExpRoutine:  function (hoPtr, value, comp)
 			{
 				if (value != hoPtr.roa.raAnimOn)
 					return false;
@@ -10703,11 +10703,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTANIMPLAYING.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.eva2(rhPtr);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				if (this.evtParams[0].code == 10)
 					return this.evaObject(rhPtr, this);
@@ -10722,7 +10722,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return CCnd.negaTRUE(this);
 				return CCnd.negaFALSE(this);
 			},
-			evaExpRoutine:    function (hoPtr, value, comp)
+			evaExpRoutine:  function (hoPtr, value, comp)
 			{
 				if (value != hoPtr.roa.raAnimOn)
 					return CCnd.negaFALSE(this);
@@ -10738,11 +10738,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTBOUNCING.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -10758,11 +10758,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPACC.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -10778,11 +10778,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPDEC.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -10798,11 +10798,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPFRAME.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -10818,11 +10818,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPSPEED.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -10859,7 +10859,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				else
 					num = this.evtParams[0].value;
 
-				if (num >= 0 && pHo.rov != null)
+				if (num>= 0 && pHo.rov != null)
 				{
 					if (num < pHo.rov.rvValues.length)
 						value1 = pHo.rov.getValue(num);
@@ -10889,40 +10889,40 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPVARCONST.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var pHo = rhPtr.rhEvtProg.evt_FirstObject(this.evtOiList);
-	        if (pHo == null) return false;
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var pHo = rhPtr.rhEvtProg.evt_FirstObject(this.evtOiList);
+	    if (pHo == null) return false;
 
-	        var cpt = rhPtr.rhEvtProg.evtNSelectedObjects;
-	        var num = this.evtParams[0].value;
-	        var p = this.evtParams[1];
-	        var value1;
-	        var value2 = p.tokens[0].value;
-	        do {
+	    var cpt = rhPtr.rhEvtProg.evtNSelectedObjects;
+	    var num = this.evtParams[0].value;
+	    var p = this.evtParams[1];
+	    var value1;
+	    var value2 = p.tokens[0].value;
+	    do {
 
-	            if (num >= 0 && pHo.rov != null)
-	            {
-	                if (num < pHo.rov.rvValues.length)
-	                    value1 = pHo.rov.getValue(num);
-	                else
-	                    value1 = 0;
+	      if (num>= 0 && pHo.rov != null)
+	      {
+	        if (num < pHo.rov.rvValues.length)
+	          value1 = pHo.rov.getValue(num);
+	        else
+	          value1 = 0;
 
-	                if (CRun.compareTo(value1, value2, p.comparaison) == false) {
-	                    cpt--;
-	                    rhPtr.rhEvtProg.evt_DeleteCurrentObject();
-	                }
-	            }
-	            else {
-	                cpt--;
-	                rhPtr.rhEvtProg.evt_DeleteCurrentObject();
-	            }
-	            pHo = rhPtr.rhEvtProg.evt_NextObject();
-	        } while (pHo != null);
-	        return (cpt != 0);
-	    }
+	        if (CRun.compareTo(value1, value2, p.comparaison) == false) {
+	          cpt--;
+	          rhPtr.rhEvtProg.evt_DeleteCurrentObject();
+	        }
+	      }
+	      else {
+	        cpt--;
+	        rhPtr.rhEvtProg.evt_DeleteCurrentObject();
+	      }
+	      pHo = rhPtr.rhEvtProg.evt_NextObject();
+	    } while (pHo != null);
+	    return (cpt != 0);
+	  }
 	}
 	// CUT
 
@@ -10931,11 +10931,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPVARFIXED.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -10972,7 +10972,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				else
 					num = this.evtParams[0].value;
 
-				if (num >= 0 && num < CRVal.STRINGS_NUMBEROF_ALTERABLE && pHo.rov != null)
+				if (num>= 0 && num < CRVal.STRINGS_NUMBEROF_ALTERABLE && pHo.rov != null)
 				{
 					value1 = pHo.rov.getString(num);
 					value2 = rhPtr.get_EventExpressionAny(this.evtParams[1]);
@@ -11000,11 +11000,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPX.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -11020,11 +11020,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCMPY.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -11040,7 +11040,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCOLBACK.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				if (this.compute_NoRepeat(hoPtr))
 				{
@@ -11054,7 +11054,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				rhPtr.rhEvtProg.rh3DoStop = true;
 				return true;
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return CCnd.negate(this, this.evaObject(rhPtr, this));
 			},
@@ -11070,7 +11070,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTCOLLISION.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:       function (rhPtr, pHo)
+			eva1:    function (rhPtr, pHo)
 			{
 				var pHo1 = rhPtr.rhObjectList[rhPtr.rhEvtProg.rh1stObjectNumber];
 				if (pHo1 == null)
@@ -11087,7 +11087,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						if (oiParam == pHo1.hoOi)
 							break;
-						if (oiParam >= 0)
+						if (oiParam>= 0)
 							return false;
 						if (this.colGetList(rhPtr, p.oiList, pHo1.hoOi))
 							break;
@@ -11097,7 +11097,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						if (oiEvent == pHo1.hoOi)
 							break;
-						if (oiEvent >= 0)
+						if (oiEvent>= 0)
 							return false;
 						if (this.colGetList(rhPtr, this.evtOiList, pHo1.hoOi))
 							break;
@@ -11131,7 +11131,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							return false;
 						}
 					}
-					if (oiParam >= 0)
+					if (oiParam>= 0)
 						return false;
 					if (oiEvent != pHo1.hoOi)
 						return false;
@@ -11163,7 +11163,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				return true;
 			},
-			eva2:       function (rhPtr)
+			eva2:    function (rhPtr)
 			{
 				return this.isColliding(rhPtr);
 			},
@@ -11188,11 +11188,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTENDPATH.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return true;
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11210,11 +11210,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTFACING.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.eva2(rhPtr);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				if (this.evtParams[0].code == 29)
 					return this.evaObject(rhPtr, this);
@@ -11236,7 +11236,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return CCnd.negaFALSE(this);
 			},
-			evaExpRoutine:    function (hoPtr, value, comp)
+			evaExpRoutine:  function (hoPtr, value, comp)
 			{
 				value &= 31;
 				return CCnd.negate(this, hoPtr.roc.rcDir == value);
@@ -11249,11 +11249,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTFLAGRESET.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -11274,11 +11274,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTFLAGSET.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -11302,7 +11302,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTINPLAYFIELD.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				var evpPtr = this.evtParams[0];
 				if ((evpPtr.value & (rhPtr.rhEvtProg.rhCurParam0)) == 0)
@@ -11320,7 +11320,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				rhPtr.rhEvtProg.rh3DoStop = true;
 				return true;
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11336,18 +11336,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTISBOLD.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
 			evaObjectRoutine: function (hoPtr)
 			{
 				var info = CRun.getObjectFont(hoPtr);
-				if (info.lfWeight >= 400)
+				if (info.lfWeight>= 400)
 					return true;
 				return false;
 			}
@@ -11359,11 +11359,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTISCOLBACK.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11399,11 +11399,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTISIN.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11425,11 +11425,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTISITALIC.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11448,11 +11448,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTISOUT.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11474,11 +11474,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTISSTRIKEOUT.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11497,17 +11497,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTISUNDERLINE.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
 			evaObjectRoutine: function (hoPtr)
 			{
-			    var info = CRun.getObjectFont(hoPtr);
+			  var info = CRun.getObjectFont(hoPtr);
 				if (info.lfUnderline != 0)
 					return true;
 				return false;
@@ -11520,11 +11520,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTNEARBORDERS.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:          function (rhPtr, hoPtr)
+			eva1:     function (rhPtr, hoPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
-			eva2:          function (rhPtr)
+			eva2:     function (rhPtr)
 			{
 				return this.evaExpObject(rhPtr, this);
 			},
@@ -11536,7 +11536,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				xw = hoPtr.hoAdRunHeader.rhWindowX + hoPtr.hoAdRunHeader.rh3WindowSx - bord;
 				x += hoPtr.hoImgWidth;
-				if (x >= xw) return CCnd.negaTRUE(this);
+				if (x>= xw) return CCnd.negaTRUE(this);
 
 				var yw = hoPtr.hoAdRunHeader.rhWindowY + bord;
 				var y = hoPtr.hoY - hoPtr.hoImgYSpot;
@@ -11544,7 +11544,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				yw = hoPtr.hoAdRunHeader.rhWindowY + hoPtr.hoAdRunHeader.rh3WindowSy - bord;
 				y += hoPtr.hoImgHeight;
-				if (y >= yw) return CCnd.negaTRUE(this);
+				if (y>= yw) return CCnd.negaTRUE(this);
 
 				return CCnd.negaFALSE(this);
 			}
@@ -11556,11 +11556,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTNOMOREOBJECT.prototype =
 	{
-		eva1:            function (rhPtr, hoPtr)
+		eva1:      function (rhPtr, hoPtr)
 		{
 			if (hoPtr == null)
 				return this.eva2(rhPtr);
-			if (this.evtOi >= 0)
+			if (this.evtOi>= 0)
 			{
 				if (hoPtr.hoOi != this.evtOi)
 					return false;
@@ -11568,7 +11568,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return this.evaNoMoreObject(rhPtr, 1);
 		},
-		eva2:            function (rhPtr)
+		eva2:      function (rhPtr)
 		{
 			return this.evaNoMoreObject(rhPtr, 0);
 		},
@@ -11681,13 +11681,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTOUTPLAYFIELD.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				var evpPtr = this.evtParams[0];
 				if ((evpPtr.value & (rhPtr.rhEvtProg.rhCurParam0)) == 0)
 					return false;
-				//        if (rhPtr.rhEvtProg.curParam1 == 0x12345678)
-				//            return true;
+				//    if (rhPtr.rhEvtProg.curParam1 == 0x12345678)
+				//      return true;
 
 				if (this.compute_NoRepeat(hoPtr))
 				{
@@ -11701,7 +11701,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				rhPtr.rhEvtProg.rh3DoStop = true;
 				return true;
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11717,11 +11717,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTPATHNODE.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return true;
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11739,7 +11739,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTPATHNODENAME.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				var pName = rhPtr.get_EventExpressionString(this.evtParams[0]);
 				if (hoPtr.hoMT_NodeName != null)
@@ -11751,7 +11751,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return false;
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11780,11 +11780,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTREVERSED.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11800,11 +11800,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTSHOWN.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11820,11 +11820,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_EXTSTOPPED.prototype = CServices.extend(new CCnd(),
 		{
-			eva1:             function (rhPtr, hoPtr)
+			eva1:       function (rhPtr, hoPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
-			eva2:             function (rhPtr)
+			eva2:       function (rhPtr)
 			{
 				return this.evaObject(rhPtr, this);
 			},
@@ -11839,19 +11839,19 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CND_RUNNINGAS.prototype =
 	{
-	    eva1: function (rhPtr, hoPtr) {
-	        return this.eva2(rhPtr);
-	    },
-	    eva2: function (rhPtr) {
-	        var number;
-	        if (this.evtParams[0].code == 67)   // PARAM_RUNTIME
-	            number = this.evtParams[0].value;
-	        else
-	            number = rhPtr.get_EventExpressionInt(this.evtParams[0]);
-	        if (number == 5)		// RUNTIME_HTML5
-	            return CCnd.negaTRUE(this);
-	        return CCnd.negaFALSE(this);
-	    }
+	  eva1: function (rhPtr, hoPtr) {
+	    return this.eva2(rhPtr);
+	  },
+	  eva2: function (rhPtr) {
+	    var number;
+	    if (this.evtParams[0].code == 67)  // PARAM_RUNTIME
+	      number = this.evtParams[0].value;
+	    else
+	      number = rhPtr.get_EventExpressionInt(this.evtParams[0]);
+	    if (number == 5)		// RUNTIME_HTML5
+	      return CCnd.negaTRUE(this);
+	    return CCnd.negaFALSE(this);
+	  }
 	}
 	// CUT
 
@@ -12129,10 +12129,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 			case ((65 << 16) | 0xFFFF):
 				exp = new EXP_RANDOMRANGE();
 				break;
-		    case ((67 << 16) | 0xFFFF):
-		        exp = new EXP_RUNTIMENAME();
-		        break;
-		    case ((-1 << 16) | 0xFFFF):
+		  case ((67 << 16) | 0xFFFF):
+		    exp = new EXP_RUNTIMENAME();
+		    break;
+		  case ((-1 << 16) | 0xFFFF):
 				exp = new EXP_PARENTH1();
 				break;
 			case ((-2 << 16) | 0xFFFF):
@@ -12458,15 +12458,15 @@ window['Runtime'] = (function Runtime(__can, __path){
 					case (41 << 16):
 						exp = new EXP_EXTHEIGHT();
 						break;
-				    case (42 << 16):
-				        exp = new EXP_EXTGETMASS();
-				        break;
-				    case (43 << 16):
-				        exp = new EXP_EXTGETANGULARVELOCITY();
-				        break;
-				    case (44 << 16):
-				        exp = new EXP_EXTGETNAME();
-				        break;
+				  case (42 << 16):
+				    exp = new EXP_EXTGETMASS();
+				    break;
+				  case (43 << 16):
+				    exp = new EXP_EXTGETANGULARVELOCITY();
+				    break;
+				  case (44 << 16):
+				    exp = new EXP_EXTGETNAME();
+				    break;
 
 					default:
 						exp = new CExpExtension();
@@ -12505,7 +12505,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						type = c & 0xFFFF;
 						if ((type & 0x8000) != 0)
 							type = type - 65536;
-						if (type >= 2 || type == COI.OBJ_PLAYER)
+						if (type>= 2 || type == COI.OBJ_PLAYER)
 						{
 							exp.oi = file.readShort();
 							exp.oiList = file.readShort();
@@ -12661,7 +12661,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var number = rhPtr.get_ExpressionInt();
 			if (pHo != null && pHo.rov != null)
 			{
-				if (number >= 0 && number < pHo.rov.rvValues.length)
+				if (number>= 0 && number < pHo.rov.rvValues.length)
 				{
 					var value = pHo.rov.getValue(number);
 					if (!CServices.isInt(value))
@@ -12687,7 +12687,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var number = rhPtr.get_ExpressionInt();
 			if (pHo != null && pHo.rov != null)
 			{
-				if (number >= 0 && number < CRVal.STRINGS_NUMBEROF_ALTERABLE)
+				if (number>= 0 && number < CRVal.STRINGS_NUMBEROF_ALTERABLE)
 				{
 					rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.rov.getString(number);
 					return;
@@ -12785,9 +12785,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	EXP_RUNTIMENAME.prototype =
 	{
-	    evaluate: function (rhPtr) {
-	        rhPtr.rh4Results[rhPtr.rh4PosPile] = "Html5";
-	    }
+	  evaluate: function (rhPtr) {
+	    rhPtr.rh4Results[rhPtr.rh4PosPile] = "Html5";
+	  }
 	}
 	// CUT
 
@@ -12945,7 +12945,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var value1 = rhPtr.rh4Results[rhPtr.rh4PosPile];
 			var value2 = rhPtr.rh4Results[rhPtr.rh4PosPile + 1];
-			//		if (Math.floor(value1)==value1 &&  (value2)==value2)
+			//		if (Math.floor(value1)==value1 && (value2)==value2)
 			if (value2 != 0)
 			{
 				if (rhPtr.flagFloat == false)
@@ -12988,7 +12988,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			rhPtr.rh4CurToken++;
 			var firstChar = rhPtr.get_ExpressionInt();
 
-			if (firstChar >= pMainString.length)
+			if (firstChar>= pMainString.length)
 			{
 				rhPtr.rh4Results[rhPtr.rh4PosPile] = -1;
 				return;
@@ -13022,7 +13022,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var point = temp.indexOf(".");
 
 			var cpt;
-			if (point >= 0)
+			if (point>= 0)
 			{
 				for (cpt = point + 1; cpt < temp.length; cpt++)
 				{
@@ -13036,7 +13036,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 
 			var pos = 0;
-			if (point >= 0)
+			if (point>= 0)
 			{
 				if (value < 0.0)
 				{
@@ -13050,7 +13050,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					pos++;
 				}
 
-				if (nDecimals > 0)
+				if (nDecimals> 0)
 				{
 					result += ".";
 					pos++;
@@ -13076,7 +13076,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					result += temp.charAt(pos);
 					pos++;
 				}
-				if (nDecimals > 0)
+				if (nDecimals> 0)
 				{
 					result += ".";
 					for (cpt = 0; cpt < nDecimals; cpt++)
@@ -13113,7 +13113,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			rhPtr.rh4CurToken++;
 			var rgb = rhPtr.getExpression();
-			rhPtr.rh4Results[rhPtr.rh4PosPile] = (rgb >>> 16) & 255;
+			rhPtr.rh4Results[rhPtr.rh4PosPile] = (rgb>>> 16) & 255;
 		}
 	}
 	// CUT
@@ -13127,7 +13127,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			rhPtr.rh4CurToken++;
 			var rgb = rhPtr.getExpression();
-			rhPtr.rh4Results[rhPtr.rh4PosPile] = (rgb >>> 8) & 255;
+			rhPtr.rh4Results[rhPtr.rh4PosPile] = (rgb>>> 8) & 255;
 		}
 	}
 	// CUT
@@ -13207,7 +13207,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var pos = rhPtr.get_ExpressionInt();
 			if (pos < 0)
 				pos = 0;
-			if (pos > string.length)
+			if (pos> string.length)
 				pos = string.length;
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = string.substring(0, pos);
 
@@ -13372,11 +13372,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			if (start < 0)
 				start = 0;
-			if (start > string.length)
+			if (start> string.length)
 				start = string.length;
 			if (len < 0)
 				len = 0;
-			if (start + len > string.length)
+			if (start + len> string.length)
 				len = string.length - start;
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = string.substr(start, len);
 		}
@@ -13559,7 +13559,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			rhPtr.rh4CurToken++;
 			var firstChar = rhPtr.get_ExpressionInt();
 
-			if (firstChar > pMainString.length)
+			if (firstChar> pMainString.length)
 			{
 				firstChar = pMainString.length;
 			}
@@ -13573,7 +13573,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (pFound == -1)
 					break;
 				pos = pFound;
-				if (pos > firstChar)
+				if (pos> firstChar)
 					break;
 			}
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = oldPos;
@@ -13595,7 +13595,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			if (pos < 0)
 				pos = 0;
-			if (pos > str.length)
+			if (pos> str.length)
 				pos = str.length;
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = str.substring(str.length - pos, str.length);
 		}
@@ -13871,7 +13871,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			// For benchmarks only
 			//var date = new Date();
-		    //rhPtr.rh4Results[rhPtr.rh4PosPile] = date.getTime() % 100000;
+		  //rhPtr.rh4Results[rhPtr.rh4PosPile] = date.getTime() % 100000;
 		}
 	}
 	// CUT
@@ -14075,7 +14075,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if ((rhPtr.rh3Scrolling & CRun.RH3SCROLLING_SCROLL) != 0)
 				r = rhPtr.rh3DisplayX;
 			r += rhPtr.rh3WindowSx;
-			if (r > rhPtr.rhLevelSx)
+			if (r> rhPtr.rhLevelSx)
 				r = rhPtr.rhLevelSx;
 
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = r;
@@ -14094,7 +14094,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if ((rhPtr.rh3Scrolling & CRun.RH3SCROLLING_SCROLL) != 0)
 				r = rhPtr.rh3DisplayY;
 			r += rhPtr.rh3WindowSy;
-			if (r > rhPtr.rhLevelSy)
+			if (r> rhPtr.rhLevelSy)
 				r = rhPtr.rhLevelSy;
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = r;
 		}
@@ -14354,7 +14354,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return;
 			}
 
-			if (num >= pHo.rsMaxi)
+			if (num>= pHo.rsMaxi)
 				num = pHo.rsMaxi - 1;
 			var txt = pHo.hoCommon.ocObject;
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = txt.otTexts[num].tsText;
@@ -14492,14 +14492,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			switch (effect & CRSpr.BOP_MASK)
 			{
 				case CRSpr.BOP_EFFECTEX:
-					alpha = 255 - ((effectParam >> 24) & 0xFF);
+					alpha = 255 - ((effectParam>> 24) & 0xFF);
 					break;
 				case CRSpr.BOP_BLEND:
 					alpha = 255 - ((effectParam == 128) ? 0 : (255 - effectParam * 2));
 					break;
 				default:
 					if (effect & CRSpr.BOP_RGBAFILTER)
-						alpha = 255 - ((effectParam >> 24) & 0xFF);
+						alpha = 255 - ((effectParam>> 24) & 0xFF);
 					break;
 			}
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = alpha;
@@ -14865,7 +14865,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				x = pHo.hoX;
 				if (pHo.roa != null)
 				{
-					if (pHo.roc.rcImage >= 0)
+					if (pHo.roc.rcImage>= 0)
 					{
 						var ifo;
 						ifo = rhPtr.rhApp.imageBank.getImageInfoEx(pHo.roc.rcImage, pHo.roc.rcAngle, pHo.roc.rcScaleX, pHo.roc.rcScaleY);
@@ -14950,7 +14950,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				y = pHo.hoY;
 				if (pHo.roa != null)
 				{
-					if (pHo.roc.rcImage >= 0)
+					if (pHo.roc.rcImage>= 0)
 					{
 						var ifo;
 						ifo = rhPtr.rhApp.imageBank.getImageInfoEx(pHo.roc.rcImage, pHo.roc.rcAngle, pHo.roc.rcScaleX, pHo.roc.rcScaleY);
@@ -15379,29 +15379,29 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var s = "";
 			if (key < CRunApp.MAX_KEY)
 			{
-				if (vkCode >= 96 && vkCode <= 105)
+				if (vkCode>= 96 && vkCode <= 105)
 				{
 					c = vkCode - 96;
 					s = "Numpad" + c.toString();
 				}
-				else if (vkCode >= 112 && vkCode <= 126)
+				else if (vkCode>= 112 && vkCode <= 126)
 				{
 					c = vkCode - 112;
 					s = "F" + c.toString();
 				}
-				else if (vkCode >= 48 && vkCode <= 57)
+				else if (vkCode>= 48 && vkCode <= 57)
 				{
 					c = vkCode - 48;
 					s = c.toString();
 				}
-				else if (vkCode >= 65 && vkCode <= 90)
+				else if (vkCode>= 65 && vkCode <= 90)
 				{
 					s = String.fromCharCode(vkCode);
 				}
 				else
 				{
 					s = "Control key";
-					/*TODO		    var n;
+					/*TODO		  var n;
 					 for (n=0; n<NB_SPECIAL_KEYS; n++)
 					 {
 					 if (keys[n*2+1]==vkCode)
@@ -15467,11 +15467,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (pHo != null)
 			{
 				if (rhPtr.rh4CurrentForEach != null)
-				    if (this.oiList == rhPtr.rh4CurrentForEach.oi)
+				  if (this.oiList == rhPtr.rh4CurrentForEach.oi)
 						x = rhPtr.rh4CurrentForEach.index;
 
 				if (rhPtr.rh4CurrentForEach2 != null)
-				    if (this.oiList == rhPtr.rh4CurrentForEach2.oi)
+				  if (this.oiList == rhPtr.rh4CurrentForEach2.oi)
 						x = rhPtr.rh4CurrentForEach2.index;
 			}
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = x;
@@ -15630,14 +15630,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	EXP_EXTGETMASS.prototype =
 	{
-	    evaluate: function (rhPtr) {
-	        var pHo = rhPtr.rhEvtProg.get_ExpressionObjects(this.oiList);
-	        if (rhPtr.GetMBase(pHo) == null) {
-	            rhPtr.rh4Results[rhPtr.rh4PosPile] = 0;
-	            return;
-	        }
-	        rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.rom.rmMovement.callMovement(CExp.EXP_EXTGETMASS, 0);
+	  evaluate: function (rhPtr) {
+	    var pHo = rhPtr.rhEvtProg.get_ExpressionObjects(this.oiList);
+	    if (rhPtr.GetMBase(pHo) == null) {
+	      rhPtr.rh4Results[rhPtr.rh4PosPile] = 0;
+	      return;
 	    }
+	    rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.rom.rmMovement.callMovement(CExp.EXP_EXTGETMASS, 0);
+	  }
 	}
 	// CUT
 
@@ -15645,14 +15645,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	EXP_EXTGETANGULARVELOCITY.prototype =
 	{
-	    evaluate: function (rhPtr) {
-	        var pHo = rhPtr.rhEvtProg.get_ExpressionObjects(this.oiList);
-	        if (rhPtr.GetMBase(pHo) == null) {
-	            rhPtr.rh4Results[rhPtr.rh4PosPile] = 0;
-	            return;
-	        }
-	        rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.rom.rmMovement.callMovement(CExp.EXP_EXTGETANGULARVELOCITY, 0);
+	  evaluate: function (rhPtr) {
+	    var pHo = rhPtr.rhEvtProg.get_ExpressionObjects(this.oiList);
+	    if (rhPtr.GetMBase(pHo) == null) {
+	      rhPtr.rh4Results[rhPtr.rh4PosPile] = 0;
+	      return;
 	    }
+	    rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.rom.rmMovement.callMovement(CExp.EXP_EXTGETANGULARVELOCITY, 0);
+	  }
 	}
 	// CUT
 
@@ -15660,14 +15660,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	EXP_EXTGETNAME.prototype =
 	{
-	    evaluate: function (rhPtr) {
-	        var pHo = rhPtr.rhEvtProg.get_ExpressionObjects(this.oiList);
-	        if (pHo == null) {
-	            rhPtr.rh4Results[rhPtr.rh4PosPile] = "";
-	            return;
-	        }
-	        rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.hoOiList.oilName;
+	  evaluate: function (rhPtr) {
+	    var pHo = rhPtr.rhEvtProg.get_ExpressionObjects(this.oiList);
+	    if (pHo == null) {
+	      rhPtr.rh4Results[rhPtr.rh4PosPile] = "";
+	      return;
 	    }
+	    rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.hoOiList.oilName;
+	  }
 	}
 	// CUT
 	// CRunApp object
@@ -15907,7 +15907,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.resources = "";
 		this.path = path;
 		var pos = path.lastIndexOf("/");
-		if (pos >= 0)
+		if (pos>= 0)
 			this.resources = path.substring(0, pos + 1);
 
 		this.frameColor = 0;
@@ -15920,14 +15920,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.bLoading = false;
 		this.keyNew = false;
 		this.subApps = new Array(0);
-		this.preloaderType = -1;                        // HTML5PRELOADER_IMAGE (0) ou HTML5PRELOADER_FRAMENUM (1)
+		this.preloaderType = -1;            // HTML5PRELOADER_IMAGE (0) ou HTML5PRELOADER_FRAMENUM (1)
 		this.preloaderCircleCenterX = 0;
 		this.preloaderCircleCenterY = 0;
 		this.preloaderCircleRadius = 0;
 		this.preloaderCircleThickness = 0;
 		this.preloaderCircleColor = 0;
 		this.preloaderBackColor = 0;
-		this.preloaderFrameNumber = 0;        // première frame = 0
+		this.preloaderFrameNumber = 0;    // première frame = 0
 		this.transition = null;
 		this.transitionManager = null;
 		this.transitionDisplay = null;
@@ -15965,10 +15965,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.infoFile = null;
 		this.infoCounter = 1000000000;
 		this.infoPath = null;
-		if (window.location.href.indexOf("192.") >= 0)
+		if (window.location.href.indexOf("192.")>= 0)
 		{
 			var pos = window.location.href.indexOf("21700/");
-			if (pos >= 0)
+			if (pos>= 0)
 			{
 				this.infoPath = window.location.href.substring(0, pos + 6);
 				this.infoVersion = -1;
@@ -15996,7 +15996,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CRunApp.prototype =
 	{
-		loadInfo:        function ()
+		loadInfo:    function ()
 		{
 			var version = this.infoFile.readAInt();
 			if (this.infoVersion < 0)
@@ -16010,7 +16010,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			this.infoCounter = 25;
 		},
-		load:            function ()
+		load:      function ()
 		{
 			this.numberOfFiles = this.file.readAShort();
 			this.currentFile = 1;
@@ -16022,7 +16022,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		loadApplication: function ()
 		{
 			this.currentFile++;
-			if (this.currentFile > this.numberOfFiles)
+			if (this.currentFile> this.numberOfFiles)
 			{
 				var zip = new JSZip(this.loadingFile.getBytes(), "content");
 				var unzipped = zip.file("Application.ccj").asBinary();
@@ -16037,7 +16037,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var filePath = this.path.substring(0, this.path.length - 1) + this.currentFile.toString();
 			this.loadingFile.getFile(filePath, loadApplication, size);
 		},
-		digest:          function ()
+		digest:     function ()
 		{
 			// Charge le mini-header
 			this.file.seek(0);
@@ -16102,16 +16102,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 					case 0x2224:
 						this.appName = this.file.readAString();
 						break;
-				    // CHUNK_APPCODEPAGE
-				    case 0x2246:
-				        this.codePage = this.file.readAInt();
-				        break;
-				   // Target file name
+				  // CHUNK_APPCODEPAGE
+				  case 0x2246:
+				    this.codePage = this.file.readAInt();
+				    break;
+				  // Target file name
 					case 0x222E:		// CHUNK_APPEDITORFILENAME:
 						this.appEditorFilename = this.file.readAString();
 						break;
 					// Touch Screen message for iOS
-					case 0x224E:        // CHUNK_HTML5_TOUCHME
+					case 0x224E:    // CHUNK_HTML5_TOUCHME
 						this.m_touchMe = this.file.readAString();
 						break;
 					// CHUNK_GLOBALVALUES
@@ -16125,10 +16125,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 					// CHUNK_FRAMEITEMS
 					// CHUNK_FRAMEITEMS_2
 					case 0x2229:
-				    case 0x223F:
-					    this.extLoader = new CExtLoader(this);
-					    this.extLoader.createList(this.file);
-					    this.OIList.preLoad(this.file);
+				  case 0x223F:
+					  this.extLoader = new CExtLoader(this);
+					  this.extLoader.createList(this.file);
+					  this.OIList.preLoad(this.file);
 						break;
 					// CHUNK_FRAMEHANDLES
 					case 0x222B:
@@ -16257,7 +16257,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.parentHeight = height;
 		},
 
-		initScreenZoom:     function ()
+		initScreenZoom:   function ()
 		{
 			this.bZoom = false;
 			this.scAngle = 0;
@@ -16265,18 +16265,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.scXSpot = this.scXDest = this.gaCxWin / 2;
 			this.scYSpot = this.scYDest = this.gaCyWin / 2;
 		},
-		setUpdate:          function ()
+		setUpdate:     function ()
 		{
 			window.setTimeout(updateApplication.bind(this), 20);
 		},
-		startApplication:   function ()
+		startApplication:  function ()
 		{
-			//	    this.dwOptions |= CRunApp.AH2OPT_LOADDATAATSTART;        // FRANCOIS
-			//	    this.dwOptions |= CRunApp.AH2OPT_LOADSOUNDSONTOUCH;
+			//	  this.dwOptions |= CRunApp.AH2OPT_LOADDATAATSTART;    // FRANCOIS
+			//	  this.dwOptions |= CRunApp.AH2OPT_LOADSOUNDSONTOUCH;
 
 			// Specific sound handling if on iOS
 			this.iOS = /iPad/i.test(navigator.userAgent) || /iPhone/i.test(navigator.userAgent) || /iPod/i.test(navigator.userAgent);
-			if (this.iOS && this.soundBank.nHandlesReel > 0) // && (this.dwOptions & CRunApp.AH2OPT_LOADSOUNDSONTOUCH) != 0)
+			if (this.iOS && this.soundBank.nHandlesReel> 0) // && (this.dwOptions & CRunApp.AH2OPT_LOADSOUNDSONTOUCH) != 0)
 			{
 				this.silentSound = new CSound(this);
 				this.silentSound.loadSilent();
@@ -16362,109 +16362,109 @@ window['Runtime'] = (function Runtime(__can, __path){
 					that.resizeCanvas();
 				}, false);
 
-	            // Does the browser support pointer events?
+	      // Does the browser support pointer events?
 				if (window.PointerEvent) {
-				    // Disable Edge default touch handling if Multiple Touch object is included
-				    if (typeof (CRunMultipleTouch) === "undefined") {
-				        //console.log("Multiple Touch not included => keep touch interception by browser");
-				    } else {
-				        //console.log("Multiple Touch included => disable touch interception by browser");
-				        this.canvas.setAttribute("style", "-ms-touch-action: none;");
-				        this.canvas.setAttribute("style", "touch-action: none;");
+				  // Disable Edge default touch handling if Multiple Touch object is included
+				  if (typeof (CRunMultipleTouch) === "undefined") {
+				    //console.log("Multiple Touch not included => keep touch interception by browser");
+				  } else {
+				    //console.log("Multiple Touch included => disable touch interception by browser");
+				    this.canvas.setAttribute("style", "-ms-touch-action: none;");
+				    this.canvas.setAttribute("style", "touch-action: none;");
+				  }
+
+				  this.canvas.addEventListener('pointerdown', function (event) {
+				    //where should re direct these events
+				    switch (event.pointerType) {
+				      case 'mouse':
+				      case 'pen':
+				        that.mouseDown(event, true);
+				        break;
+				      case 'touch':
+				        that.touchStart(event, true);
+				        break;
 				    }
 
-				    this.canvas.addEventListener('pointerdown', function (event) {
-				        //where should re direct these events
-				        switch (event.pointerType) {
-				            case 'mouse':
-				            case 'pen':
-				                that.mouseDown(event, true);
-				                break;
-				            case 'touch':
-				                that.touchStart(event, true);
-				                break;
-				        }
+				    //prevent default firing
+				    if (event.preventDefault) {
+				      event.preventDefault();
+				    }
+				  }, false);
 
-				        //prevent default firing
-				        if (event.preventDefault) {
-				            event.preventDefault();
-				        }
-				    }, false);
+				  this.canvas.addEventListener('pointermove', function (event) {
+				    //where should re direct these events
+				    switch (event.pointerType) {
+				      case 'mouse':
+				      case 'pen':
+				        that.mouseMove(event, that.canvas);
+				        break;
+				      case 'touch':
+				        that.touchMove(event, true);
+				        break;
+				    }
 
-				    this.canvas.addEventListener('pointermove', function (event) {
-				        //where should re direct these events
-				        switch (event.pointerType) {
-				            case 'mouse':
-				            case 'pen':
-				                that.mouseMove(event, that.canvas);
-				                break;
-				            case 'touch':
-				                that.touchMove(event, true);
-				                break;
-				        }
+				    //prevent default firing
+				    if (event.preventDefault) {
+				      event.preventDefault();
+				    }
+				  }, false);
 
-				        //prevent default firing
-				        if (event.preventDefault) {
-				            event.preventDefault();
-				        }
-				    }, false);
+				  this.canvas.addEventListener('pointerup', function (event) {
+				    //where should re direct these events
+				    switch (event.pointerType) {
+				      case 'mouse':
+				      case 'pen':
+				        that.mouseUp(event);
+				        break;
+				      case 'touch':
+				        that.touchEnd(event, true);
+				        break;
+				    }
 
-				    this.canvas.addEventListener('pointerup', function (event) {
-				        //where should re direct these events
-				        switch (event.pointerType) {
-				            case 'mouse':
-				            case 'pen':
-				                that.mouseUp(event);
-				                break;
-				            case 'touch':
-				                that.touchEnd(event, true);
-				                break;
-				        }
+				    if (event.preventDefault) {
+				      event.preventDefault();
+				    }
+				  }, false);
 
-				        if (event.preventDefault) {
-				            event.preventDefault();
-				        }
-				    }, false);
+				  this.canvas.addEventListener('pointercancel', function (event) {
+				    //where should re direct these events
+				    switch (event.pointerType) {
+				      case 'touch':
+				        that.touchEnd(event, true);
+				        break;
+				    }
 
-				    this.canvas.addEventListener('pointercancel', function (event) {
-				        //where should re direct these events
-				        switch (event.pointerType) {
-				            case 'touch':
-				                that.touchEnd(event, true);
-				                break;
-				        }
-
-				        if (event.preventDefault) {
-				            event.preventDefault();
-				        }
-				    }, false);
+				    if (event.preventDefault) {
+				      event.preventDefault();
+				    }
+				  }, false);
 				}
 				else {
-	                // The browser doesn't support pointer events
-				    this.canvas.addEventListener("mousemove", function (e) {
-				        that.mouseMove(e, that.canvas);
-				        if (e.preventDefault) e.preventDefault();
-				    }, false);
-				    this.canvas.addEventListener("mousedown", function (e) {
-				        that.mouseDown(e, false);
-				        if (e.preventDefault) e.preventDefault();
-				    }, false);
-				    this.canvas.addEventListener("mouseup", function (e) {
-				        that.mouseUp(e);
-				        if (e.preventDefault) e.preventDefault();
-				    }, false);
-				    this.canvas.addEventListener("mouseout", function (e) {
-				        that.mouseOut(e);
-				        if (e.preventDefault) e.preventDefault();
-				    }, false);
-				    this.canvas.addEventListener("click", function (e) {
-				        that.click(e);
-				        if (e.preventDefault) e.preventDefault();
-				    }, false);
-				    this.canvas.addEventListener("dblclick", function (e) {
-				        that.dblClick(e);
-				        if (e.preventDefault) e.preventDefault();
-				    }, false);
+	        // The browser doesn't support pointer events
+				  this.canvas.addEventListener("mousemove", function (e) {
+				    that.mouseMove(e, that.canvas);
+				    if (e.preventDefault) e.preventDefault();
+				  }, false);
+				  this.canvas.addEventListener("mousedown", function (e) {
+				    that.mouseDown(e, false);
+				    if (e.preventDefault) e.preventDefault();
+				  }, false);
+				  this.canvas.addEventListener("mouseup", function (e) {
+				    that.mouseUp(e);
+				    if (e.preventDefault) e.preventDefault();
+				  }, false);
+				  this.canvas.addEventListener("mouseout", function (e) {
+				    that.mouseOut(e);
+				    if (e.preventDefault) e.preventDefault();
+				  }, false);
+				  this.canvas.addEventListener("click", function (e) {
+				    that.click(e);
+				    if (e.preventDefault) e.preventDefault();
+				  }, false);
+				  this.canvas.addEventListener("dblclick", function (e) {
+				    that.dblClick(e);
+				    if (e.preventDefault) e.preventDefault();
+				  }, false);
 				}
 				this.canvas.addEventListener("contextmenu", function (e)
 				{
@@ -16518,17 +16518,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}, false);
 					this.canvas.addEventListener('touchmove', function (e)
 					{
-					    that.touchMove(e, false);
+					  that.touchMove(e, false);
 						if (e.preventDefault) e.preventDefault();
 					}, false);
 					this.canvas.addEventListener('touchend', function (e)
 					{
-					    that.touchEnd(e, false);
+					  that.touchEnd(e, false);
 						if (e.preventDefault) e.preventDefault();
 					}, false);
 					this.canvas.addEventListener('touchcancel', function (e)
 					{
-					    that.touchEnd(e, false);
+					  that.touchEnd(e, false);
 						if (e.preventDefault) e.preventDefault();
 					}, false);
 					/*
@@ -16569,7 +16569,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			this.run = new CRun(this);
 		},
-		resizeCanvas:       function ()
+		resizeCanvas:    function ()
 		{
 
 			/*		if(navigator.userAgent.match(/Android/i))
@@ -16635,37 +16635,37 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (this.run)
 				this.run.autoResize();
 		},
-		resetKeyBuffer:     function ()
+		resetKeyBuffer:   function ()
 		{
 			var n;
 			for (n = 0; n < CRunApp.MAX_VK; n++)
 				this.keyBuffer[n] = false;
 		},
-		isTouchable:        function ()
+		isTouchable:    function ()
 		{
 			var agents = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'Blackberry', 'Windows Phone', 'Touch'];
 			var nav = navigator.userAgent;
 			var i;
 			for (i in agents)
 			{
-				if (nav.indexOf(agents[i]) >= 0)
+				if (nav.indexOf(agents[i])>= 0)
 				{
 					return true;
 				}
 			}
 			if (('ontouchstart' in window) ||
-	             (navigator.maxTouchPoints > 0) ||
-	             (navigator.msMaxTouchPoints > 0)) {
-			    return true;
+	       (navigator.maxTouchPoints> 0) ||
+	       (navigator.msMaxTouchPoints> 0)) {
+			  return true;
 			}
 			return false;
 		},
-		dataHasLoaded:      function (data)
+		dataHasLoaded:   function (data)
 		{
 			this.dataLoading.removeObject(data);
 			this.imagesLoaded++;
 		},
-		addDataToLoad:      function (data)
+		addDataToLoad:   function (data)
 		{
 			this.dataToLoad.add(data);
 			this.imagesToLoad++;
@@ -16674,7 +16674,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		/*
 		 loadAllDataNow:function()
 		 {
-		 while (this.dataToLoad.size() > 0)
+		 while (this.dataToLoad.size()> 0)
 		 {
 		 var data = this.dataToLoad.get(0);
 		 this.dataLoading.add(data);
@@ -16683,7 +16683,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 }
 		 },
 		 */
-		stepApplication:    function ()
+		stepApplication:  function ()
 		{
 			if (this.infoPath)
 			{
@@ -16782,10 +16782,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.resetted = true;
 						if (this.parentApp == null)
 						{
-						    if (this.frame.leClearBackground)
-						        this.context.clearBackground(0, 0, this.canvas.width, this.canvas.height);
+						  if (this.frame.leClearBackground)
+						    this.context.clearBackground(0, 0, this.canvas.width, this.canvas.height);
 							else
-							    this.context.renderSolidColor(0, 0, this.gaCxWin, this.gaCyWin, color);
+							  this.context.renderSolidColor(0, 0, this.gaCxWin, this.gaCyWin, color);
 
 							this.setUpdate();
 						}
@@ -16799,7 +16799,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						return;
 					}
 
-					while (this.dataToLoad.size() > 0 && this.dataLoading.size() < this.dataLoadingStep)
+					while (this.dataToLoad.size()> 0 && this.dataLoading.size() < this.dataLoadingStep)
 					{
 						var data = this.dataToLoad.get(0);
 						this.dataLoading.add(data);
@@ -16863,8 +16863,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			if (!this.loading)
 			{
-			    this.context.resetEffect((this.dwOptions & CRunApp.AH2OPT_RESAMPLESTRETCH) != 0);
-			    if (this.transitionDisplay == null)
+			  this.context.resetEffect((this.dwOptions & CRunApp.AH2OPT_RESAMPLESTRETCH) != 0);
+			  if (this.transitionDisplay == null)
 				{
 					if (!erase)
 						this.context.renderSolidColor(x, y, this.parentWidth, this.parentHeight, this.frameColor);
@@ -17101,7 +17101,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						if ( this.preloaderType == 1 && this.nextFrame == this.preloaderFrameNumber )
 							this.nextFrame++;
 						this.appRunningState = CRunApp.SL_STARTFRAME;
-						if (this.nextFrame >= this.gaNbFrames)
+						if (this.nextFrame>= this.gaNbFrames)
 							this.appRunningState = CRunApp.SL_QUIT;
 						break;
 					case 2:
@@ -17120,7 +17120,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						if ((CServices.HIWORD(ul) & 0x8000) != 0)
 						{
 							this.nextFrame = CServices.HIWORD(ul) & 0x7FFF;
-							if (this.nextFrame >= this.gaNbFrames)
+							if (this.nextFrame>= this.gaNbFrames)
 							{
 								this.nextFrame = this.gaNbFrames - 1;
 							}
@@ -17160,7 +17160,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (this.appRunningState == CRunApp.SL_STARTFRAME)
 			{
 				// If invalid frame number, quit current game
-				if (this.nextFrame < 0 || this.nextFrame >= this.gaNbFrames)
+				if (this.nextFrame < 0 || this.nextFrame>= this.gaNbFrames)
 				{
 					this.appRunningState = this.currentFrame;
 				}
@@ -17401,7 +17401,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		HCellToNCell: function (hCell)
 		{
-			if (this.frameHandleToIndex == null || hCell == -1 || hCell >= this.frameMaxHandle)
+			if (this.frameHandleToIndex == null || hCell == -1 || hCell>= this.frameMaxHandle)
 			{
 				return -1;
 			}
@@ -17486,48 +17486,48 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.gStrings = null;
 		},
 
-		getLives:          function ()
+		getLives:     function ()
 		{
 			var app = this;
 			while (app.lives == null)
 				app = this.parentApp;
 			return app.lives;
 		},
-		getScores:         function ()
+		getScores:     function ()
 		{
 			var app = this;
 			while (app.scores == null)
 				app = this.parentApp;
 			return app.scores;
 		},
-		getCtrlType:       function ()
+		getCtrlType:    function ()
 		{
 			var app = this;
 			while (app.parentApp != null && (app.parentOptions & CCCA.CCAF_SHARE_PLAYERCTRLS) != 0)
 				app = app.parentApp;
 			return app.pcCtrlType;
 		},
-		getCtrlKeys:       function ()
+		getCtrlKeys:    function ()
 		{
 			var app = this;
 			while (app.parentApp != null && (app.parentOptions & CCCA.CCAF_SHARE_PLAYERCTRLS) != 0)
 				app = app.parentApp;
 			return app.pcCtrlKeys;
 		},
-		getGlobalValues:   function ()
+		getGlobalValues:  function ()
 		{
 			var app = this;
 			while (app.gValues == null)
 				app = app.parentApp;
 			return app.gValues;
 		},
-		getNGlobalValues:  function ()
+		getNGlobalValues: function ()
 		{
 			if (this.gValues != null)
 				return gValues.length;
 			return 0;
 		},
-		getGlobalStrings:  function ()
+		getGlobalStrings: function ()
 		{
 			var app = this;
 			while (app.gStrings == null)
@@ -17540,14 +17540,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return gStrings.length;
 			return 0;
 		},
-		checkGlobalValue:  function (num)
+		checkGlobalValue: function (num)
 		{
 			var values = this.getGlobalValues();
 
-			if (num < 0 || num > 1000)
+			if (num < 0 || num> 1000)
 				return null;
 			var oldSize = values.length;
-			if (num + 1 > oldSize)
+			if (num + 1> oldSize)
 			{
 				var n;
 				for (n = oldSize; n < num + 1; n++)
@@ -17555,20 +17555,20 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return values;
 		},
-		getGlobalValueAt:  function (num)
+		getGlobalValueAt: function (num)
 		{
 			var values = this.checkGlobalValue(num);
 			if (values != null)
 				return values[num];
 			return 0;
 		},
-		setGlobalValueAt:  function (num, value)
+		setGlobalValueAt: function (num, value)
 		{
 			var values = this.checkGlobalValue(num);
 			if (values != null)
 				values[num] = value;
 		},
-		addGlobalValueAt:  function (num, value)
+		addGlobalValueAt: function (num, value)
 		{
 			var values = this.checkGlobalValue(num);
 			if (values != null)
@@ -17578,10 +17578,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var strings = this.getGlobalStrings();
 
-			if (num < 0 || num > 1000)
+			if (num < 0 || num> 1000)
 				return null;
 			var oldSize = strings.length;
-			if (num + 1 > oldSize)
+			if (num + 1> oldSize)
 			{
 				var n;
 				for (n = oldSize; n < num + 1; n++)
@@ -17605,7 +17605,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		// Event handlers
 		// -----------------------------------------------------
-		doKeyPress:        function (e)
+		doKeyPress:    function (e)
 		{
 			if (e)
 			{
@@ -17624,7 +17624,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		doKeyDown:         function (e)
+		doKeyDown:     function (e)
 		{
 			if (e)
 			{
@@ -17639,7 +17639,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.subApps[n].doKeyDown(e);
 			}
 		},
-		doKeyUp:           function (e)
+		doKeyUp:      function (e)
 		{
 			if (e)
 			{
@@ -17650,16 +17650,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.subApps[n].doKeyUp(e);
 			}
 		},
-		getKeyState:       function (code)
+		getKeyState:    function (code)
 		{
 			return this.keyBuffer[code];
 		},
-		setMouseOffsets:   function (xOffset, yOffset)
+		setMouseOffsets:  function (xOffset, yOffset)
 		{
 			this.xMouseOffset = xOffset;
 			this.yMouseOffset = yOffset;
 		},
-		mouseMove:         function (e, obj, flag)
+		mouseMove:     function (e, obj, flag)
 		{
 			if (e.pageX)
 			{
@@ -17694,34 +17694,34 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.subApps[n].mouseMove(e, obj);
 
 			if (!this.touchable && flag != 0x12345678)
-			    this.touchMove(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
+			  this.touchMove(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
 		},
 		_mouseButtonFromEvent: function (event) {
-		    if (event.which) {
-		        switch (event.which) {
-		            case 2:
-		                return CRunApp.VK_MBUTTON;
-		                break;
-		            case 3:
-		                return CRunApp.VK_RBUTTON;
-		                break;
-		            default:
-		                return CRunApp.VK_LBUTTON;
-		                break;
-		        }
-		    } else {
-		        switch (event.button) {
-		            case 2:
-		                return CRunApp.VK_RBUTTON;
-		                break;
-		            case 4:
-		                return CRunApp.VK_MBUTTON;
-		                break;
-		            default:
-		                return CRunApp.VK_LBUTTON;
-		                break;
-		        }
+		  if (event.which) {
+		    switch (event.which) {
+		      case 2:
+		        return CRunApp.VK_MBUTTON;
+		        break;
+		      case 3:
+		        return CRunApp.VK_RBUTTON;
+		        break;
+		      default:
+		        return CRunApp.VK_LBUTTON;
+		        break;
 		    }
+		  } else {
+		    switch (event.button) {
+		      case 2:
+		        return CRunApp.VK_RBUTTON;
+		        break;
+		      case 4:
+		        return CRunApp.VK_MBUTTON;
+		        break;
+		      default:
+		        return CRunApp.VK_LBUTTON;
+		        break;
+		    }
+		  }
 		},
 		mouseUp: function (e)
 		{
@@ -17735,62 +17735,62 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.subApps[n].mouseUp(e);
 
 			if (!this.touchable)
-			    this.touchEnd(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
+			  this.touchEnd(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
 		},
 		mouseDown: function (e, pointerEvent)
 		{
-		    var code = this._mouseButtonFromEvent(e);
-		    this.mouseMove(e, this.canvas, 0x12345678);
+		  var code = this._mouseButtonFromEvent(e);
+		  this.mouseMove(e, this.canvas, 0x12345678);
 			this.bMouseIn = true;
 			this.keyNew = true;
 			this.keyBuffer[code] = true;
 
-		    // Enable sounds in Chrome
+		  // Enable sounds in Chrome
 			this.enableSoundsInChrome();
 
-		    //handle mouse button event
+		  //handle mouse button event
 			if (this.run != null && this.run.rhEvtProg != null) {
-			    if (pointerEvent) {
-			        //single or double click?
-			        var now = Date.now();
-			        var nClicks = (this.mouseDoubleClickTimestamp !== null && this.mouseDoubleClickCode == code && now - this.mouseDoubleClickTimestamp <= CRunApp.MOUSE_DOUBLE_CLICK_DELAY) ? 2 : 1;
-			        this.mouseDoubleClickCode = code;
-			        this.mouseDoubleClickTimestamp = now;
-			        this.run.rhEvtProg.onMouseButton(code - CRunApp.VK_LBUTTON, nClicks);
+			  if (pointerEvent) {
+			    //single or double click?
+			    var now = Date.now();
+			    var nClicks = (this.mouseDoubleClickTimestamp !== null && this.mouseDoubleClickCode == code && now - this.mouseDoubleClickTimestamp <= CRunApp.MOUSE_DOUBLE_CLICK_DELAY) ? 2 : 1;
+			    this.mouseDoubleClickCode = code;
+			    this.mouseDoubleClickTimestamp = now;
+			    this.run.rhEvtProg.onMouseButton(code - CRunApp.VK_LBUTTON, nClicks);
+			  }
+			  else {
+
+			    if (this.browserDetect.isIE) {
+			      this.run.rhEvtProg.onMouseButton(code - CRunApp.VK_LBUTTON, 1);
 			    }
 			    else {
-
-			        if (this.browserDetect.isIE) {
-			            this.run.rhEvtProg.onMouseButton(code - CRunApp.VK_LBUTTON, 1);
-			        }
-			        else {
-			            //single or double click, we check the number of "clicks" in quick repetition check for odd/even
-			            //e.detail % 2 == 0 is double click!
-			            this.run.rhEvtProg.onMouseButton(code - CRunApp.VK_LBUTTON, e.detail % 2 == 0 ? 2 : 1);
-			        }
+			      //single or double click, we check the number of "clicks" in quick repetition check for odd/even
+			      //e.detail % 2 == 0 is double click!
+			      this.run.rhEvtProg.onMouseButton(code - CRunApp.VK_LBUTTON, e.detail % 2 == 0 ? 2 : 1);
 			    }
+			  }
 			}
 
-		    //pass to sub apps
+		  //pass to sub apps
 			var n;
 			for (n = 0; n < this.subApps.length; n++)
-			    this.subApps[n].mouseDown(e, pointerEvent);
+			  this.subApps[n].mouseDown(e, pointerEvent);
 
-		    //handle touches
+		  //handle touches
 			if (!this.touchable)
-			    this.touchStart(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
+			  this.touchStart(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
 
-		    // Build 289: give focus to window when user clicks
+		  // Build 289: give focus to window when user clicks
 			window.focus();
 		},
-		forceMouseButton:  function (bDown)
+		forceMouseButton: function (bDown)
 		{
 			this.keyBuffer[CRunApp.VK_LBUTTON] = bDown;
 			var n;
 			for (n = 0; n < this.subApps.length; n++)
 				this.subApps[n].forceMouseButton(bDown);
 		},
-		mouseOut:          function (e)
+		mouseOut:     function (e)
 		{
 			this.bMouseIn = false;
 			this.keyBuffer[CRunApp.VK_LBUTTON] = false;
@@ -17800,34 +17800,34 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (n = 0; n < this.subApps.length; n++)
 				this.subApps[n].mouseOut(e);
 			if (!this.touchable)
-			    this.touchEnd(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
+			  this.touchEnd(new CFakeTouch(e.pageX, e.pageY, this.canvas), false);
 		},
-	    // For IE only
-		click:             function (e)
+	  // For IE only
+		click:       function (e)
 		{
-		    if (this.browserDetect.isIE) {
-		        //if (this.run != null && this.run.rhEvtProg != null)
-		        //  this.run.rhEvtProg.onMouseButton(0, 1);
+		  if (this.browserDetect.isIE) {
+		    //if (this.run != null && this.run.rhEvtProg != null)
+		    // this.run.rhEvtProg.onMouseButton(0, 1);
 
-		        // Handles clicks
-		        var n;
-		        for (n = 0; n < this.subApps.length; n++)
-		            this.subApps[n].click(e);
-		    }
+		    // Handles clicks
+		    var n;
+		    for (n = 0; n < this.subApps.length; n++)
+		      this.subApps[n].click(e);
+		  }
 		},
-	    // For IE only
-		dblClick:          function (e)
+	  // For IE only
+		dblClick:     function (e)
 		{
-		    if (this.browserDetect.isIE) {
-		        if (this.run != null && this.run.rhEvtProg != null)
-		            this.run.rhEvtProg.onMouseButton(0, 2);
+		  if (this.browserDetect.isIE) {
+		    if (this.run != null && this.run.rhEvtProg != null)
+		      this.run.rhEvtProg.onMouseButton(0, 2);
 
-		        var n;
-		        for (n = 0; n < this.subApps.length; n++)
-		            this.subApps[n].dblClick(e);
-		    }
+		    var n;
+		    for (n = 0; n < this.subApps.length; n++)
+		      this.subApps[n].dblClick(e);
+		  }
 		},
-		mouseWheel:        function (e)
+		mouseWheel:    function (e)
 		{
 			this.bMouseIn = true;
 			if ((typeof e.wheelDelta != 'undefined'))
@@ -17838,20 +17838,20 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.run.onMouseWheel(this.deltaWheel);
 		},
 
-	    // Enable sounds in Chrome
+	  // Enable sounds in Chrome
 		enableSoundsInChrome: function ()
 		{
-		    if (this.browserDetect.isChrome && this.soundContext != null && this.soundContext.state == 'suspended')
-		        this.soundContext.resume();
+		  if (this.browserDetect.isChrome && this.soundContext != null && this.soundContext.state == 'suspended')
+		    this.soundContext.resume();
 		},
 
 		touchStart: function (event, pointerEvent)
 		{
-	        // Enable sounds in Chrome
-		    this.enableSoundsInChrome();
+	    // Enable sounds in Chrome
+		  this.enableSoundsInChrome();
 
-		    // Enable sounds on iOS
-		    if (!this.iOS && this.silentSound)
+		  // Enable sounds on iOS
+		  if (!this.iOS && this.silentSound)
 			{
 				this.silentSound.playIt();
 				this.silentSound = null;
@@ -17864,13 +17864,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var nTouches = (pointerEvent) ? 1 : event.changedTouches.length;
 			for (n = 0; n < nTouches; n++)
 			{
-			    var touch;
-			    if (pointerEvent) {
-			        touch = event;
-			        touch.identifier = event.pointerId;
-			    } else {
-			        touch = event.changedTouches[n];
-			    }
+			  var touch;
+			  if (pointerEvent) {
+			    touch = event;
+			    touch.identifier = event.pointerId;
+			  } else {
+			    touch = event.changedTouches[n];
+			  }
 
 				for (m = 0; m < CRunApp.MAX_TOUCHES; m++)
 				{
@@ -17905,7 +17905,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 									this.run.rhEvtProg.onMouseButton(0, 1);
 								var p;
 								for (p = 0; p < this.subApps.length; p++)
-								    this.subApps[p].touchStart(event, pointerEvent);
+								  this.subApps[p].touchStart(event, pointerEvent);
 							}
 						}
 						break;
@@ -17922,13 +17922,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var nTouches = (pointerEvent) ? 1 : event.changedTouches.length;
 			for (n = 0; n < nTouches; n++)
 			{
-			    var touch;
-			    if (pointerEvent) {
-			        touch = event;
-			        touch.identifier = event.pointerId;
-			    } else {
-			        touch = event.changedTouches[n];
-			    }
+			  var touch;
+			  if (pointerEvent) {
+			    touch = event;
+			    touch.identifier = event.pointerId;
+			  } else {
+			    touch = event.changedTouches[n];
+			  }
 
 				for (m = 0; m < CRunApp.MAX_TOUCHES; m++)
 				{
@@ -17953,7 +17953,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								this.run.rhEvtProg.onMouseMove();
 							var p;
 							for (p = 0; p < this.subApps.length; p++)
-							    this.subApps[p].touchMove(event, pointerEvent);
+							  this.subApps[p].touchMove(event, pointerEvent);
 						}
 						break;
 					}
@@ -17962,26 +17962,26 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 		touchEnd: function (event, pointerEvent)
 		{
-		    // Enable sounds on iOS
-		    if (this.iOS && this.silentSound) {
-		        this.silentSound.playIt();
-		        this.silentSound = null;
-		    }
+		  // Enable sounds on iOS
+		  if (this.iOS && this.silentSound) {
+		    this.silentSound.playIt();
+		    this.silentSound = null;
+		  }
 
-		    if (this.touchesID == null)
+		  if (this.touchesID == null)
 				return;
 
 			var n, m, o;
 			var nTouches = (pointerEvent) ? 1 : event.changedTouches.length;
 			for (n = 0; n < nTouches; n++)
 			{
-			    var touch;
-			    if (pointerEvent) {
-			        touch = event;
-			        touch.identifier = event.pointerId;
-			    } else {
-			        touch = event.changedTouches[n];
-			    }
+			  var touch;
+			  if (pointerEvent) {
+			    touch = event;
+			    touch.identifier = event.pointerId;
+			  } else {
+			    touch = event.changedTouches[n];
+			  }
 
 				for (m = 0; m < CRunApp.MAX_TOUCHES; m++)
 				{
@@ -18008,7 +18008,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							this.keyBuffer[CRunApp.VK_LBUTTON] = false;
 							var p;
 							for (p = 0; p < this.subApps.length; p++)
-							    this.subApps[p].touchEnd(event, pointerEvent);
+							  this.subApps[p].touchEnd(event, pointerEvent);
 						}
 					}
 				}
@@ -18059,7 +18059,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				var pos = path.lastIndexOf("\\");
 				if (pos < 0)
 					pos = path.lastIndexOf('/');
-				if (pos >= 0)
+				if (pos>= 0)
 					path = path.substring(pos + 1);
 
 				for (n = 0; n < this.embeddedFiles.length; n++)
@@ -18073,10 +18073,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return null;
 		},
 
-		showCursor:      function (count)
+		showCursor:   function (count)
 		{
 			this.cursorCount = count;
-			if (this.cursorCount >= 0)
+			if (this.cursorCount>= 0)
 				this.canvas.style.cursor = this.cursor;
 			else
 				this.canvas.style.cursor = "none";
@@ -18106,7 +18106,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				document.mozCancelFullScreen();
 		},
 
-		startJoystick:      function (type, flags)
+		startJoystick:   function (type, flags)
 		{
 			if (this.joystick == null)
 			{
@@ -18120,12 +18120,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		startAccJoystick:   function ()
+		startAccJoystick:  function ()
 		{
 			this.startAccelerometer();
 			this.joystickOn = 2;
 		},
-		endJoystick:        function ()
+		endJoystick:    function ()
 		{
 			if (this.joystick != null)
 			{
@@ -18140,92 +18140,92 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.joystickOn = 0;
 		},
 		startAccelerometer: function () {
-		    if (this.accelerometer == 0) {
-		        var that = this;
-		        if (window.DeviceMotionEvent) {
-		            this.accelerometerHandler = this._handleOnDeviceMotion.bind(this);
-		            window.addEventListener("devicemotion", this.accelerometerHandler);
-		        }
+		  if (this.accelerometer == 0) {
+		    var that = this;
+		    if (window.DeviceMotionEvent) {
+		      this.accelerometerHandler = this._handleOnDeviceMotion.bind(this);
+		      window.addEventListener("devicemotion", this.accelerometerHandler);
 		    }
-		    this.accelerometer++;
+		  }
+		  this.accelerometer++;
 		},
 		_handleOnDeviceMotion: function (event) {
-		    var ax = event.acceleration.x / 9.780318;
-		    var ay = event.acceleration.y / 9.780318;
-		    var az = event.acceleration.z / 9.780318;
-		    var agx = event.accelerationIncludingGravity.x / 9.780318;
-		    var agy = event.accelerationIncludingGravity.y / 9.780318;
-		    var agz = event.accelerationIncludingGravity.z / 9.780318;
+		  var ax = event.acceleration.x / 9.780318;
+		  var ay = event.acceleration.y / 9.780318;
+		  var az = event.acceleration.z / 9.780318;
+		  var agx = event.accelerationIncludingGravity.x / 9.780318;
+		  var agy = event.accelerationIncludingGravity.y / 9.780318;
+		  var agz = event.accelerationIncludingGravity.z / 9.780318;
 
-		    this.accX = ax;
-		    this.accY = ay;
-		    this.accZ = az;
-		    this.accGravX = agx;
-		    this.accGravY = agy;
-		    this.accGravZ = agz;
+		  this.accX = ax;
+		  this.accY = ay;
+		  this.accZ = az;
+		  this.accGravX = agx;
+		  this.accGravY = agy;
+		  this.accGravZ = agz;
 
-		    // Adjust this to device rotation
-		    switch (window.orientation) {
-		        case 0:     // portrait
-		            this.accX = -ax;
-		            this.accY = ay;
-		            this.accGravX = -agx;
-		            this.accGravY = agy;
-		            break;
-		        case 90:     // landscape
-		            this.accX = ay;
-		            this.accY = ax;
-		            this.accGravX = agy;
-		            this.accGravY = agx;
-		            break;
-		        case 180:    // portrait flipped
-		            this.accX = ax;
-		            this.accY = -ay;
-		            this.accGravX = agx;
-		            this.accGravY = -agy;
-		            break;
-		        case -90:     // landscape flipped
-		            this.accX = -ay;
-		            this.accY = -ax;
-		            this.accGravX = -agy;
-		            this.accGravY = -agx;
-		            break;
-		    }
+		  // Adjust this to device rotation
+		  switch (window.orientation) {
+		    case 0:   // portrait
+		      this.accX = -ax;
+		      this.accY = ay;
+		      this.accGravX = -agx;
+		      this.accGravY = agy;
+		      break;
+		    case 90:   // landscape
+		      this.accX = ay;
+		      this.accY = ax;
+		      this.accGravX = agy;
+		      this.accGravY = agx;
+		      break;
+		    case 180:  // portrait flipped
+		      this.accX = ax;
+		      this.accY = -ay;
+		      this.accGravX = agx;
+		      this.accGravY = -agy;
+		      break;
+		    case -90:   // landscape flipped
+		      this.accX = -ay;
+		      this.accY = -ax;
+		      this.accGravX = -agy;
+		      this.accGravY = -agx;
+		      break;
+		  }
 
-		    if (this.iOS) {
-		        this.accX = -this.accX;
-		        this.accY = -this.accY;
-		        this.accGravX = -this.accGravX;
-		        this.accGravY = -this.accGravY;
-		    }
+		  if (this.iOS) {
+		    this.accX = -this.accX;
+		    this.accY = -this.accY;
+		    this.accGravX = -this.accGravX;
+		    this.accGravY = -this.accGravY;
+		  }
 
 		},
 		endAccelerometer: function () {
-		    this.accelerometer--;
-		    if (this.accelerometer <= 0) {
-		        //__scope.ondevicemotion = null;
-		        if (window.DeviceMotionEvent) {
-		            window.removeEventListener("devicemotion", this.accelerometerHandler);
-		        }
-		        this.accelerometer = 0;
+		  this.accelerometer--;
+		  if (this.accelerometer <= 0) {
+		    //__scope.ondevicemotion = null;
+		    if (window.DeviceMotionEvent) {
+		      window.removeEventListener("devicemotion", this.accelerometerHandler);
 		    }
+		    this.accelerometer = 0;
+		  }
 		},
 		getJoystick: function ()
 		{
 			var joystick = 0;
 			if (this.accGravX < -0.2)
 				joystick |= 0x04;
-			if (this.accGravX > 0.2)
+			if (this.accGravX> 0.2)
 				joystick |= 0x08;
 			if (this.accGravY < -0.2)
 				joystick |= 0x01;
-			if (this.accGravY > 0.2)
+			if (this.accGravY> 0.2)
 				joystick |= 0x02;
 			return joystick;
 		},
 
 		// Draws the "Touch screen to continue" line for preloaders
-		drawContinue:       function (preloader)
+		drawContinue:    function (preloader)
 		{
 			if (preloader.touchMe)
 			{
@@ -18235,7 +18235,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				switch (preloader.touchMePhase)
 				{
 					case 0:
-						if (preloader.touchMeAlpha > 0)
+						if (preloader.touchMeAlpha> 0)
 						{
 							preloader.touchMeAlpha -= 2;
 							if (preloader.touchMeAlpha < 0)
@@ -18251,7 +18251,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						if (preloader.touchMeAlpha < 128)
 						{
 							preloader.touchMeAlpha += 4;
-							if (preloader.touchMeAlpha >= 128)
+							if (preloader.touchMeAlpha>= 128)
 							{
 								preloader.touchMeAlpha = 128;
 								preloader.touchMeQuit = true;
@@ -18511,7 +18511,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (n = 0; n < this.LOList.nIndex; n++)
 			{
 				var lo = this.LOList.list[n];
-				if (lo.loType >= COI.OBJ_SPR)
+				if (lo.loType>= COI.OBJ_SPR)
 				{
 					this.app.OIList.setOICurrent(lo.loOiHandle);
 				}
@@ -18602,24 +18602,24 @@ window['Runtime'] = (function Runtime(__can, __path){
 		// Use WEB AUDIO?
 		var papp = a;
 		while (papp.parentApp != null)
-		    papp = papp.parentApp;
+		  papp = papp.parentApp;
 		this.context = papp.soundContext;
 		this.contextType = papp.soundContextType;
 		if (this.context == null)
 		{
-		    if (typeof AudioContext !== "undefined")
-		    {
-		        this.context = new AudioContext();
-		        this.contextType = 1;
-		    }
-		    else if (typeof webkitAudioContext !== "undefined")
-		    {
-		        this.context = new webkitAudioContext();
-		        this.contextType = 0;
-		    }
-		    papp.soundContext = this.context;
-		    papp.soundContextType = this.contextType;
-	    }
+		  if (typeof AudioContext !== "undefined")
+		  {
+		    this.context = new AudioContext();
+		    this.contextType = 1;
+		  }
+		  else if (typeof webkitAudioContext !== "undefined")
+		  {
+		    this.context = new webkitAudioContext();
+		    this.contextType = 0;
+		  }
+		  papp.soundContext = this.context;
+		  papp.soundContextType = this.contextType;
+	  }
 	}
 	CSoundPlayer.prototype =
 	{
@@ -18629,9 +18629,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.dataToDecode = new CArrayList();
 			this.dataToDecode.add(cSound);
 		},
-		decodeData:      function ()
+		decodeData:   function ()
 		{
-			if (this.dataToDecode != null && this.dataToDecode.size() > 0)
+			if (this.dataToDecode != null && this.dataToDecode.size()> 0)
 			{
 				if (!this.decoding)
 				{
@@ -18649,7 +18649,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		reset:           function ()
+		reset:      function ()
 		{
 			var n;
 			for (n = 0; n < CSoundPlayer.NCHANNELS; n++)
@@ -18657,16 +18657,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.bLocked[n] = false;
 			}
 		},
-		lockChannel:     function (channel)
+		lockChannel:   function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				this.bLocked[channel] = true;
 			}
 		},
-		unlockChannel:   function (channel)
+		unlockChannel:  function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				this.bLocked[channel] = false;
 			}
@@ -18684,7 +18684,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return;
 			if (this.bMultipleSounds == false)
 				channel = 0;
-			/*      	else
+			/*   	else
 			 {
 			 for (n = 0; n < CSoundPlayer.NCHANNELS; n++)
 			 {
@@ -18722,12 +18722,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 				}
 				channel = n;
-				if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+				if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 				{
 					this.volumes[channel] = this.mainVolume;
 				}
 			}
-			if (channel < 0 || channel >= CSoundPlayer.NCHANNELS)
+			if (channel < 0 || channel>= CSoundPlayer.NCHANNELS)
 				return;
 
 			if (this.channels[channel] != null)
@@ -18818,7 +18818,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		stopChannel: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -18876,7 +18876,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		isChannelPlaying: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -18888,7 +18888,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		isChannelPaused: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -18912,7 +18912,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		pauseChannel: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -18943,14 +18943,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				if (this.channels[c] != null)
 				{
-				    this.channels[c].globalresume();
+				  this.channels[c].globalresume();
 				}
 			}
 		},
 
 		resumeChannel: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -18977,9 +18977,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 		setVolumeChannel: function (channel, volume)
 		{
 			if (volume < 0) volume = 0;
-			if (volume > 100) volume = 100;
+			if (volume> 100) volume = 100;
 
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				this.volumes[channel] = volume;
 				if (this.channels[channel] != null)
@@ -18991,10 +18991,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		setFrequencyChannel: function (channel, freq)
 		{
-			//        if (freq<0) freq=0;
-			//        if (freq>100000) freq= 100000;
+			//    if (freq<0) freq=0;
+			//    if (freq>100000) freq= 100000;
 
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -19005,8 +19005,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		setFrequencySample: function (handle, freq)
 		{
-			//        if (freq<0) freq=0;
-			//        if (freq>100000) freq= 100000;
+			//    if (freq<0) freq=0;
+			//    if (freq>100000) freq= 100000;
 
 			var c;
 			for (c = 0; c < CSoundPlayer.NCHANNELS; c++)
@@ -19023,7 +19023,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		setPositionChannel: function (channel, pos)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -19049,7 +19049,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getVolumeChannel: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -19062,7 +19062,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		setVolumeSample: function (handle, volume)
 		{
 			if (volume < 0) volume = 0;
-			if (volume > 100) volume = 100;
+			if (volume> 100) volume = 100;
 
 			var c;
 			for (c = 0; c < CSoundPlayer.NCHANNELS; c++)
@@ -19115,7 +19115,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getDurationChannel: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -19127,7 +19127,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getPositionChannel: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -19139,7 +19139,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getFrequencyChannel: function (channel)
 		{
-			if (channel >= 0 && channel < CSoundPlayer.NCHANNELS)
+			if (channel>= 0 && channel < CSoundPlayer.NCHANNELS)
 			{
 				if (this.channels[channel] != null)
 				{
@@ -19152,7 +19152,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		getVolumeSample: function (name)
 		{
 			var channel = this.getChannel(name);
-			if (channel >= 0)
+			if (channel>= 0)
 			{
 				return this.volumes[channel];
 			}
@@ -19162,7 +19162,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		getDurationSample: function (name)
 		{
 			var channel = this.getChannel(name);
-			if (channel >= 0)
+			if (channel>= 0)
 			{
 				return this.channels[channel].getDuration();
 			}
@@ -19172,7 +19172,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		getPositionSample: function (name)
 		{
 			var channel = this.getChannel(name);
-			if (channel >= 0)
+			if (channel>= 0)
 			{
 				return this.channels[channel].getPosition();
 			}
@@ -19182,7 +19182,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		getFrequencySample: function (name)
 		{
 			var channel = this.getChannel(name);
-			if (channel >= 0)
+			if (channel>= 0)
 			{
 				return this.channels[channel].getFrequency();
 			}
@@ -19218,7 +19218,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var l = this.app.file.readAShort();
 			this.path = this.app.file.readAString(l);
 			var pos = this.path.lastIndexOf("\\");
-			if (pos >= 0)
+			if (pos>= 0)
 			{
 				this.path = this.path.substring(pos + 1);
 			}
@@ -19226,7 +19226,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.offset = this.app.file.getFilePointer();
 			this.app.file.skipBytes(this.length);
 		},
-		open:    function ()
+		open:  function ()
 		{
 			return this.app.file.createFromFile(this.offset, this.length)
 		}
@@ -19240,7 +19240,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.isLoaded = false;
 		this.subApp = null;
 		this.context = this.app.context;
-		this.radius = this.app.preloaderCircleRadius;   // * (this.app.scaleX + this.app.scaleY) / 2;
+		this.radius = this.app.preloaderCircleRadius;  // * (this.app.scaleX + this.app.scaleY) / 2;
 		this.color = this.app.preloaderCircleColor;
 		this.xCenter = this.app.preloaderCircleCenterX;
 		if (this.xCenter < 0)
@@ -19249,7 +19249,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		if (this.yCenter < 0)
 			this.yCenter = this.app.gaCyWin / 2;
 		this.currentAngle = 0;
-		this.size = this.app.preloaderCircleThickness;  // * (this.app.scaleX + this.app.scaleY) / 2;
+		this.size = this.app.preloaderCircleThickness; // * (this.app.scaleX + this.app.scaleY) / 2;
 		this.oldAngle = 0;
 		this.counter = 25;
 		this.phase = 0;
@@ -19264,7 +19264,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CPreloaderImage.prototype =
 	{
-		load:  function ()
+		load: function ()
 		{
 			return this.isLoaded;
 		},
@@ -19274,16 +19274,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.oldAngle = 0;
 			this.counter = 25;
 		},
-		step:  function ()
+		step: function ()
 		{
 			switch (this.phase)
 			{
 				case 0:
 					if (this.app.preloaderBackColor != -1)
-					    this.context.renderSolidColor(0, 0, this.app.gaCxWin, this.app.gaCyWin, this.app.preloaderBackColor);
-	                else
-					    this.context.clearBackground(0, 0, this.app.gaCxWin, this.app.gaCyWin);
-	                this.context.renderSimpleImage(this.image, this.xCenter - this.image.width / 2, this.yCenter - this.image.height / 2, this.image.width, this.image.height, 0, 0);
+					  this.context.renderSolidColor(0, 0, this.app.gaCxWin, this.app.gaCyWin, this.app.preloaderBackColor);
+	        else
+					  this.context.clearBackground(0, 0, this.app.gaCxWin, this.app.gaCyWin);
+	        this.context.renderSimpleImage(this.image, this.xCenter - this.image.width / 2, this.yCenter - this.image.height / 2, this.image.width, this.image.height, 0, 0);
 					this.phase++;
 					break;
 				case 1:
@@ -19293,7 +19293,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.phase++;
 					break;
 				case 2:
-					if (this.counter > 0)
+					if (this.counter> 0)
 						this.counter--;
 					if (this.counter == 0)
 						this.phase++;
@@ -19311,7 +19311,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			return this.phase == 4;
 		},
-		drawIt:     function (angle)
+		drawIt:   function (angle)
 		{
 			var a;
 			var x1, y1, x2, y2;
@@ -19362,7 +19362,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CPreloaderDefault.prototype =
 	{
-		load:  function ()
+		load: function ()
 		{
 			return true;
 		},
@@ -19373,14 +19373,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.alpha = 128;
 			this.position = 0;
 		},
-		step:  function ()
+		step: function ()
 		{
 			if (this.app.imagesLoaded < this.app.imagesToLoad)
 			{
 				switch (this.phase)
 				{
 					case 0:
-						if (this.alpha > 0)
+						if (this.alpha> 0)
 						{
 							this.alpha -= 2;
 							if (this.alpha <= 0)
@@ -19407,7 +19407,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						{
 							this.alpha += 4;
 						}
-						if (this.alpha >= 128)
+						if (this.alpha>= 128)
 						{
 							this.alpha = 128;
 							if (this.app.silentSound == null)
@@ -19421,7 +19421,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						return;
 				}
 			}
-			//            this.context.renderSolidColor(this.rect.left, this.rect.top, this.width, this.height, this.app.frameColor, 0, 0);
+			//      this.context.renderSolidColor(this.rect.left, this.rect.top, this.width, this.height, this.app.frameColor, 0, 0);
 			this.context.renderSolidColor(this.rect.left, this.rect.top, this.width, this.height, this.backColor, CRSpr.BOP_BLEND, this.alpha);
 			this.context.renderRect(this.rect.left, this.rect.top, this.width, this.height, this.borderColor, 1, CRSpr.BOP_BLEND, this.alpha);
 			this.position = this.app.imagesLoaded / this.app.imagesToLoad * (this.width - 2);
@@ -19456,12 +19456,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CPreloaderFrame.prototype =
 	{
-		load:       function ()
+		load:    function ()
 		{
 			this.step();
 			return !this.subApp.loading;
 		},
-		reset:      function ()
+		reset:   function ()
 		{
 			this.subApp.run.f_StopSamples();
 			this.subApp.run.killFrameObjects();
@@ -19491,7 +19491,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.app.subApps.push(this.subApp);
 			this.delay = 0;
 		},
-		step:       function ()
+		step:    function ()
 		{
 			if (!this.subApp.subAppStopped)
 			{
@@ -19513,10 +19513,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				bComplete = false;
 			if (bComplete)
 			{
-				if (this.delay > 0)
+				if (this.delay> 0)
 				{
 					this.delay--;
-					if (this.delay > 0)
+					if (this.delay> 0)
 						return false;
 				}
 				var n;
@@ -19573,7 +19573,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CJoystick.prototype =
 	{
-		loadImages:   function ()
+		loadImages:  function ()
 		{
 			if (this.joyBack == null)
 			{
@@ -19585,7 +19585,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.fire2D = CImage.createFromFile(this.app, "fire2D.png");
 			}
 		},
-		reset:        function (f)
+		reset:    function (f)
 		{
 			this.flags = f;
 			if (this.joyBack != null && this.joyBack.width != 0)
@@ -19684,7 +19684,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.imagesY[CJoystick.KEY_FIRE2] = p;
 			}
 		},
-		draw:         function (context)
+		draw:     function (context)
 		{
 			if (this.bSetPositions)
 			{
@@ -19777,7 +19777,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						this.joystickX = -this.joyradsize;
 					}
-					if (this.joystickX > this.joyradsize)
+					if (this.joystickX> this.joyradsize)
 					{
 						this.joystickX = this.joyradsize;
 					}
@@ -19785,20 +19785,20 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						this.joystickY = -this.joyradsize;
 					}
-					if (this.joystickY > this.joyradsize)
+					if (this.joystickY> this.joyradsize)
 					{
 						this.joystickY = this.joyradsize;
 					}
 				}
 
 				// Is the radius vector above the deadzone and border of the joystick base
-				if (h > this.joydeadzone && h < this.joyradsize * 3)
+				if (h> this.joydeadzone && h < this.joyradsize * 3)
 				{
 
 					var j = 0;
 					// Checking in 45 degrees zone equal (PI/4); 1/4, 2/4, 3/4, 4/4, 5/4, 6/4, 7/4, 8/4
-					// organized like 8/4, 2/4, 4/4, 6/4,  priority for right, up, left and down
-					if (angle >= 0.0)
+					// organized like 8/4, 2/4, 4/4, 6/4, priority for right, up, left and down
+					if (angle>= 0.0)
 					{
 						while (true)
 						{
@@ -19860,7 +19860,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		insideZone: function (angle, angle_ref, gap)
 		{
 			// check if the angle is in the range, could be ported using degrees instead.
-			return (angle > (angle_ref - gap / 2) && angle < (angle_ref + gap / 2));
+			return (angle> (angle_ref - gap / 2) && angle < (angle_ref + gap / 2));
 		},
 
 		touchEnded: function (touch)
@@ -19889,13 +19889,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		getKey:     function (x, y)
+		getKey:   function (x, y)
 		{
 			if ((this.flags & CJoystick.JFLAG_JOYSTICK) != 0)
 			{
-				if (x >= this.imagesX[CJoystick.KEY_JOYSTICK] - this.joyBack.width / 2 && x < this.imagesX[CJoystick.KEY_JOYSTICK] + this.joyBack.width / 2)
+				if (x>= this.imagesX[CJoystick.KEY_JOYSTICK] - this.joyBack.width / 2 && x < this.imagesX[CJoystick.KEY_JOYSTICK] + this.joyBack.width / 2)
 				{
-					if (y > this.imagesY[CJoystick.KEY_JOYSTICK] - this.joyBack.height / 2 && y < this.imagesY[CJoystick.KEY_JOYSTICK] + this.joyBack.height / 2)
+					if (y> this.imagesY[CJoystick.KEY_JOYSTICK] - this.joyBack.height / 2 && y < this.imagesY[CJoystick.KEY_JOYSTICK] + this.joyBack.height / 2)
 					{
 						return CJoystick.KEY_JOYSTICK;
 					}
@@ -19903,9 +19903,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			if ((this.flags & CJoystick.JFLAG_FIRE1) != 0)
 			{
-				if (x >= this.imagesX[CJoystick.KEY_FIRE1] - this.fire1U.width / 2 && x < this.imagesX[CJoystick.KEY_FIRE1] + this.fire1U.width / 2)
+				if (x>= this.imagesX[CJoystick.KEY_FIRE1] - this.fire1U.width / 2 && x < this.imagesX[CJoystick.KEY_FIRE1] + this.fire1U.width / 2)
 				{
-					if (y > this.imagesY[CJoystick.KEY_FIRE1] - this.fire1U.height / 2 && y < this.imagesY[CJoystick.KEY_FIRE1] + this.fire1U.height / 2)
+					if (y> this.imagesY[CJoystick.KEY_FIRE1] - this.fire1U.height / 2 && y < this.imagesY[CJoystick.KEY_FIRE1] + this.fire1U.height / 2)
 					{
 						return CJoystick.KEY_FIRE1;
 					}
@@ -19913,9 +19913,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			if ((this.flags & CJoystick.JFLAG_FIRE2) != 0)
 			{
-				if (x >= this.imagesX[CJoystick.KEY_FIRE2] - this.fire2U.width / 2 && x < this.imagesX[CJoystick.KEY_FIRE2] + this.fire2U.width / 2)
+				if (x>= this.imagesX[CJoystick.KEY_FIRE2] - this.fire2U.width / 2 && x < this.imagesX[CJoystick.KEY_FIRE2] + this.fire2U.width / 2)
 				{
-					if (y > this.imagesY[CJoystick.KEY_FIRE2] - this.fire2U.height / 2 && y < this.imagesY[CJoystick.KEY_FIRE2] + this.fire2U.height / 2)
+					if (y> this.imagesY[CJoystick.KEY_FIRE2] - this.fire2U.height / 2 && y < this.imagesY[CJoystick.KEY_FIRE2] + this.fire2U.height / 2)
 					{
 						return CJoystick.KEY_FIRE2;
 					}
@@ -20055,9 +20055,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			case 3:	// COMPARE_LT:
 				return pValue1 < pValue2;
 			case 4:	// COMPARE_GE:
-				return pValue1 >= pValue2;
+				return pValue1>= pValue2;
 			case 5:	// COMPARE_GT:
-				return pValue1 > pValue2;
+				return pValue1> pValue2;
 		}
 		return false;
 	}
@@ -20075,9 +20075,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			case 3:	// COMPARE_LT:
 				return (value1 < value2);
 			case 4:	// COMPARE_GE:
-				return (value1 >= value2);
+				return (value1>= value2);
 			case 5:	// COMPARE_GT:
-				return (value1 > value2);
+				return (value1> value2);
 		}
 		return false;
 	}
@@ -20197,7 +20197,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	{
 		var info = null;
 
-		if (hoPtr.hoType >= COI.KPX_BASE)
+		if (hoPtr.hoType>= COI.KPX_BASE)
 		{
 			info = hoPtr.ext.getRunObjectFont();
 		}
@@ -20213,7 +20213,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CRun.setObjectFont = function (hoPtr, pLf, pNewSize)
 	{
-		if (hoPtr.hoType >= COI.KPX_BASE)
+		if (hoPtr.hoType>= COI.KPX_BASE)
 		{
 			hoPtr.ext.setRunObjectFont(pLf, pNewSize);
 		}
@@ -20224,7 +20224,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CRun.getObjectTextColor = function (hoPtr)
 	{
-		if (hoPtr.hoType >= COI.KPX_BASE)
+		if (hoPtr.hoType>= COI.KPX_BASE)
 		{
 			return hoPtr.ext.getRunObjectTextColor();
 		}
@@ -20232,7 +20232,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CRun.setObjectTextColor = function (hoPtr, rgb)
 	{
-		if (hoPtr.hoType >= COI.KPX_BASE)
+		if (hoPtr.hoType>= COI.KPX_BASE)
 		{
 			hoPtr.ext.setRunObjectTextColor(rgb);
 		}
@@ -20301,12 +20301,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 	{
 		if (x == 0)
 		{
-			if (y >= 0) return 24;
+			if (y>= 0) return 24;
 			return 8;
 		}
 		if (y == 0)
 		{
-			if (x >= 0) return 0;
+			if (x>= 0) return 0;
 			return 16;
 		}
 
@@ -20328,7 +20328,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		var index;
 		for (index = 0; ; index += 2)
 		{
-			if (d >= CMove.CosSurSin32[index])
+			if (d>= CMove.CosSurSin32[index])
 				break;
 		}
 		dir = CMove.CosSurSin32[index + 1];
@@ -20353,7 +20353,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 	CRun.prototype =
 	{
-		setFrame:       function (f)
+		setFrame:    function (f)
 		{
 			this.rhFrame = f;
 		},
@@ -20366,7 +20366,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var oi;
 			for (oi = this.rhApp.OIList.getFirstOI(); oi != null; oi = this.rhApp.OIList.getNextOI())
 			{
-				if (oi.oiType >= COI.OBJ_SPR)
+				if (oi.oiType>= COI.OBJ_SPR)
 				{
 					this.rhMaxOI++;
 				}
@@ -20542,13 +20542,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		doRunLoop: function ()
 		{
-		    if (this.rh2PauseCompteur > 0 && this.rhApp.modalSubappObject == null)
+		  if (this.rh2PauseCompteur> 0 && this.rhApp.modalSubappObject == null)
 			{
 				if (this.quitPause)
 				{
 					if (this.rhApp.keyNew == true)
 					{
-						if (this.rh4PauseKey >= 0)
+						if (this.rh4PauseKey>= 0)
 						{
 							if (this.rhApp.keyBuffer[this.rh4PauseKey])
 							{
@@ -20663,12 +20663,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return quit;
 		},
 
-		killRunLoop:  function (bLeaveSamples)
+		killRunLoop: function (bLeaveSamples)
 		{
 			var quitParam;
 
 			// Filtre les codes internes
-			if (this.rhQuit > 100)
+			if (this.rhQuit> 100)
 			{
 				this.rhQuit = CRun.LOOPEXIT_ENDGAME;
 			}
@@ -20685,7 +20685,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			return (CServices.MAKELONG(this.rhQuit, quitParam));
 		},
-		initAsmLoop:  function ()
+		initAsmLoop: function ()
 		{
 			var i;
 			for (i = 0; i < this.rhMaxObjects; i++)
@@ -20709,7 +20709,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (oiPtr = this.rhApp.OIList.getFirstOI(); oiPtr != null; oiPtr = this.rhApp.OIList.getNextOI())
 			{
 				type = oiPtr.oiType;
-				if (type >= COI.OBJ_SPR)
+				if (type>= COI.OBJ_SPR)
 				{
 					this.rhOiList[count] = new CObjInfo();
 					this.rhOiList[count].copyData(oiPtr);
@@ -20797,7 +20797,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					creatFlags |= CRun.COF_HIDDEN;
 				}
 
-				// Creation de l'objet                
+				// Creation de l'objet        
 				if ((ocPtr.ocOEFlags & CObjectCommon.OEFLAG_DONTCREATEATSTART) == 0)
 				{
 					this.f_CreateObject(loPtr.loHandle, loPtr.loOiHandle, 0x80000000, 0x80000000, -1, creatFlags, -1, -1);
@@ -20842,7 +20842,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				if (fade)
 				{
-					if (type >= COI.KPX_BASE)
+					if (type>= COI.KPX_BASE)
 					{
 						if ((ocPtr.ocOEFlags & CObjectCommon.OEFLAG_RUNBEFOREFADEIN) == 0)
 						{
@@ -20858,7 +20858,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			this.rhGameFlags &= ~CRun.GAMEFLAGS_INITIALISING;
 		},
-		killFrameObjects:   function ()
+		killFrameObjects:  function ()
 		{
 			var n;
 			for (n = 0; n < this.rhMaxObjects && this.rhNObjects != 0; n++)
@@ -20876,13 +20876,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (this.rhObjectList[n] != null)
 				{
 					var pHo = this.rhObjectList[n];
-					if (pHo.hoType >= 32 && pHo.hoCommon.ocIdentifier == CRun.BASEIDENTIFIER)
+					if (pHo.hoType>= 32 && pHo.hoCommon.ocIdentifier == CRun.BASEIDENTIFIER)
 						this.f_KillObject(n, true);
 				}
 			}
 		},
 
-		y_KillLevel:      function (bLeaveSamples)
+		y_KillLevel:   function (bLeaveSamples)
 		{
 			if (!bLeaveSamples)
 			{
@@ -20924,14 +20924,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 		},
 
-		captureMouse:   function ()
+		captureMouse:  function ()
 		{
 			if (this.rhMouseUsed != 0)
 			{
 				this.setCursorCount(-1);
 			}
 		},
-		freeMouse:      function ()
+		freeMouse:   function ()
 		{
 			if (this.rhMouseUsed != 0)
 			{
@@ -20940,16 +20940,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 		setCursorCount: function (count)
 		{
-			if (count >= 0)
+			if (count>= 0)
 				this.rhApp.showCursor(1);
 			else
 				this.rhApp.showCursor(-1);
 		},
-		showMouse:      function ()
+		showMouse:   function ()
 		{
 			this.rhApp.showCursor(1);
 		},
-		hideMouse:      function ()
+		hideMouse:   function ()
 		{
 			this.rhApp.showCursor(-1);
 		},
@@ -21093,7 +21093,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				oilPtr = this.rhOiList[oil];
 
 				o = oilPtr.oilObject;
-				if (oilPtr.oilOi != 0x7FFF && o >= 0)
+				if (oilPtr.oilOi != 0x7FFF && o>= 0)
 				{
 					oiPtr = this.rhApp.OIList.getOIFromHandle(oilPtr.oilOi);
 
@@ -21152,7 +21152,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 										break;
 
 									count++;
-									if (count >= save.objects.size())
+									if (count>= save.objects.size())
 										break;
 								}
 								break;
@@ -21181,7 +21181,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					flags |= CRun.COF_HIDDEN;
 				}
 
-				if (this.rhNObjects >= this.rhMaxObjects)
+				if (this.rhNObjects>= this.rhMaxObjects)
 					break;
 
 				var hoPtr = null;
@@ -21207,7 +21207,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						hoPtr = new CCounter();
 						break;
 					case 8:
-						//	                    hoPtr=new CRtf();
+						//	          hoPtr=new CRtf();
 						break;
 					case 9:
 						hoPtr = new CCCA();
@@ -21235,7 +21235,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 					}
 				}
-				if (numCreation >= this.rhMaxObjects)
+				if (numCreation>= this.rhMaxObjects)
 				{
 					return -1;
 				}
@@ -21244,7 +21244,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				hoPtr.hoIdentifier = ocPtr.ocIdentifier;
 				hoPtr.hoOEFlags = ocPtr.ocOEFlags;
 
-				if (numCreation > this.rh4ObjectCurCreate)
+				if (numCreation> this.rh4ObjectCurCreate)
 					this.rh4ObjectAddCreate++;
 
 				hoPtr.hoNumber = numCreation;
@@ -21261,26 +21261,26 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				hoPtr.hoCommon = ocPtr;
 
-			    // Sprite en mode inbitate?
+			  // Sprite en mode inbitate?
 				if ((hoPtr.hoOEFlags & CObjectCommon.OEFLAG_MANUALSLEEP) == 0)
 				{
-				    // On detruit... sauf si...
-				    hoPtr.hoOEFlags &= ~CObjectCommon.OEFLAG_NEVERSLEEP;
+				  // On detruit... sauf si...
+				  hoPtr.hoOEFlags &= ~CObjectCommon.OEFLAG_NEVERSLEEP;
 
-				    // On teste des collisions avec le decor?
-				    if ((hoPtr.hoLimitFlags & CObjInfo.OILIMITFLAGS_QUICKBACK) != 0)
+				  // On teste des collisions avec le decor?
+				  if ((hoPtr.hoLimitFlags & CObjInfo.OILIMITFLAGS_QUICKBACK) != 0)
+				  {
+				    // Si masque des collisions general
+				    if ((this.rhFrame.leFlags & CRunFrame.LEF_TOTALCOLMASK) != 0)
 				    {
-				        // Si masque des collisions general
-				        if ((this.rhFrame.leFlags & CRunFrame.LEF_TOTALCOLMASK) != 0)
-				        {
-				            hoPtr.hoOEFlags |= CObjectCommon.OEFLAG_NEVERSLEEP;
-				        }
+				      hoPtr.hoOEFlags |= CObjectCommon.OEFLAG_NEVERSLEEP;
 				    }
-				    // Ou test des collisions normal
-				    if ((hoPtr.hoLimitFlags & (CObjInfo.OILIMITFLAGS_QUICKCOL | CObjInfo.OILIMITFLAGS_QUICKBORDER)) != 0)
-				    {
-				        hoPtr.hoOEFlags |= CObjectCommon.OEFLAG_NEVERSLEEP;
-				    }
+				  }
+				  // Ou test des collisions normal
+				  if ((hoPtr.hoLimitFlags & (CObjInfo.OILIMITFLAGS_QUICKCOL | CObjInfo.OILIMITFLAGS_QUICKBORDER)) != 0)
+				  {
+				    hoPtr.hoOEFlags |= CObjectCommon.OEFLAG_NEVERSLEEP;
+				  }
 				}
 
 				var x = coordX;									// X
@@ -21358,7 +21358,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					hoPtr.ros.init2(true);
 				}
 
-				if (this.rhLoopCount >= 1)
+				if (this.rhLoopCount>= 1)
 					hoPtr.callComputeNewDisplay();
 
 				return numCreation;
@@ -21441,7 +21441,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							this.f_KillObject(nob + count, false);
 							this.rhDestroyPos--;
 						}
-						dw = dw >> 1;
+						dw = dw>> 1;
 					}
 					if (this.rhDestroyPos == 0)
 					{
@@ -21596,7 +21596,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				while (this.rhObjectList[pOL] == null) pOL++;
 				var pHo = this.rhObjectList[pOL];
-				if (pHo.hoType >= 32)
+				if (pHo.hoType>= 32)
 				{
 					if (pHo.hoCommon.ocIdentifier == CRun.FANIDENTIFIER
 						|| pHo.hoCommon.ocIdentifier == CRun.TREADMILLIDENTIFIER
@@ -21685,7 +21685,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					while (this.rhObjectList[pOL] == null) pOL++;
 					var pHo = this.rhObjectList[pOL];
-					if (pHo.hoType >= 32)
+					if (pHo.hoType>= 32)
 					{
 						if (pHo.hoCommon.ocIdentifier == CRun.BASEIDENTIFIER)
 						{
@@ -21726,11 +21726,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return null;
 		},
 
-	    // Build 283.2: add fans, treadmills and magnet to engine
-	    // Build 286.0: add ropes too
+	  // Build 283.2: add fans, treadmills and magnet to engine
+	  // Build 286.0: add ropes too
 		addPhysicsAttractor: function(pObject)
 		{
-		    if (pObject.hoCommon.ocIdentifier == CRun.FANIDENTIFIER || pObject.hoCommon.ocIdentifier == CRun.TREADMILLIDENTIFIER || pObject.hoCommon.ocIdentifier == CRun.MAGNETIDENTIFIER || pObject.hoCommon.ocIdentifier == CRun.ROPEANDCHAINIDENTIFIER)
+		  if (pObject.hoCommon.ocIdentifier == CRun.FANIDENTIFIER || pObject.hoCommon.ocIdentifier == CRun.TREADMILLIDENTIFIER || pObject.hoCommon.ocIdentifier == CRun.MAGNETIDENTIFIER || pObject.hoCommon.ocIdentifier == CRun.ROPEANDCHAINIDENTIFIER)
 			{
 				var pOL=0;
 				var nObjects;
@@ -21757,31 +21757,31 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 						else if (pObject.hoCommon.ocIdentifier == CRun.ROPEANDCHAINIDENTIFIER)
 						{
-						    if (pObject.ext.identifier == pBase.ext.identifier)
-						        pBase.ext.ropes.add(pObject.ext);
+						  if (pObject.ext.identifier == pBase.ext.identifier)
+						    pBase.ext.ropes.add(pObject.ext);
 						}
-	                }
+	        }
 				}
 
-		        // Object added to base list, now add the physical objects to the fan/treadmill/magnet list
+		    // Object added to base list, now add the physical objects to the fan/treadmill/magnet list
 				if (pObject.hoCommon.ocIdentifier != CRun.ROPEANDCHAINIDENTIFIER)
-	            {
-			        pOL=0;
-			        for (nObjects = 0; nObjects < this.rhNObjects; pOL++, nObjects++)
-			        {
-				        while (this.rhObjectList[pOL] == null) pOL++;
-				        var pActive=this.rhObjectList[pOL];
-				        if ( pActive.hoType == COI.OBJ_SPR )
-				        {
-					        var pMBase = this.GetMBase(pActive);
-					        if ( pMBase )
-					        {
-						        pObject.ext.rAddObject(pMBase);
-					        }
-				        }
-			        }
-	            }
-		    }
+	      {
+			    pOL=0;
+			    for (nObjects = 0; nObjects < this.rhNObjects; pOL++, nObjects++)
+			    {
+				    while (this.rhObjectList[pOL] == null) pOL++;
+				    var pActive=this.rhObjectList[pOL];
+				    if ( pActive.hoType == COI.OBJ_SPR )
+				    {
+					    var pMBase = this.GetMBase(pActive);
+					    if ( pMBase )
+					    {
+						    pObject.ext.rAddObject(pMBase);
+					    }
+				    }
+			    }
+	      }
+		  }
 		},
 
 		getDir: function (hoPtr)
@@ -21808,7 +21808,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						count++;
 					var hoPtr = this.rhObjectList[count];
 					count++;
-					if (hoPtr.hoType >= COI.KPX_BASE)
+					if (hoPtr.hoType>= COI.KPX_BASE)
 					{
 						hoPtr.ext.pauseRunObject();
 					}
@@ -21817,8 +21817,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (!bKeepSounds)
 					this.rhApp.soundPlayer.pause();
 
-				// TODO		   Mouse.show();		   
-				//		   	this.rhApp.keyNew=false;
+				// TODO		  Mouse.show();		  
+				//		  	this.rhApp.keyNew=false;
 			}
 		},
 
@@ -21837,7 +21837,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						count++;
 					var hoPtr = this.rhObjectList[count];
 					count++;
-					if (hoPtr.hoType >= COI.KPX_BASE)
+					if (hoPtr.hoType>= COI.KPX_BASE)
 					{
 						hoPtr.ext.continueRunObject();
 					}
@@ -21845,7 +21845,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				this.rhApp.soundPlayer.resume();
 
-				// TODO     this.rhApp.flushKeyboard();
+				// TODO   this.rhApp.flushKeyboard();
 
 				var tick = this.rhApp.timer;
 				tick -= this.rh2PauseTimer;
@@ -21874,7 +21874,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 		},
 
-		/* TODO    
+		/* TODO  
 		 public function sendKey(keyCode, bState:Boolean):void
 		 {
 		 var count=0;
@@ -21990,13 +21990,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			var wx = this.rhWindowX;
 			wx += this.rh3WindowSx + CRun.COLMASK_XMARGIN;
-			if (wx > this.rhLevelSx)
+			if (wx> this.rhLevelSx)
 				wx = this.rh3XMaximumKill;
 			this.rh3XMaximum = wx;
 
 			var wy = this.rhWindowY;
 			wy += this.rh3WindowSy + CRun.COLMASK_YMARGIN;
-			if (wy > this.rhLevelSy)
+			if (wy> this.rhLevelSy)
 				wy = this.rh3YMaximumKill;
 			this.rh3YMaximum = wy;
 
@@ -22030,7 +22030,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.rh4TimerEvents = null;
 
 			// TODO rh4DemoMode=CDemoRecord.DEMONOTHING;
-			//      rh4Demo=null;
+			//   rh4Demo=null;
 
 			for (n = 0; n < CRun.MAX_FRAMERATE; n++)
 				this.rh4FrameRateArray[n] = 20;
@@ -22041,20 +22041,20 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			this.rhApp.soundPlayer.checkSounds();
 
-		    // For some reason the event loop of subapps is called while the images are still loading O_o
-	        // Wait for all the data to be loaded
-		    if (this.rhApp.parentApp != null && this.rhApp.loading) {
-		        this.rhTimerOld = this.rhApp.timer;
-		        this.rhTimer = 0;
-		        return this.rhQuit;
-		    }
+		  // For some reason the event loop of subapps is called while the images are still loading O_o
+	    // Wait for all the data to be loaded
+		  if (this.rhApp.parentApp != null && this.rhApp.loading) {
+		    this.rhTimerOld = this.rhApp.timer;
+		    this.rhTimer = 0;
+		    return this.rhQuit;
+		  }
 
-		    if (this.rhApp.modalSubappObject != null) {
-		        this.rhApp.modalSubappObject.handle();
-		        return 0;
-		    }
+		  if (this.rhApp.modalSubappObject != null) {
+		    this.rhApp.modalSubappObject.handle();
+		    return 0;
+		  }
 
-		    if (!this.bodiesCreated)
+		  if (!this.bodiesCreated)
 			{
 				this.CreateBodies();
 				this.bodiesCreated = true;
@@ -22072,7 +22072,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			this.rh4FrameRateArray[this.rh4FrameRatePos] = delta;
 			this.rh4FrameRatePos++;
-			if (this.rh4FrameRatePos >= CRun.MAX_FRAMERATE)
+			if (this.rh4FrameRatePos>= CRun.MAX_FRAMERATE)
 				this.rh4FrameRatePos = 0;
 
 			var n;
@@ -22107,7 +22107,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						key |= this.rh2MouseKeys;
 						this.rhPlayer[n] = key;
 					}
-					mouseUsed >>= 1;
+					mouseUsed>>= 1;
 				}
 			}
 			else
@@ -22213,7 +22213,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return this.rhQuit;
 		},
 
-		/*    modif_ChangedObjects:function()
+		/*  modif_ChangedObjects:function()
 		 {
 		 var count=0;
 		 var no;
@@ -22234,7 +22234,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 }
 		 },
 		 */
-		joyTest:    function ()
+		joyTest:  function ()
 		{
 			var i;
 
@@ -22257,8 +22257,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getMouseCoords: function ()
 		{
-		    this.rh2MouseX = this.rhApp.mouseX + this.rhWindowX - this.rhApp.xOffset;
-		    this.rh2MouseY = this.rhApp.mouseY + this.rhWindowY - this.rhApp.yOffset;
+		  this.rh2MouseX = this.rhApp.mouseX + this.rhWindowX - this.rhApp.xOffset;
+		  this.rh2MouseY = this.rhApp.mouseY + this.rhWindowY - this.rhApp.yOffset;
 		},
 
 		newHandle_Collisions: function (pHo)
@@ -22290,7 +22290,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				cadran = this.quadran_In(pHo.hoX - pHo.hoImgXSpot, pHo.hoY - pHo.hoImgYSpot, pHo.hoX - pHo.hoImgXSpot + pHo.hoImgWidth, pHo.hoY - pHo.hoImgYSpot + pHo.hoImgHeight);
 				if ((cadran & pHo.rom.rmWrapping) != 0)
 				{
-				    var oldMoveFlag = pHo.rom.rmMoveFlag;
+				  var oldMoveFlag = pHo.rom.rmMoveFlag;
 
 					if ((cadran & CRun.BORDER_LEFT) != 0)
 						pHo.rom.rmMovement.setXPosition(pHo.hoX + this.rhLevelSx);
@@ -22302,9 +22302,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					else if ((cadran & CRun.BORDER_BOTTOM) != 0)
 						pHo.rom.rmMovement.setYPosition(pHo.hoY - this.rhLevelSy);
 
-				    // Fix for bug 3468: rmMoveFlag must not be forced when wrapping (see specific SetXPos / SetYPos in Windows runtime)
+				  // Fix for bug 3468: rmMoveFlag must not be forced when wrapping (see specific SetXPos / SetYPos in Windows runtime)
 					if (pHo.roc.rcMovementType != CMoveDef.MVTYPE_PLATFORM && pHo.roc.rcMovementType != CMoveDef.MVTYPE_EXT)
-					    pHo.rom.rmMoveFlag = oldMoveFlag;
+					  pHo.rom.rmMoveFlag = oldMoveFlag;
 				}
 
 				cadran1 = this.quadran_Out(pHo.roc.rcOldX1, pHo.roc.rcOldY1, pHo.roc.rcOldX2, pHo.roc.rcOldY2);
@@ -22318,7 +22318,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						pHo.rom.rmEventFlags |= CRMvt.EF_GOESOUTPLAYFIELD;
 						this.rhEvtProg.rhCurParam0 = chgDir;		// ou LOWORD?
-						this.rhEvtProg.handle_Event(pHo, (-12 << 16) | (pHo.hoType & 0xFFFF));  // CNDL_EXTOUTPLAYFIELD 
+						this.rhEvtProg.handle_Event(pHo, (-12 << 16) | (pHo.hoType & 0xFFFF)); // CNDL_EXTOUTPLAYFIELD 
 					}
 				}
 			}
@@ -22352,7 +22352,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							var type = pHo.hoType;
 							var pHo_esi = pHo;
 							var pHo_ebx = pHox;
-							if (pHo_esi.hoType > pHo_ebx.hoType)
+							if (pHo_esi.hoType> pHo_ebx.hoType)
 							{
 								pHo_esi = pHox;
 								pHo_ebx = pHo;
@@ -22420,14 +22420,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 							xHox = pHox.hoX - pHox.hoImgXSpot;
 							yHox = pHox.hoY - pHox.hoImgYSpot;
 							if (xHox < rectX2 &&
-								xHox + pHox.hoImgWidth > rectX1 &&
+								xHox + pHox.hoImgWidth> rectX1 &&
 								yHox < rectY2 &&
-								yHox + pHox.hoImgHeight > rectY1)
+								yHox + pHox.hoImgHeight> rectY1)
 							{
 								switch (pHox.hoType)
 								{
 									case COI.OBJ_SPR:
-										if (nLayer < 0 || (nLayer >= 0 && nLayer == pHox.ros.rsLayer))
+										if (nLayer < 0 || (nLayer>= 0 && nLayer == pHox.ros.rsLayer))
 										{
 											if ((pHox.ros.rsFlags & CRSpr.RSFLAG_RAMBO) != 0)
 											{
@@ -22506,14 +22506,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 						xHox = pHox.hoX - pHox.hoImgXSpot;
 						yHox = pHox.hoY - pHox.hoImgYSpot;
 						if (xHox < rectX2 &&
-							xHox + pHox.hoImgWidth > rectX1 &&
+							xHox + pHox.hoImgWidth> rectX1 &&
 							yHox < rectY2 &&
-							yHox + pHox.hoImgHeight > rectY1)
+							yHox + pHox.hoImgHeight> rectY1)
 						{
 							switch (pHox.hoType)
 							{
 								case COI.OBJ_SPR:
-									if (nLayer < 0 || (nLayer >= 0 && nLayer == pHox.ros.rsLayer))
+									if (nLayer < 0 || (nLayer>= 0 && nLayer == pHox.ros.rsLayer))
 									{
 										if ((pHox.ros.rsFlags & CRSpr.RSFLAG_RAMBO) != 0)
 										{
@@ -22614,10 +22614,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 						return ret;
 					}
 					return false;
-				//    		case COI.OBJ_TEXT:
-				//    		case COI.OBJ_SCORE:
-				//    		case COI.OBJ_LIVES:
-				//    		case COI.OBJ_CCA:
+				//  		case COI.OBJ_TEXT:
+				//  		case COI.OBJ_SCORE:
+				//  		case COI.OBJ_LIVES:
+				//  		case COI.OBJ_CCA:
 				default:
 					x1 = newX - pHo.hoImgXSpot - this.rhWindowX;
 					y1 = newY - pHo.hoImgYSpot - this.rhWindowY;
@@ -22627,7 +22627,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return ret;
 			}
 		},
-		colMask_Test_Rect:      function (x1, y1, sx, sy, layer, plan)
+		colMask_Test_Rect:   function (x1, y1, sx, sy, layer, plan)
 		{
 			var pLayer;
 			var nLayerMax = layer;
@@ -22650,7 +22650,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return false;
 		},
-		colMask_Test_XY:        function (newX, newY, layer, plan)
+		colMask_Test_XY:    function (newX, newY, layer, plan)
 		{
 			var pLayer;
 			var nLayerMax = layer;
@@ -22695,7 +22695,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				y1 = pHox.hoY - pHox.hoImgYSpot;
 				x2 = x1 + pHox.hoImgWidth;
 				y2 = y1 + pHox.hoImgHeight;
-				if (x >= x1 && x < x2 && y >= y1 && y < y2)
+				if (x>= x1 && x < x2 && y>= y1 && y < y2)
 				{
 					if ((pHox.hoFlags & CObject.HOF_DESTROYED) == 0)
 					{
@@ -22708,7 +22708,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								if (mask.testPointEx(x - pHox.hoX, y - pHox.hoY, pHox.roc.rcAngle, pHox.roc.rcScaleX, pHox.roc.rcScaleY))
 								{
 									index = pHox.getChildIndex();
-									if (index > currentIndex)
+									if (index> currentIndex)
 									{
 										currentIndex = index;
 										currentHo = pHox;
@@ -22718,7 +22718,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							else
 							{
 								index = pHox.getChildIndex();
-								if (index > currentIndex)
+								if (index> currentIndex)
 								{
 									currentIndex = index;
 									currentHo = pHox;
@@ -22739,9 +22739,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				cadran |= CRun.BORDER_LEFT;
 			if (y1 < 0)
 				cadran |= CRun.BORDER_TOP;
-			if (x2 > this.rhLevelSx)
+			if (x2> this.rhLevelSx)
 				cadran |= CRun.BORDER_RIGHT;
-			if (y2 > this.rhLevelSy)
+			if (y2> this.rhLevelSy)
 				cadran |= CRun.BORDER_BOTTOM;
 			return CRun.Table_InOut[cadran];
 		},
@@ -22753,9 +22753,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				cadran &= ~CRun.BORDER_RIGHT;
 			if (y1 < this.rhLevelSy)
 				cadran &= ~CRun.BORDER_BOTTOM;
-			if (x2 > 0)
+			if (x2> 0)
 				cadran &= ~CRun.BORDER_LEFT;
-			if (y2 > 0)
+			if (y2> 0)
 				cadran &= ~CRun.BORDER_TOP;
 			return CRun.Table_InOut[cadran];
 		},
@@ -22765,7 +22765,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var calcul = this.rh3Graine * 31415 + 1;
 			calcul &= 0x0000FFFF;
 			this.rh3Graine = calcul;
-			return ((calcul * wMax) >>> 16);
+			return ((calcul * wMax)>>> 16);
 		},
 
 		get_Direction: function (dir)
@@ -22786,7 +22786,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					count++;
 					found = loop;
 				}
-				dirShift >>>= 1;
+				dirShift>>>= 1;
 			}
 
 			if (count == 1)
@@ -22806,7 +22806,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						return loop;
 					}
 				}
-				dirShift >>>= 1;
+				dirShift>>>= 1;
 			}
 			return 0;
 		},
@@ -22870,9 +22870,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				do
 				{
 					ope = this.rh4Tokens[this.rh4CurToken];
-					if (ope.code > 0 && ope.code < 0x00140000)
+					if (ope.code> 0 && ope.code < 0x00140000)
 					{
-						if (ope.code > this.rh4Operators[this.rh4PosPile - 1].code)
+						if (ope.code> this.rh4Operators[this.rh4PosPile - 1].code)
 						{
 							this.rh4Operators[this.rh4PosPile] = ope;
 							this.rh4CurToken++;
@@ -22899,7 +22899,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.rh4Operators[this.rh4PosPile].evaluate(this);
 					}
 				} while (true);
-			} while (this.rh4PosPile > pileStart + 1);
+			} while (this.rh4PosPile> pileStart + 1);
 			return this.rh4Results[pileStart + 1];
 		},
 
@@ -23000,7 +23000,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				y1 = pHox.hoY - pHox.hoImgYSpot;
 				x2 = x1 + pHox.hoImgWidth;
 				y2 = y1 + pHox.hoImgHeight;
-				if (this.rh2MouseX >= x1 && this.rh2MouseX < x2 && this.rh2MouseY >= y1 && this.rh2MouseY < y2)
+				if (this.rh2MouseX>= x1 && this.rh2MouseX < x2 && this.rh2MouseY>= y1 && this.rh2MouseY < y2)
 				{
 					if ((pHox.hoFlags & CObject.HOF_DESTROYED) == 0)
 					{
@@ -23100,7 +23100,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 				}
 				var num = this.f_CreateObject(-1, oi, pInfo.x, pInfo.y, 0, 0, this.rhFrame.nLayers - 1, -1);
-				if (num >= 0)
+				if (num>= 0)
 				{
 					this.rhObjectList[num].txtChange(txtNumber);
 					return num;
@@ -23184,7 +23184,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		isMouseOn: function ()
 		{
-			if (this.rhApp.cursorCount > 0)
+			if (this.rhApp.cursorCount> 0)
 			{
 				return true;
 			}
@@ -23256,7 +23256,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						bi = new CBackInstance(this.rhApp, this.rhFrame.leWidth + rc.left, rc.top, plo, null, 0);
 						bi.addInstance(1, pLayer);
-						if (rc.left + bi.width > this.rhFrame.leWidth)
+						if (rc.left + bi.width> this.rhFrame.leWidth)
 						{
 							bi = new CBackInstance(this.rhApp, rc.left - this.rhFrame.leWidth, rc.top, plo, null, 0);
 							bi.addInstance(4, pLayer);
@@ -23267,7 +23267,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							bi.addInstance(2, pLayer);
 							bi = new CBackInstance(this.rhApp, this.rhFrame.leWidth + rc.left, this.rhFrame.leHeight + rc.top, plo, null, 0);
 							bi.addInstance(3, pLayer);
-							if (rc.top + bi.height > this.rhFrame.leHeight)
+							if (rc.top + bi.height> this.rhFrame.leHeight)
 							{
 								bi = new CBackInstance(this.rhApp, rc.left, rc.top - this.rhFrame.leHeight, plo, null, 0);
 								bi.addInstance(5, pLayer);
@@ -23278,7 +23278,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						bi = new CBackInstance(this.rhApp, rc.left, this.rhFrame.leHeight + rc.top, plo, null, 0);
 						bi.addInstance(2, pLayer);
-						if (rc.top + bi.height > this.rhFrame.leHeight)
+						if (rc.top + bi.height> this.rhFrame.leHeight)
 						{
 							bi = new CBackInstance(this.rhApp, rc.left, rc.top - this.rhFrame.leHeight, plo, null, 0);
 							bi.addInstance(5, pLayer);
@@ -23311,7 +23311,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						dx = dx % this.rhFrame.leWidth + this.rhFrame.leWidth;
 					}
-					if (dx > this.rhFrame.leWidth)
+					if (dx> this.rhFrame.leWidth)
 					{
 						dx = dx % this.rhFrame.leWidth;
 					}
@@ -23322,7 +23322,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						dy = dy % this.rhFrame.leHeight + this.rhFrame.leHeight;
 					}
-					if (dy > this.rhFrame.leHeight)
+					if (dy> this.rhFrame.leHeight)
 					{
 						dy = dy % this.rhFrame.leHeight;
 					}
@@ -23340,17 +23340,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.rhFrame.leY = this.rh3DisplayY;
 		},
 
-		hideLayer:      function (nLayer)
+		hideLayer:   function (nLayer)
 		{
-			if (nLayer >= 0 && nLayer < this.rhFrame.nLayers)
+			if (nLayer>= 0 && nLayer < this.rhFrame.nLayers)
 			{
 				var layer = this.rhFrame.layers[nLayer];
 				layer.hide();
 			}
 		},
-		showLayer:      function (nLayer)
+		showLayer:   function (nLayer)
 		{
-			if (nLayer >= 0 && nLayer < this.rhFrame.nLayers)
+			if (nLayer>= 0 && nLayer < this.rhFrame.nLayers)
 			{
 				var layer = this.rhFrame.layers[nLayer];
 				layer.show();
@@ -23380,13 +23380,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (nLayer != -1 && nLayer < this.rhFrame.nLayers)
 			{
 				var pLayer = this.rhFrame.layers[nLayer];
-				if (pLayer.xCoef > 1.0)
+				if (pLayer.xCoef> 1.0)
 				{
 					var dxf = (xf - this.rhWindowX);
 					dxf /= pLayer.xCoef;
 					xf = CServices.floatToInt(this.rhWindowX + dxf);
 				}
-				if (pLayer.yCoef > 1.0)
+				if (pLayer.yCoef> 1.0)
 				{
 					var dyf = (yf - this.rhWindowY);
 					dyf /= pLayer.yCoef;
@@ -23407,7 +23407,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			var x2 = x + this.rh3WindowSx;
 			var y2 = y + this.rh3WindowSy;
-			if (x2 > this.rhLevelSx)
+			if (x2> this.rhLevelSx)
 			{
 				x2 = this.rhLevelSx - this.rh3WindowSx;
 				if (x2 < 0)
@@ -23416,7 +23416,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				x = x2;
 			}
-			if (y2 > this.rhLevelSy)
+			if (y2> this.rhLevelSy)
 			{
 				y2 = this.rhLevelSy - this.rh3WindowSy;
 				if (y2 < 0)
@@ -23495,13 +23495,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 
 			this.rh3XMaximum = newX + this.rh3WindowSx + CRun.COLMASK_XMARGIN;
-			if (this.rh3XMaximum > this.rhLevelSx)
+			if (this.rh3XMaximum> this.rhLevelSx)
 			{
 				this.rh3XMaximum = this.rh3XMaximumKill;
 			}
 
 			this.rh3YMaximum = newY + this.rh3WindowSy + CRun.COLMASK_YMARGIN;
-			if (this.rh3YMaximum > this.rhLevelSy)
+			if (this.rh3YMaximum> this.rhLevelSy)
 			{
 				this.rh3YMaximum = this.rh3YMaximumKill;
 			}
@@ -23617,7 +23617,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				bi = new CBackInstance(this.rhApp, this.rhFrame.leWidth + pHo.hoX - this.rhWindowX + pLayer.x, pHo.hoY - this.rhWindowY + pLayer.y, null, image, colType);
 				bi.setEffect(pHo.ros.rsEffect, pHo.ros.rsEffectParam);
 				bi.addInstance(1, pLayer);
-				if (pHo.hoX + bi.width > this.rhFrame.leWidth)
+				if (pHo.hoX + bi.width> this.rhFrame.leWidth)
 				{
 					bi = new CBackInstance(this.rhApp, pHo.hoX - this.rhWindowX + pLayer.x - this.rhFrame.leWidth, pHo.hoY - this.rhWindowY + pLayer.y, null, image, colType);
 					bi.setEffect(pHo.ros.rsEffect, pHo.ros.rsEffectParam);
@@ -23631,7 +23631,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					bi = new CBackInstance(this.rhApp, this.rhFrame.leWidth + pHo.hoX - this.rhWindowX + pLayer.x, this.rhFrame.leHeight + pHo.hoY - this.rhWindowY + pLayer.y, null, image, colType);
 					bi.setEffect(pHo.ros.rsEffect, pHo.ros.rsEffectParam);
 					bi.addInstance(3, pLayer);
-					if (pHo.hoY + bi.height > this.rhFrame.leHeight)
+					if (pHo.hoY + bi.height> this.rhFrame.leHeight)
 					{
 						bi = new CBackInstance(this.rhApp, pHo.hoX - this.rhWindowX + pLayer.x, pHo.hoY - this.rhWindowY + pLayer.y - this.rhFrame.leHeight, null, image, colType);
 						bi.setEffect(pHo.ros.rsEffect, pHo.ros.rsEffectParam);
@@ -23644,7 +23644,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				bi = new CBackInstance(this.rhApp, pHo.hoX - this.rhWindowX + pLayer.x, this.rhFrame.leHeight + pHo.hoY - this.rhWindowY + pLayer.y, null, image, colType);
 				bi.setEffect(pHo.ros.rsEffect, pHo.ros.rsEffectParam);
 				bi.addInstance(2, pLayer);
-				if (pHo.hoY + bi.height > this.rhFrame.leHeight)
+				if (pHo.hoY + bi.height> this.rhFrame.leHeight)
 				{
 					bi = new CBackInstance(this.rhApp, pHo.hoX - this.rhWindowX + pLayer.x, pHo.hoY - this.rhWindowY + pLayer.y - this.rhFrame.leHeight, null, image, colType);
 					bi.setEffect(pHo.ros.rsEffect, pHo.ros.rsEffectParam);
@@ -23653,7 +23653,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 		},
 
-		addBackdrop:        function (srceImage, x, y, layer, colType, addToWorld)
+		addBackdrop:    function (srceImage, x, y, layer, colType, addToWorld)
 		{
 			var pLayer = this.rhFrame.layers[layer];
 			var bi = new CBackInstance(this.rhApp, x - this.rhWindowX + pLayer.x, y - this.rhWindowX + pLayer.y, null, srceImage, colType);
@@ -23677,7 +23677,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				bi = new CBackInstance(this.rhApp, this.rhFrame.leWidth + x - this.rhWindowX + pLayer.x, y - this.rhWindowY + pLayer.y, null, srceImage, colType);
 				bi.addInstance(1, pLayer);
-				if (x + bi.width > this.rhFrame.leWidth)
+				if (x + bi.width> this.rhFrame.leWidth)
 				{
 					bi = new CBackInstance(this.rhApp, x - this.rhWindowX + pLayer.x - this.rhFrame.leWidth, y - this.rhWindowY + pLayer.y, null, srceImage, colType);
 					bi.addInstance(4, pLayer);
@@ -23688,7 +23688,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					bi.addInstance(2, pLayer);
 					bi = new CBackInstance(this.rhApp, this.rhFrame.leWidth + x - this.rhWindowX + pLayer.x, this.rhFrame.leHeight + y - this.rhWindowY + pLayer.y, null, srceImage, colType);
 					bi.addInstance(3, pLayer);
-					if (y + bi.height > this.rhFrame.leHeight)
+					if (y + bi.height> this.rhFrame.leHeight)
 					{
 						bi = new CBackInstance(this.rhApp, x - this.rhWindowX + pLayer.x, y - this.rhWindowY + pLayer.y - this.rhFrame.leHeight, null, srceImage, colType);
 						bi.addInstance(5, pLayer);
@@ -23699,7 +23699,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				bi = new CBackInstance(this.rhApp, x - this.rhWindowX + pLayer.x, this.rhFrame.leHeight + y - this.rhWindowY + pLayer.y, null, srceImage, colType);
 				bi.addInstance(2, pLayer);
-				if (y + bi.height > this.rhFrame.leHeight)
+				if (y + bi.height> this.rhFrame.leHeight)
 				{
 					bi = new CBackInstance(this.rhApp, x - this.rhWindowX + pLayer.x, y - this.rhWindowY + pLayer.y - this.rhFrame.leHeight, null, srceImage, colType);
 					bi.addInstance(5, pLayer);
@@ -23709,16 +23709,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 		deleteAllBackdrop2: function (layer)
 		{
-			if (layer < 0 || layer >= this.rhFrame.nLayers)
+			if (layer < 0 || layer>= this.rhFrame.nLayers)
 			{
 				return;
 			}
 			var pLayer = this.rhFrame.layers[layer];
 			pLayer.deleteAddedBackdrops();
 		},
-		deleteBackdropAt:   function (layer, xx, yy, fine)
+		deleteBackdropAt:  function (layer, xx, yy, fine)
 		{
-			if (layer < 0 || layer >= this.rhFrame.nLayers)
+			if (layer < 0 || layer>= this.rhFrame.nLayers)
 			{
 				return;
 			}
@@ -23993,20 +23993,20 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CRunMBase.prototype =
 	{
-		InitBase:           function (pHo, type)
+		InitBase:      function (pHo, type)
 		{
 			this.m_pHo = pHo;
 			this.m_type = type;
 			this.m_stopFlag = false;
 			m_currentAngle = 0;
 		},
-		AddVelocity:        function (vx, vy)
+		AddVelocity:    function (vx, vy)
 		{
 			this.m_addVX = vx;
 			this.m_addVY = vy;
 			this.m_addVFlag = true;
 		},
-		SetVelocity:        function (vx, vy)
+		SetVelocity:    function (vx, vy)
 		{
 			var angle = this.m_body.GetAngle();
 			var position = this.m_body.GetPosition();
@@ -24014,7 +24014,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			position.y += vy / 2.56;
 			this.m_base.rBodySetTransform(this.m_body, position, angle);
 		},
-		ResetAddVelocity:   function ()
+		ResetAddVelocity:  function ()
 		{
 			if (this.m_addVFlag)
 			{
@@ -24029,16 +24029,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.m_setVY = 0;
 			}
 		},
-		PrepareCondition:   function ()
+		PrepareCondition:  function ()
 		{
 			this.m_stopFlag = false;
 			this.m_eventCount = this.m_pHo.hoAdRunHeader.rh4EventCount;
 		},
-		IsStop:             function ()
+		IsStop:       function ()
 		{
 			return this.m_stopFlag;
 		},
-		SetStopFlag:        function (flag)
+		SetStopFlag:    function (flag)
 		{
 			this.m_stopFlag = flag;
 		},
@@ -24046,26 +24046,26 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			this.m_collidingObject = object;
 		},
-		CreateBody:         function ()
+		CreateBody:     function ()
 		{
 			return false;
 		},
-		CreateJoint:        function ()
+		CreateJoint:    function ()
 		{
 		},
-		SetFriction:        function (friction)
+		SetFriction:    function (friction)
 		{
 		},
-		SetRestitution:     function (restitution)
+		SetRestitution:   function (restitution)
 		{
 		},
-		SetGravity:         function (gravity)
+		SetGravity:     function (gravity)
 		{
 		},
-		SetDensity:         function (density)
+		SetDensity:     function (density)
 		{
 		},
-		init:               function (hoPtr)
+		init:        function (hoPtr)
 		{
 			this.ho = hoPtr;
 			this.rh = this.ho.hoAdRunHeader;
@@ -24314,7 +24314,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CAnim.prototype =
 	{
-		load:         function (file)
+		load:     function (file)
 		{
 			var debut = file.getFilePointer();
 
@@ -24352,7 +24352,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		approximate:  function (nAnim)
+		approximate: function (nAnim)
 		{
 			var d, d2, d3;
 			var cpt1, cpt2;
@@ -24407,16 +24407,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 	// -----------------------------------------------------------------
 	CAnimHeader.tableApprox =
 		[
-			CAnim.ANIMID_APPEAR, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 0  ANIMID_STOP
-			CAnim.ANIMID_RUN, CAnim.ANIMID_STOP, 0, 0,                           // 1  ANIMID_WALK
-			CAnim.ANIMID_WALK, CAnim.ANIMID_STOP, 0, 0,                          // 2  ANIMID_RUN
-			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 3  ANIMID_APPEAR
-			CAnim.ANIMID_STOP, 0, 0, 0,                                          // 4  ANIMID_DISAPPEAR
-			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 5  ANIMID_BOUNCE
-			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 6  ANIMID_SHOOT
-			CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, CAnim.ANIMID_STOP, 0,		// 7  ANIMID_JUMP
-			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 8  ANIMID_FALL
-			CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, CAnim.ANIMID_STOP, 0,		// 9  ANIMID_CLIMB
+			CAnim.ANIMID_APPEAR, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 0 ANIMID_STOP
+			CAnim.ANIMID_RUN, CAnim.ANIMID_STOP, 0, 0,              // 1 ANIMID_WALK
+			CAnim.ANIMID_WALK, CAnim.ANIMID_STOP, 0, 0,             // 2 ANIMID_RUN
+			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 3 ANIMID_APPEAR
+			CAnim.ANIMID_STOP, 0, 0, 0,                     // 4 ANIMID_DISAPPEAR
+			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 5 ANIMID_BOUNCE
+			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 6 ANIMID_SHOOT
+			CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, CAnim.ANIMID_STOP, 0,		// 7 ANIMID_JUMP
+			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 8 ANIMID_FALL
+			CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, CAnim.ANIMID_STOP, 0,		// 9 ANIMID_CLIMB
 			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 10 ANIMID_CROUCH
 			CAnim.ANIMID_STOP, CAnim.ANIMID_WALK, CAnim.ANIMID_RUN, 0,		// 11 ANIMID_UNCROUCH
 			0, 0, 0, 0,
@@ -24436,7 +24436,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var debut = file.getFilePointer();
 
-			file.skipBytes(2);          // ahSize
+			file.skipBytes(2);     // ahSize
 			this.ahAnimMax = file.readAShort();
 
 			var offsets = new Array(this.ahAnimMax);
@@ -24524,7 +24524,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CAnimDir.prototype =
 	{
-		load:         function (file)
+		load:     function (file)
 		{
 			this.adMinSpeed = file.readAByte();
 			this.adMaxSpeed = file.readAByte();
@@ -24586,18 +24586,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.raAnimOn = 0;				// Current animation
 		this.raAnimOffset = null;
 		this.raAnimDir = 0;				// Direction of current animation
-		this.raAnimPreviousDir = 0;                       // Previous OK direction
+		this.raAnimPreviousDir = 0;            // Previous OK direction
 		this.raAnimDirOffset = null;
 		this.raAnimSpeed = 0;
-		this.raAnimMinSpeed = 0;                          // Minimum speed of movement
-		this.raAnimMaxSpeed = 0;                          // Maximum speed of movement
+		this.raAnimMinSpeed = 0;             // Minimum speed of movement
+		this.raAnimMaxSpeed = 0;             // Maximum speed of movement
 		this.raAnimDeltaSpeed = 0;
-		this.raAnimCounter = 0;                           // Animation speed counter
+		this.raAnimCounter = 0;              // Animation speed counter
 		this.raAnimDelta = 0;				// Speed counter
 		this.raAnimRepeat = 0;				// Number of repeats
 		this.raAnimRepeatLoop = 0;			// Looping picture
 		this.raAnimFrame = 0;				// Current frame
-		this.raAnimNumberOfFrame = 0;                     // Number of frames
+		this.raAnimNumberOfFrame = 0;           // Number of frames
 		this.raAnimFrameForced = 0;
 		this.raRoutineAnimation = 0;
 		this.raOldAngle = -1;
@@ -24621,7 +24621,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 			{
 				var i;
-				for (i = 0; CRAni.anim_Defined[i] >= 0; i++)
+				for (i = 0; CRAni.anim_Defined[i]>= 0; i++)
 				{
 					if (this.anim_Exist(CRAni.anim_Defined[i]))
 						break;
@@ -24725,7 +24725,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					anim = CAnim.ANIMID_STOP;
 				}
-				if (speed >= 75)
+				if (speed>= 75)
 				{
 					anim = CAnim.ANIMID_RUN;
 				}
@@ -24737,7 +24737,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (anim != this.raAnimOn)
 			{
 				this.raAnimOn = anim;
-				if (anim >= ocPtr.ocAnimations.ahAnimMax)
+				if (anim>= ocPtr.ocAnimations.ahAnimMax)
 				{
 					anim = ocPtr.ocAnimations.ahAnimMax - 1;
 				}
@@ -24748,8 +24748,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.raAnimDir = -1;
 					this.raAnimFrame = 0;
 					if ((this.hoPtr.hoOEFlags & CObjectCommon.OEFLAG_DONTRESETANIMCOUNTER) == 0)		// Added for bug http://bugbox.clickteam.com/issues/3421, triggered by fix below...
-					    this.raAnimCounter = 0;		// Build 284.11, report from Android, fixes bug http://bugbox.clickteam.com/issues/1882
-	            }
+					  this.raAnimCounter = 0;		// Build 284.11, report from Android, fixes bug http://bugbox.clickteam.com/issues/1882
+	      }
 			}
 
 			var ifo;
@@ -24791,7 +24791,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						{
 							dir -= this.raAnimPreviousDir;
 							dir &= 31;
-							if (dir > 15)
+							if (dir> 15)
 							{
 								dir = this.raAnimOffset.anTrigo[offset] & 0x3F;
 								;
@@ -24838,9 +24838,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 
 					this.raAnimNumberOfFrame = adPtr.adNumberOfFrame;
-					if (this.raAnimFrameForced != 0 && this.raAnimFrameForced - 1 >= this.raAnimNumberOfFrame)
+					if (this.raAnimFrameForced != 0 && this.raAnimFrameForced - 1>= this.raAnimNumberOfFrame)
 						this.raAnimFrameForced = 0;
-					if (this.raAnimFrame >= this.raAnimNumberOfFrame)
+					if (this.raAnimFrame>= this.raAnimNumberOfFrame)
 						this.raAnimFrame = 0;
 					image = adPtr.adFrames[this.raAnimFrame];
 					if (this.raAnimStopped == false)
@@ -24915,7 +24915,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							delta *= speed;
 							delta /= 100;
 							delta += this.raAnimMinSpeed;
-							if (delta > this.raAnimMaxSpeed)
+							if (delta> this.raAnimMaxSpeed)
 								delta = this.raAnimMaxSpeed;
 							this.raAnimDelta = delta;
 						}
@@ -24931,7 +24931,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						delta *= speed;
 						delta /= deltaSpeed;
 						delta += this.raAnimMinSpeed;
-						if (delta > this.raAnimMaxSpeed)
+						if (delta> this.raAnimMaxSpeed)
 							delta = this.raAnimMaxSpeed;
 						this.raAnimDelta = delta;
 					}
@@ -24954,11 +24954,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 					aDelta = Math.round(aDelta * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef);
 				counter += aDelta;
-				while (counter > 100)
+				while (counter> 100)
 				{
 					counter -= 100;
 					frame++;
-					if (frame >= this.raAnimNumberOfFrame)
+					if (frame>= this.raAnimNumberOfFrame)
 					{
 						frame = this.raAnimRepeatLoop;
 						if (this.raAnimRepeat != 0)
@@ -25004,7 +25004,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 										this.hoPtr.hoImgYAP = ifo.yAP; 
 									}
 								}
-								var cond = (-2 << 16);	    // CNDL_EXTANIMENDOF;
+								var cond = (-2 << 16);	  // CNDL_EXTANIMENDOF;
 								cond |= (this.hoPtr.hoType & 0xFFFF);
 								this.hoPtr.hoAdRunHeader.rhEvtProg.rhCurParam0 = this.hoPtr.roa.raAnimOn;
 								return this.hoPtr.hoAdRunHeader.rhEvtProg.handle_Event(this.hoPtr, cond);
@@ -25026,7 +25026,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				this.hoPtr.roc.rcImage = image;
 				this.raOldAngle = this.hoPtr.roc.rcAngle;
-				if (image >= 0)
+				if (image>= 0)
 				{
 					ifo = this.hoPtr.hoAdRunHeader.rhApp.imageBank.getImageInfoEx(image, this.hoPtr.roc.rcAngle, this.hoPtr.roc.rcScaleX, this.hoPtr.roc.rcScaleY);
 					if (ifo != null)
@@ -25087,7 +25087,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		animSpeed_Force: function (speed)
 		{
 			if (speed < 0) speed = 0;
-			if (speed > 100) speed = 100;
+			if (speed> 100) speed = 100;
 			this.raAnimSpeedForced = speed + 1;
 			this.animIn(0);
 		},
@@ -25106,7 +25106,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		animFrame_Force: function (frame)
 		{
-			if (frame >= this.raAnimNumberOfFrame)
+			if (frame>= this.raAnimNumberOfFrame)
 				frame = this.raAnimNumberOfFrame - 1;
 			if (frame < 0)
 				frame = 0;
@@ -25217,7 +25217,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CImageBank.prototype =
 	{
-		preLoad:            function (f)
+		preLoad:      function (f)
 		{
 			this.file = f;
 
@@ -25247,18 +25247,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 		getImageFromHandle: function (handle)
 		{
-			if (handle >= 0 && handle < this.nHandlesTotal)
+			if (handle>= 0 && handle < this.nHandlesTotal)
 				if (this.handleToIndex[handle] != -1)
 					return this.images[this.handleToIndex[handle]];
 			return null;
 		},
-		getImageFromIndex:  function (index)
+		getImageFromIndex: function (index)
 		{
-			if (index >= 0 && index < this.nImages)
+			if (index>= 0 && index < this.nImages)
 				return this.images[index];
 			return null;
 		},
-		setAllToLoad:       function ()
+		setAllToLoad:    function ()
 		{
 			var n;
 			for (n = 0; n < this.nHandlesReel; n++)
@@ -25267,7 +25267,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.useCount[n] = 1;
 			}
 		},
-		resetToLoad:        function ()
+		resetToLoad:    function ()
 		{
 			if ((this.app.dwOptions & CRunApp.AH2OPT_LOADDATAATSTART) == 0 && (this.app.dwOptions & CRunApp.AH2OPT_KEEPRESOURCESBETWEENFRAMES) == 0)
 			{
@@ -25279,7 +25279,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			this.oldMosaics = null;
 		},
-		setToLoad:          function (handle)
+		setToLoad:     function (handle)
 		{
 			this.useCount[handle]++;
 		},
@@ -25311,7 +25311,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var n;
 
 			// Reset mosaics
-			if (this.app.mosaicMaxHandle > 0)
+			if (this.app.mosaicMaxHandle> 0)
 			{
 				if (this.mosaics == null)
 				{
@@ -25361,7 +25361,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						if (this.mosaics != null && this.oldMosaics != null)
 						{
 							var handle = newImages[count].mosaic;
-							if (handle > 0)
+							if (handle> 0)
 								this.mosaics[handle] = this.oldMosaics[handle];
 						}
 					}
@@ -25377,7 +25377,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 					count++;
 				}
-				/*          else
+				/*     else
 				 {
 				 }
 				 */
@@ -25399,7 +25399,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.nHandlesTotal = this.nHandlesReel;
 		},
 
-		delImage:      function (handle)
+		delImage:   function (handle)
 		{
 			var img = this.getImageFromHandle(handle);
 			if (img != null)
@@ -25477,7 +25477,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 return addImage(newImage, xSpot, ySpot, xAP, yAP, 1);
 		 },
 		 */
-		addImage:      function (image)
+		addImage:   function (image)
 		{
 			var h;
 
@@ -25531,7 +25531,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			for (h = 0; h < handles.length; h++)
 			{
-				if (handles[h] >= 0 && handles[h] < this.nHandlesTotal)
+				if (handles[h]>= 0 && handles[h] < this.nHandlesTotal)
 				{
 					if (this.offsetsToImage[handles[h]] != 0)
 					{
@@ -25815,13 +25815,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CImage.prototype =
 	{
-		loadHandle:    function (file)
+		loadHandle:  function (file)
 		{
 			this.filePointer = file.getFilePointer();
 			this.handle = file.readAShort();
 			file.skipBytes(12);
 		},
-		doLoad:        function ()
+		doLoad:    function ()
 		{
 			this.img = new Image();
 			var that = this;
@@ -25836,7 +25836,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var name = this.app.resources + CServices.formatDiscName(this.handle, "png");
 			this.img.src = name;
 		},
-		load:          function (a)
+		load:     function (a)
 		{
 			this.app = a;
 			this.filePointer = a.file.getFilePointer();
@@ -25888,7 +25888,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			return e;
 		},
-		getPixel:      function (x, y)
+		getPixel:   function (x, y)
 		{
 			var canvas = document.createElement("canvas");
 			canvas.width = this.width;
@@ -25908,7 +25908,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var imgd = context.getImageData(x, y, 1, 1);
 			return (imgd.data[0] << 16) | (imgd.data[1] << 8) | imgd.data[2];
 		},
-		getMask:       function (flags, angle, scaleX, scaleY)
+		getMask:    function (flags, angle, scaleX, scaleY)
 		{
 			if ((flags & CMask.GCMF_PLATFORM) == 0)
 			{
@@ -26084,7 +26084,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				return this.nullFont;
 			}
-			if (handle >= 0 && handle < this.maxHandlesTotal)
+			if (handle>= 0 && handle < this.maxHandlesTotal)
 				if (this.handleToIndex[handle] != -1)
 					return this.fonts[this.handleToIndex[handle]];
 			return null;
@@ -26092,7 +26092,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getFontFromIndex: function (index)
 		{
-			if (index >= 0 && index < this.nFonts)
+			if (index>= 0 && index < this.nFonts)
 				return this.fonts[index];
 			return null;
 		},
@@ -26301,7 +26301,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getHeight: function ()
 		{
-		    return this.lfHeight + Math.ceil(this.lfHeight / 8);
+		  return this.lfHeight + Math.ceil(this.lfHeight / 8);
 		},
 
 		getFont: function ()
@@ -26340,7 +26340,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.handleToIndex = null;
 		this.useCount = null;
 		this.file = null;
-		//  this.bChrome=navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+		// this.bChrome=navigator.userAgent.toLowerCase().indexOf('chrome')> -1;
 	}
 	CSoundBank.prototype =
 	{
@@ -26377,12 +26377,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		getSoundFromHandle: function (handle)
 		{
-			if (handle >= 0 && handle < this.nHandlesTotal)
+			if (handle>= 0 && handle < this.nHandlesTotal)
 				if (this.handleToIndex[handle] != -1)
 					return this.sounds[this.handleToIndex[handle]];
 			return null;
 		},
-		checkLoad:          function ()
+		checkLoad:     function ()
 		{
 			var index;
 			for (index = 0; index < this.nSounds; index++)
@@ -26393,9 +26393,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		getSoundFromIndex:  function (index)
+		getSoundFromIndex: function (index)
 		{
-			if (index >= 0 && index < this.nSounds)
+			if (index>= 0 && index < this.nSounds)
 				return this.sounds[index];
 			return null;
 		},
@@ -26544,7 +26544,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return this;
 		},
 
-		doLoad:     function ()
+		doLoad:   function ()
 		{
 			var format;
 			var playableFormats = this.application.soundPlayer.probablePlayableFormats & this.type;
@@ -26579,7 +26579,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (this.context)
 				{
 					var that = this;
-	                    
+	          
 						var request = new XMLHttpRequest();
 						request.open('GET', this.application.resources + CServices.formatDiscName(this.handle, ext), true);
 						request.responseType = 'arraybuffer';
@@ -26614,7 +26614,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				this.application.dataHasLoaded(this);
 		},
-		load:       function ()
+		load:    function ()
 		{
 			this.handle = this.file.readAShort();
 			this.type = this.file.readAByte();
@@ -26635,7 +26635,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.sound = null;
 			this.application.addDataToLoad(this);
 		},
-		playIt:     function (time, frequency)
+		playIt:   function (time, frequency)
 		{
 			if (!time)
 				time = 0;
@@ -26687,7 +26687,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.bPlaying = true;
 			this.bEnded = false;
 		},
-		play:       function (nl, bPrio, v)
+		play:    function (nl, bPrio, v)
 		{
 			this.nLoops = nl;
 			if (this.nLoops == 0)
@@ -26696,7 +26696,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			this.playIt();
 		},
-		stop:       function ()
+		stop:    function ()
 		{
 			if (this.sound)
 				this.sound.pause();
@@ -26728,47 +26728,47 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		pause: function ()
 		{
-		    if (!this.bPaused) {
-		        if (this.sound)
-		            this.sound.pause();
-		        else if (this.source) {
-		            this.source["onended"] = null;
-		            if (typeof this.source["stop"] !== "undefined")
-		                this.source["stop"](0);
-		            else
-		                this.source["noteOff"](0);
-		            this.pauseTime = Date.now() - this.startTime;
-	            }
-		        this.bPaused = true;
-		    }
+		  if (!this.bPaused) {
+		    if (this.sound)
+		      this.sound.pause();
+		    else if (this.source) {
+		      this.source["onended"] = null;
+		      if (typeof this.source["stop"] !== "undefined")
+		        this.source["stop"](0);
+		      else
+		        this.source["noteOff"](0);
+		      this.pauseTime = Date.now() - this.startTime;
+	      }
+		    this.bPaused = true;
+		  }
 		},
 
 		globalpause: function () {
-		    if (!this.bPaused) {
-		        this.pause();
-		        this.bAllowGlobalResume = true;
-		    } else {
-		        this.bAllowGlobalResume = false;
-		    }
+		  if (!this.bPaused) {
+		    this.pause();
+		    this.bAllowGlobalResume = true;
+		  } else {
+		    this.bAllowGlobalResume = false;
+		  }
 		},
 
 		resume: function ()
 		{
-		    if (this.bPaused) {
-		        if (this.sound)
-		            this.sound.play();
-		        else if (this.source) {
-		            this.playIt(this.pauseTime);
-		        }
-		        this.bPaused = false;
+		  if (this.bPaused) {
+		    if (this.sound)
+		      this.sound.play();
+		    else if (this.source) {
+		      this.playIt(this.pauseTime);
 		    }
+		    this.bPaused = false;
+		  }
 		},
 
 		globalresume: function () {
-		    if (this.bAllowGlobalResume) {
-		        this.resume();
-		        this.bAllowGlobalResume = false;
-		    }
+		  if (this.bAllowGlobalResume) {
+		    this.resume();
+		    this.bAllowGlobalResume = false;
+		  }
 		},
 
 		isPaused: function ()
@@ -26804,12 +26804,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return Math.floor(this.sound.currentTime * 1000);
 			else if (this.source)
 			{
-			    var t;
-			    if (this.bPaused)
-			        t = this.pauseTime;
-			    else
-			        t = Date.now() - this.startTime;
-			    return Math.min(this.buffer["duration"] * 1000, t);
+			  var t;
+			  if (this.bPaused)
+			    t = this.pauseTime;
+			  else
+			    t = Date.now() - this.startTime;
+			  return Math.min(this.buffer["duration"] * 1000, t);
 			}
 			return 0;
 		},
@@ -26820,16 +26820,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.sound.currentTime = t / 1000;
 			else if (this.source)
 			{
-			    if (this.bPlaying)
+			  if (this.bPlaying)
 				{
-			        this.source["onended"] = null;
-			        if (typeof this.source["stop"] !== "undefined")
+			    this.source["onended"] = null;
+			    if (typeof this.source["stop"] !== "undefined")
 						this.source["stop"](0);
 					else
 						this.source["noteOff"](0);
 				}
 				this.playIt(t);
-	        }
+	    }
 		},
 
 		setFrequency: function (t)
@@ -26855,10 +26855,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					if (this.sound.ended)
 					{
-						if (this.nLoops > 0)
+						if (this.nLoops> 0)
 						{
 							this.nLoops--;
-							if (this.nLoops > 0)
+							if (this.nLoops> 0)
 							{
 								this.playIt(0, this.currentFrequency);
 								return false;
@@ -26873,10 +26873,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					if (this.source["playbackState"] == 3 || this.bEnded)
 					{
-						if (this.nLoops > 0)
+						if (this.nLoops> 0)
 						{
 							this.nLoops--;
-							if (this.nLoops > 0)
+							if (this.nLoops> 0)
 							{
 								this.playIt(0, this.currentFrequency);
 								return false;
@@ -26892,9 +26892,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 		}
 
 	}
-	    
+	  
 
-	    
+	  
 	// CEventProgram object
 	// ---------------------------------------------------------------
 	/* Copyright (c) 1996-2012 Clickteam
@@ -26940,8 +26940,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 	CEventProgram.PARAMCLICK_DOUBLE = 0x100;
 	CEventProgram.bts = function (array, index)
 	{
-	    var d = (index >> 5);           // Build 284.2, fixes bug #2828
-	    var mask = 1 << (index & 31);
+	  var d = (index>> 5);      // Build 284.2, fixes bug #2828
+	  var mask = 1 << (index & 31);
 		var b = (array[d] & mask) != 0;
 		array[d] |= mask;
 		return b;
@@ -26961,7 +26961,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CEventProgram.EVTNUM = function (code)
 	{
-		return (code >> 16);
+		return (code>> 16);
 	}
 	CEventProgram.getEventCode = function (code)
 	{
@@ -27018,7 +27018,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.rhCurOi = 0;
 		this.rhCurParam0 = 0;
 		this.rhCurParam1 = 0;
-		//  this.rh3CurrentMenu=0;
+		// this.rh3CurrentMenu=0;
 		this.rh2CurrentClick = 0;
 		this.rh4_2ndObject = null;
 		this.bReady = false;
@@ -27275,7 +27275,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 		},
 
-		qualProc:       function (sEvtOiList)
+		qualProc:    function (sEvtOiList)
 		{
 			var pHo;
 			var oilPtr;
@@ -27392,7 +27392,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			do
 			{
 				this.rh2EventQualPosNum += 2;
-				if (this.rh2EventQualPosNum >= this.rh2EventQualPos.qoiList.length)
+				if (this.rh2EventQualPosNum>= this.rh2EventQualPos.qoiList.length)
 				{
 					return null;
 				}
@@ -27436,7 +27436,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			else
 			{
-				//            rhPtr.rhOiList[rh2EventPosOiList].oilListSelected=rh2EventPos.hoNextSelected;
+				//      rhPtr.rhOiList[rh2EventPosOiList].oilListSelected=rh2EventPos.hoNextSelected;
 				this.rh2EventPrevOiList.oilListSelected = this.rh2EventPos.hoNextSelected;
 				this.rh2EventPos = null;
 			}
@@ -27660,7 +27660,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			var pQoi = this.qualToOiList[expoi & 0x7FFF];
 			var qoi = 0;
-			if (qoi >= pQoi.qoiList.length)
+			if (qoi>= pQoi.qoiList.length)
 			{
 				return null;
 			}
@@ -27887,7 +27887,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				pqoi.qoiActionLoopCount = this.rh2ActionLoopCount;
 
 				num = this.qoi_GetFirstListSelected(pqoi);
-				if (num >= 0)
+				if (num>= 0)
 				{
 					pqoi.qoiCurrentOi = num;
 					pHo = this.rhPtr.rhObjectList[num];
@@ -27926,7 +27926,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 				}
 				num = this.qoi_GetFirstList(pqoi);
-				if (num >= 0)
+				if (num>= 0)
 				{
 					pqoi.qoiCurrentOi = num;
 					pHo = this.rhPtr.rhObjectList[num];
@@ -28111,7 +28111,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					if (pForEach2)
 						pForEach2.index = pForEach.index;
 					this.rh2ActionOn = 0;
-					this.handle_Event(pForEach.objects[pForEach.index], (-41 << 16));    // CNDL_EXTONLOOP);
+					this.handle_Event(pForEach.objects[pForEach.index], (-41 << 16));  // CNDL_EXTONLOOP);
 					if (pForEach.stop)
 						break;
 				}
@@ -28124,7 +28124,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						if (pForEach)
 							pForEach.index = pForEach2.index;
 						this.rh2ActionOn = 0;
-						this.handle_Event(pForEach2.objects[pForEach2.index], (-41 << 16));    // CNDL_EXTONLOOP);
+						this.handle_Event(pForEach2.objects[pForEach2.index], (-41 << 16));  // CNDL_EXTONLOOP);
 						if (pForEach2.stop)
 							break;
 					}
@@ -28175,7 +28175,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				type = 65536 - type;
 			}
-			var cond = -(code >> 16);
+			var cond = -(code>> 16);
 			var num = this.listPointers[this.rhEvents[type] + cond];
 			if (num != 0)
 			{
@@ -28187,7 +28187,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			this.rhCurCode = code;
 
-			var cond = -(code >> 16);
+			var cond = -(code>> 16);
 			var num = this.listPointers[pHo.hoEvents + cond];
 			if (num != 0)
 			{
@@ -28203,7 +28203,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var pEvent = this.rhPtr.rh4TimerEvents;
 			while (pEvent)
 			{
-				if (this.rhPtr.rhTimer >= pEvent.timer)
+				if (this.rhPtr.rhTimer>= pEvent.timer)
 				{
 					if (pEvent.type == TimerEvents.TIMEREVENTTYPE_ONESHOT)
 					{
@@ -28222,7 +28222,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						{
 							pEvent.timerPosition = this.rhPtr.rhTimer;
 						}
-						while (this.rhPtr.rhTimer >= pEvent.timerPosition)
+						while (this.rhPtr.rhTimer>= pEvent.timerPosition)
 						{
 							this.rhPtr.rhEvtProg.rhCurParam0 = pEvent.name;
 							this.rhPtr.rhEvtProg.rhCurParam1 = pEvent.index;
@@ -28373,7 +28373,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					evtPtr = evgPtr.evgEvents[this.eventPointersCnd[num]];
 					evtPtr.evtFlags |= CEvent.EVFLAGS_DONE;
 					var p = evtPtr.evtParams[0];
-					if (p.timer > time)
+					if (p.timer> time)
 					{
 						evtPtr.evtFlags &= ~CEvent.EVFLAGS_DONE;
 					}
@@ -28808,17 +28808,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 				y1 = pHox.hoY - pHox.hoImgYSpot;
 				x2 = x1 + pHox.hoImgWidth;
 				y2 = y1 + pHox.hoImgHeight;
-				if (this.rhPtr.rh2MouseX >= x1 && this.rhPtr.rh2MouseX < x2 && this.rhPtr.rh2MouseY >= y1 && this.rhPtr.rh2MouseY < y2)
+				if (this.rhPtr.rh2MouseX>= x1 && this.rhPtr.rh2MouseX < x2 && this.rhPtr.rh2MouseY>= y1 && this.rhPtr.rh2MouseY < y2)
 				{
-				    if ((pHox.hoLimitFlags & CObjInfo.OILIMITFLAGS_QUICKCOL) != 0 && (pHox.hoFlags & CObject.HOF_DESTROYED) == 0)
+				  if ((pHox.hoLimitFlags & CObjInfo.OILIMITFLAGS_QUICKCOL) != 0 && (pHox.hoFlags & CObject.HOF_DESTROYED) == 0)
 					{
 						if (pHox.hoType == COI.OBJ_SPR)
 						{
 							if ((pHox.ros.rsFlags & CRSpr.RSFLAG_COLBOX) == 0)
 							{
 								var image = this.application.imageBank.getImageFromHandle(pHox.roc.rcImage);
-							    var mask = image.getMask(CMask.GCMF_OBSTACLE, 0, 1.0, 1.0);
-							    if (mask.testPointEx(this.rhPtr.rh2MouseX - pHox.hoX, this.rhPtr.rh2MouseY - pHox.hoY, pHox.roc.rcAngle, pHox.roc.rcScaleX, pHox.roc.rcScaleY))
+							  var mask = image.getMask(CMask.GCMF_OBSTACLE, 0, 1.0, 1.0);
+							  if (mask.testPointEx(this.rhPtr.rh2MouseX - pHox.hoX, this.rhPtr.rh2MouseY - pHox.hoY, pHox.roc.rcAngle, pHox.roc.rcScaleX, pHox.roc.rcScaleY))
 								{
 									list.add(pHox);
 								}
@@ -28858,14 +28858,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 				 if (this.rhPtr.rh4PauseKey == -1)
 				 {
 				 this.rhPtr.resume();
-				 this.rhPtr.rh4EndOfPause = this.rhPtr.rhLoopCount;	    
+				 this.rhPtr.rh4EndOfPause = this.rhPtr.rhLoopCount;	  
 				 this.handle_GlobalEvents(((-8 << 16) | 0xFFFD));	
 				 }
 				 if (this.rhPtr.rh4PauseKey != 0 && this.rhPtr.rh4PauseKey == vk)
 				 {
 				 this.rhPtr.resume();
-				 this.rhPtr.rh4EndOfPause = this.rhPtr.rhLoopCount;	    
-				 this.handle_GlobalEvents(((-8 << 16) | 0xFFFD));	    
+				 this.rhPtr.rh4EndOfPause = this.rhPtr.rhLoopCount;	  
+				 this.handle_GlobalEvents(((-8 << 16) | 0xFFFD));	  
 				 }
 				 return;
 				 }
@@ -28890,11 +28890,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				return false;
 			}
-			if (pHo.hoX < pZone.x1 || pHo.hoX >= pZone.x2)
+			if (pHo.hoX < pZone.x1 || pHo.hoX>= pZone.x2)
 			{
 				return false;
 			}
-			if (pHo.hoY < pZone.y1 || pHo.hoY >= pZone.y2)
+			if (pHo.hoY < pZone.y1 || pHo.hoY>= pZone.y2)
 			{
 				return false;
 			}
@@ -29060,11 +29060,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		czaCompare: function (pZone, pHo)
 		{
-			if (pHo.hoX < pZone.x1 || pHo.hoX >= pZone.x2)
+			if (pHo.hoX < pZone.x1 || pHo.hoX>= pZone.x2)
 			{
 				return false;
 			}
-			if (pHo.hoY < pZone.y1 || pHo.hoY >= pZone.y2)
+			if (pHo.hoY < pZone.y1 || pHo.hoY>= pZone.y2)
 			{
 				return false;
 			}
@@ -29184,31 +29184,31 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var yTop = pHo.hoY - pHo.hoImgYSpot;
 			var yBottom = yTop + pHo.hoImgHeight;
 
-			if (x2 - x1 > y2 - y1)
+			if (x2 - x1> y2 - y1)
 			{
 				delta = (y2 - y1) / (x2 - x1);
-				if (x2 > x1)
+				if (x2> x1)
 				{
-					if (xRight < x1 || xLeft >= x2)
+					if (xRight < x1 || xLeft>= x2)
 					{
 						return false;
 					}
 				}
 				else
 				{
-					if (xRight < x2 || xLeft >= x1)
+					if (xRight < x2 || xLeft>= x1)
 					{
 						return false;
 					}
 				}
 				y = delta * (xLeft - x1) + y1;
-				if (y >= yTop && y < yBottom)
+				if (y>= yTop && y < yBottom)
 				{
 					return true;
 				}
 
 				y = delta * (xRight - x1) + y1;
-				if (y >= yTop && y < yBottom)
+				if (y>= yTop && y < yBottom)
 				{
 					return true;
 				}
@@ -29218,28 +29218,28 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 			{
 				delta = (x2 - x1) / (y2 - y1);
-				if (y2 > y1)
+				if (y2> y1)
 				{
-					if (yBottom < y1 || yTop >= y2)
+					if (yBottom < y1 || yTop>= y2)
 					{
 						return false;
 					}
 				}
 				else
 				{
-					if (yBottom < y2 || yTop >= y1)
+					if (yBottom < y2 || yTop>= y1)
 					{
 						return false;
 					}
 				}
 				x = delta * (yTop - y1) + x1;
-				if (x >= xLeft && x < xRight)
+				if (x>= xLeft && x < xRight)
 				{
 					return true;
 				}
 
 				x = delta * (yTop - y1) + x1;
-				if (x >= xLeft && x < xRight)
+				if (x>= xLeft && x < xRight)
 				{
 					return true;
 				}
@@ -29494,7 +29494,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		pickFromId: function (value)
 		{
 			var number = value & 0xFFFF;
-			if (number >= this.rhPtr.rhMaxObjects)
+			if (number>= this.rhPtr.rhMaxObjects)
 			{
 				return false;
 			}
@@ -29504,7 +29504,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return false;
 			}
 
-			var code = value >>> 16;
+			var code = value>>> 16;
 			if (code != pHo.hoCreationId)
 			{
 				return false;
@@ -29603,7 +29603,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.nConditions[n] = app.file.readAShort();
 					}
 					this.nQualifiers = app.file.readAShort();
-					if (this.nQualifiers > 0)
+					if (this.nQualifiers> 0)
 					{
 						this.qualifiers = new Array(this.nQualifiers);
 						for (n = 0; n < this.nQualifiers; n++)
@@ -29650,7 +29650,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			evgPtr.evgFlags &= CEventGroup.EVGFLAGS_DEFAULTMASK;
 			evgPtr.evgFlags |= CEventGroup.EVGFLAGS_INACTIVE;
 
-			for (evg++  , bQuit = false; ;)
+			for (evg++ , bQuit = false; ;)
 			{
 				evgPtr = this.events[evg];
 				evgPtr.evgFlags &= CEventGroup.EVGFLAGS_DEFAULTMASK;
@@ -29737,8 +29737,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 				evtPtr = evgPtr.evgEvents[0];
 				switch (evtPtr.evtCode)
 				{
-					case ((-10 << 16) | 65535):	    // CNDL_GROUP
-					case ((-11 << 16) | 65535):	    // CNDL_ENDGROUP
+					case ((-10 << 16) | 65535):	  // CNDL_GROUP
+					case ((-11 << 16) | 65535):	  // CNDL_ENDGROUP
 						break;
 
 					default:
@@ -29763,13 +29763,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 									evpPtr = evtPtr.evtParams[evp];
 									switch (evpPtr.code)
 									{
-										case 25:	    // PARAM_INT
+										case 25:	  // PARAM_INT
 											evpPtr.value2 = 0;
 											break;
-										case 13:	    // PARAM_EVERY
+										case 13:	  // PARAM_EVERY
 											evpPtr.compteur = evpPtr.delay;
 											break;
-										case 39:	    // PARAM_GROUPOINTER
+										case 39:	  // PARAM_GROUPOINTER
 											var n;
 											for (n = 0; n < groups.size(); n++)
 											{
@@ -29815,7 +29815,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.rh2ActionCount = 0;
 
 			var oiMax = 0;
-			for (nOi = 0  , n = 0; n < this.rhPtr.rhMaxOI; n++)
+			for (nOi = 0 , n = 0; n < this.rhPtr.rhMaxOI; n++)
 			{
 				if (this.rhPtr.rhOiList[n].oilOi != -1)
 				{
@@ -29823,7 +29823,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.rhPtr.rhOiList[n].oilLimitFlags = 0;
 					this.rhPtr.rhOiList[n].oilLimitList = -1;
 					nOi++;
-					if (this.rhPtr.rhOiList[n].oilOi + 1 > oiMax)
+					if (this.rhPtr.rhOiList[n].oilOi + 1> oiMax)
 					{
 						oiMax = this.rhPtr.rhOiList[n].oilOi + 1;
 					}
@@ -29832,7 +29832,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			this.qualToOiList = null;
 			var oil;
-			if (this.nQualifiers > 0)
+			if (this.nQualifiers> 0)
 			{
 				var count = new Array(this.nQualifiers);
 				for (q = 0; q < this.nQualifiers; q++)
@@ -29899,7 +29899,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 					evtPtr.evtFlags &= ~CEvent.EVFLAGS_BADOBJECT;
 
-					if (CEventProgram.EVTTYPE(evtPtr.evtCode) >= 0)
+					if (CEventProgram.EVTTYPE(evtPtr.evtCode)>= 0)
 					{
 						evtPtr.evtOiList = this.get_OiListOffset(evtPtr.evtOi, CEventProgram.EVTTYPE(evtPtr.evtCode));
 					}
@@ -29928,7 +29928,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 					}
 
-					if (evtPtr.evtNParams > 0)
+					if (evtPtr.evtNParams> 0)
 					{
 						for (evp = 0; evp < evtPtr.evtNParams; evp++)
 						{
@@ -29936,12 +29936,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 							switch (evpPtr.code)
 							{
 								// Met un parametre buffer 4 a zero
-								case 25:        // PARAM_BUFFER4:
+								case 25:    // PARAM_BUFFER4:
 									evpPtr.value = 0;
 									break;
 
 								// Trouve le levobj de creation
-								case 21:        // PARAM_SYSCREATE:
+								case 21:    // PARAM_SYSCREATE:
 									if ((evtPtr.evtOi & COI.OIFLAG_QUALIFIER) == 0)
 									{
 										var loPtr;
@@ -29966,9 +29966,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 									break;
 
 								// Met l'adresse du levObj pour create object
-								case 9:         // PARAM_CREATE:
-								case 18:        // PARAM_SHOOT:
-								case 16:        // PARAM_POSITION:
+								case 9:     // PARAM_CREATE:
+								case 18:    // PARAM_SHOOT:
+								case 16:    // PARAM_POSITION:
 									oi = evpPtr.posOINUMParent;
 									if (oi != -1)
 									{
@@ -29977,28 +29977,28 @@ window['Runtime'] = (function Runtime(__can, __path){
 									break;
 
 								// Poke l'adresse de l'objet dans l'curFrame.m_oiList
-								case 1:         // PARAM_OBJECT:
+								case 1:     // PARAM_OBJECT:
 									evpPtr.oiList = this.get_OiListOffset(evpPtr.oi, evpPtr.type);
 									break;
 
 								// Expression : poke l'adresse de l'curFrame.m_oiList dans les parametres objets
-								case 15:        // PARAM_SPEED:
-								case 27:        // PARAM_SAMLOOP:
-								case 28:        // PARAM_MUSLOOP:
-								case 45:        // PARAM_EXPSTRING:
-								case 46:        // PARAM_CMPSTRING:
-								case 22:        // PARAM_EXPRESSION:
-								case 23:        // PARAM_COMPARAISON:
-								case 52:        // PARAM_VARGLOBAL_EXP:
-								case 59:        // PARAM_STRINGGLOBAL_EXP:
-								case 53:        // PARAM_ALTVALUE_EXP:
-								case 62:        // PARAM_ALTSTRING_EXP:
-								case 54:        // PARAM_FLAG_EXP:
+								case 15:    // PARAM_SPEED:
+								case 27:    // PARAM_SAMLOOP:
+								case 28:    // PARAM_MUSLOOP:
+								case 45:    // PARAM_EXPSTRING:
+								case 46:    // PARAM_CMPSTRING:
+								case 22:    // PARAM_EXPRESSION:
+								case 23:    // PARAM_COMPARAISON:
+								case 52:    // PARAM_VARGLOBAL_EXP:
+								case 59:    // PARAM_STRINGGLOBAL_EXP:
+								case 53:    // PARAM_ALTVALUE_EXP:
+								case 62:    // PARAM_ALTSTRING_EXP:
+								case 54:    // PARAM_FLAG_EXP:
 									var expPtr = evpPtr;
 									for (n = 0; n < expPtr.tokens.length; n++)
 									{
 										// Un objet avec OI?
-										if (CEventProgram.EVTTYPE(expPtr.tokens[n].code) > 0)
+										if (CEventProgram.EVTTYPE(expPtr.tokens[n].code)> 0)
 										{
 											var expOi = expPtr.tokens[n];
 											expOi.oiList = this.get_OiListOffset(expOi.oi, CEventProgram.EVTTYPE(expOi.code));
@@ -30025,12 +30025,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 					d1 = 0;
 					d2 = 0;
 					evpPtr = null;
-					if (type >= COI.OBJ_SPR)
+					if (type>= COI.OBJ_SPR)
 					{
 						switch (CEventProgram.getEventCode(code))
 						{
-							case (4 << 16):      // ACTL_EXTSTOP:
-							case (9 << 16):      // ACTL_EXTBOUNCE:
+							case (4 << 16):   // ACTL_EXTSTOP:
+							case (9 << 16):   // ACTL_EXTBOUNCE:
 
 								evgF |= CEventGroup.EVGFLAGS_STOPINGROUP;
 
@@ -30049,10 +30049,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 									colList = this.make_ColList1(evgPtr, colList, oi);
 								}
 								break;
-							case (25 << 16):      // ACTL_EXTSHUFFLE:
+							case (25 << 16):   // ACTL_EXTSHUFFLE:
 								evgF |= CEventGroup.EVGFLAGS_SHUFFLE;
 								break;
-							case (-14 << 16):     // CNDL_EXTCOLLISION:
+							case (-14 << 16):   // CNDL_EXTCOLLISION:
 								evpPtr = evtPtr.evtParams[0];
 								var pEvpObject = evtPtr.evtParams[0];
 								this.addColList(evtPtr.evtOiList, evtPtr.evtOi, pEvpObject.oiList, pEvpObject.oi);
@@ -30080,7 +30080,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								}
 								n = 3;
 								break;
-							case (-4 << 16):     // CNDL_EXTISCOLLIDING:
+							case (-4 << 16):   // CNDL_EXTISCOLLIDING:
 								// L'objet 1 est-il un sprite?
 								type1 = CEventProgram.EVTTYPE(evtPtr.evtCode);
 								if (this.isTypeRealSprite(type1))
@@ -30105,12 +30105,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 								}
 								n = 3;
 								break;
-							case (-11 << 16):     // CNDL_EXTINPLAYFIELD:
-							case (-12 << 16):     // CNDL_EXTOUTPLAYFIELD:
+							case (-11 << 16):   // CNDL_EXTINPLAYFIELD:
+							case (-12 << 16):   // CNDL_EXTOUTPLAYFIELD:
 								d1 = CObjInfo.OILIMITFLAGS_QUICKBORDER;
 								n = 1;
 								break;
-							case (-13 << 16):     // CNDL_EXTCOLBACK:
+							case (-13 << 16):   // CNDL_EXTCOLBACK:
 								d1 = CObjInfo.OILIMITFLAGS_QUICKBACK;
 								n = 1;
 								break;
@@ -30120,24 +30120,24 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						switch (code)
 						{
-							case ((-6 << 16) | 65535):      // CNDL_ONCE
+							case ((-6 << 16) | 65535):   // CNDL_ONCE
 								evgM &= ~CEventGroup.EVGFLAGS_ONCE;
 								break;
-							case ((-7 << 16) | 65535):      // CNDL_NOTALWAYS:
+							case ((-7 << 16) | 65535):   // CNDL_NOTALWAYS:
 								evgM |= CEventGroup.EVGFLAGS_NOMORE;
 								break;
-							case ((-5 << 16) | 65535):      // CNDL_REPEAT:
+							case ((-5 << 16) | 65535):   // CNDL_REPEAT:
 								evgM |= CEventGroup.EVGFLAGS_NOMORE;
 								break;
-							case ((-4 << 16) | 65535):      // CNDL_NOMORE:
+							case ((-4 << 16) | 65535):   // CNDL_NOMORE:
 								evgM |= CEventGroup.EVGFLAGS_NOTALWAYS + CEventGroup.EVGFLAGS_REPEAT;
 								break;
-							case ((-4 << 16) | 0xFFFA):     // CNDL_MONOBJECT:
+							case ((-4 << 16) | 0xFFFA):   // CNDL_MONOBJECT:
 								d2 = CObjInfo.OILIMITFLAGS_QUICKCOL;
 								evpPtr = evtPtr.evtParams[0];
 								n = 2;
 								break;
-							case ((-7 << 16) | 0xFFFA):     // CNDL_MCLICKONOBJECT:
+							case ((-7 << 16) | 0xFFFA):   // CNDL_MCLICKONOBJECT:
 								d2 = CObjInfo.OILIMITFLAGS_QUICKCOL;
 								evpPtr = evtPtr.evtParams[1];
 								n = 2;
@@ -30173,7 +30173,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			// Rempli cette table avec les offsets en fonction des types
 			ss = 0;
 			var alp;
-			for (alp = 0  , type = -COI.NUMBEROF_SYSTEMTYPES; type < 0; type++, alp++)
+			for (alp = 0 , type = -COI.NUMBEROF_SYSTEMTYPES; type < 0; type++, alp++)
 			{
 				aListPointers[alp] = ss;
 				ss += this.nConditions[COI.NUMBEROF_SYSTEMTYPES + type];
@@ -30241,7 +30241,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							}
 							wBufNear[wPtrNear] = -1;
 							// Cas special pour les collisions de sprites : branche aux deux sprites (sauf si meme!)
-							if (CEventProgram.getEventCode(code) == (-14 << 16))      // CNDL_EXTCOLLISION
+							if (CEventProgram.getEventCode(code) == (-14 << 16))   // CNDL_EXTCOLLISION
 							{
 								evpPtr = evtPtr.evtParams[0];
 								for (oo = this.qual_GetFirstOiList(evpPtr.oiList); oo != -1; oo = this.qual_GetNextOiList())
@@ -30257,7 +30257,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 					}
 					bOrBefore = false;
-					if (evtPtr.evtCode == ((-24 << 16) | 65535) || evtPtr.evtCode == ((-25 << 16) | 65535))     // CNDL_OR - CNDL_ORLOGICAL
+					if (evtPtr.evtCode == ((-24 << 16) | 65535) || evtPtr.evtCode == ((-25 << 16) | 65535))   // CNDL_OR - CNDL_ORLOGICAL
 					{
 						bOrBefore = true;
 						evgPtr.evgFlags |= CEventGroup.EVGFLAGS_ORINGROUP;
@@ -30271,7 +30271,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							evtPtr.evtCode = cndOR;
 						}
 						// Marque les OR Logical
-						if (cndOR == ((-25 << 16) | 65535))       // CNDL_ORLOGICAL)
+						if (cndOR == ((-25 << 16) | 65535))    // CNDL_ORLOGICAL)
 						{
 							evgPtr.evgFlags |= CEventGroup.EVGFLAGS_ORLOGICAL;
 						}
@@ -30306,7 +30306,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				lposBuffer[n] = this.listPointers[n];
 			}
 
-		    // 288.2 - fast loops were doubled if there was a frame fade-in transition
+		  // 288.2 - fast loops were doubled if there was a frame fade-in transition
 			this.rhPtr.rh4PosOnLoop = null;
 
 			evtAlwaysPos = 0;
@@ -30410,7 +30410,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							}
 							wBufNear[wPtrNear] = -1;
 							// Cas special pour les collisions de sprites : branche aux deux sprites (sauf si meme!)
-							if (CEventProgram.getEventCode(code) == (-14 << 16))      // CNDL_EXTCOLLISION
+							if (CEventProgram.getEventCode(code) == (-14 << 16))   // CNDL_EXTCOLLISION
 							{
 								evpPtr = evtPtr.evtParams[0];
 								for (oo = this.qual_GetFirstOiList(evpPtr.oiList); oo != -1; oo = this.qual_GetNextOiList())
@@ -30429,7 +30429,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 					}
 					bOrBefore = false;
-					if (evtPtr.evtCode == ((-24 << 16) | 65535) || evtPtr.evtCode == ((-25 << 16) | 65535))     // CNDL_OR - CNDL_ORLOGICAL
+					if (evtPtr.evtCode == ((-24 << 16) | 65535) || evtPtr.evtCode == ((-25 << 16) | 65535))   // CNDL_OR - CNDL_ORLOGICAL
 					{
 						bOrBefore = true;
 					}
@@ -30440,7 +30440,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			// Adresse des conditions timer
 			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			uil = aListPointers[COI.NUMBEROF_SYSTEMTYPES + COI.OBJ_TIMER];
-			aTimers = this.listPointers[uil - CEventProgram.EVTNUM(((-3 << 16) | 0xFFFC))];     // CNDL_TIMER
+			aTimers = this.listPointers[uil - CEventProgram.EVTNUM(((-3 << 16) | 0xFFFC))];   // CNDL_TIMER
 
 			// Poke les adresses et les autres flags des pointeurs dans tous OI
 			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30463,7 +30463,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					// Recherche les flags WRAP dans les messages OUT OF PLAYFIELD
 					fWrap = 0;
-					ss = this.listPointers[uil - CEventProgram.EVTNUM(-12 << 16)];     // CNDL_EXTOUTPLAYFIELD
+					ss = this.listPointers[uil - CEventProgram.EVTNUM(-12 << 16)];   // CNDL_EXTOUTPLAYFIELD
 					if (ss != 0)
 					{
 						while (this.eventPointersGroup[ss] != null)
@@ -30471,7 +30471,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							evgPtr = this.eventPointersGroup[ss];
 							evtPtr = evgPtr.evgEvents[this.eventPointersCnd[ss]];
 							d = evtPtr.evtParams[0].value;	// Prend la direction
-							for (act = CEventProgram.evg_FindAction(evgPtr, 0), n = evgPtr.evgNAct; n > 0; n--, act++)
+							for (act = CEventProgram.evg_FindAction(evgPtr, 0), n = evgPtr.evgNAct; n> 0; n--, act++)
 							{
 								evtPtr = evgPtr.evgEvents[act];
 								if (evtPtr.evtCode == ((8 << 16) | (oilPtr.oilType & 0xFFFF))) // ACT_EXTWRAP
@@ -30487,7 +30487,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					// Fabrique la table de limitations des mouvements
 					// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 					oi1 = oilPtr.oilOi;
-					for (colList = 0  , limitPos = 0; this.colBuffer[colList] != -1; colList += 2)
+					for (colList = 0 , limitPos = 0; this.colBuffer[colList] != -1; colList += 2)
 					{
 						if (this.colBuffer[colList] == oi1)
 						{
@@ -30506,7 +30506,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 					}
 					// Marque la fin...
-					if (limitPos > 0)
+					if (limitPos> 0)
 					{
 						oilPtr.oilLimitList = limitListStart;
 						this.limitBuffer[limitListStart + limitPos++] = -1;
@@ -30678,7 +30678,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				return -1;
 			}
-			if (this.qualOilPos >= this.qualToOiList[this.qualOilPtr].qoiList.length)
+			if (this.qualOilPos>= this.qualToOiList[this.qualOilPtr].qoiList.length)
 			{
 				return -1;
 			}
@@ -30713,7 +30713,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				return -1;
 			}
-			if (this.qualOilPos2 >= this.qualToOiList[this.qualOilPtr2].qoiList.length)
+			if (this.qualOilPos2>= this.qualToOiList[this.qualOilPtr2].qoiList.length)
 			{
 				return -1;
 			}
@@ -30793,7 +30793,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (evt = 0; evt < evgPtr.evgNCond; evt++)
 			{
 				evtPtr = evgPtr.evgEvents[evt];
-				if (CEventProgram.EVTTYPE(evtPtr.evtCode) >= 2)
+				if (CEventProgram.EVTTYPE(evtPtr.evtCode)>= 2)
 				{
 					flag = (0x8000 + CObjInfo.OILIMITFLAGS_BACKDROPS);
 					code = CEventProgram.getEventCode(evtPtr.evtCode);
@@ -30883,7 +30883,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					evtPtr = evgPtr.evgEvents[evt];
 
-					if (evtPtr.evtNParams > 0)
+					if (evtPtr.evtNParams> 0)
 					{
 						for (evp = 0; evp < evtPtr.evtNParams; evp++)
 						{
@@ -30986,7 +30986,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		this.evgFlags = 0;
 		this.evgInhibit = 0;
 		this.evgInhibitCpt = 0;
-	    this.evgEvents = null;
+	  this.evgEvents = null;
 	}
 	CEventGroup.create = function (app)
 	{
@@ -31136,7 +31136,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CLO.prototype =
 	{
-		load:        function (file)
+		load:    function (file)
 		{
 			this.loHandle = file.readAShort();
 			this.loOiHandle = file.readAShort();
@@ -31164,7 +31164,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CLOList.prototype =
 	{
-		load:            function (app)
+		load:      function (app)
 		{
 			this.nIndex = app.file.readAInt();
 			this.list = new Array(this.nIndex);
@@ -31174,7 +31174,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				this.list[n] = new CLO();
 				this.list[n].load(app.file);
-				if (this.list[n].loHandle + 1 > maxHandles)
+				if (this.list[n].loHandle + 1> maxHandles)
 				{
 					maxHandles = this.list[n].loHandle + 1;
 				}
@@ -31187,7 +31187,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.handleToIndex[this.list[n].loHandle] = n;
 			}
 		},
-		getLOFromIndex:  function (index)
+		getLOFromIndex: function (index)
 		{
 			return this.list[index];
 		},
@@ -31208,7 +31208,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				do
 				{
 					plo = this.list[this.loFranIndex++];
-					if (plo.loType >= 2)		// OBJ_SPR
+					if (plo.loType>= 2)		// OBJ_SPR
 					{
 						return plo;
 					}
@@ -31271,7 +31271,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CLayer.prototype =
 	{
-		load:                 function (file)
+		load:         function (file)
 		{
 			this.dwOptions = file.readAInt();
 			this.xCoef = file.readAFloat();
@@ -31286,7 +31286,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.backUp_nBkdLOs = this.nBkdLOs;
 			this.backUp_nFirstLOIndex = this.nFirstLOIndex;
 		},
-		reset:                function ()
+		reset:        function ()
 		{
 			this.dwOptions = this.backUp_dwOptions;
 			this.xCoef = this.backUp_xCoef;
@@ -31321,33 +31321,33 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.show();
 			}
 		},
-		deleteBackObjects:    function ()
+		deleteBackObjects:  function ()
 		{
 			this.planeBack.removeAll();
 		},
-		addObstacle:          function (bi)
+		addObstacle:     function (bi)
 		{
 			if (this.pObstacles == null)
 				this.pObstacles = new CArrayList();
 			this.pObstacles.add(bi);
 		},
-		delObstacle:          function (bi)
+		delObstacle:     function (bi)
 		{
 			if (this.pObstacles != null)
 				this.pObstacles.removeObject(bi);
 		},
-		addPlatform:          function (bi)
+		addPlatform:     function (bi)
 		{
 			if (this.pPlatforms == null)
 				this.pPlatforms = new CArrayList();
 			this.pPlatforms.add(bi);
 		},
-		delPlatform:          function (bi)
+		delPlatform:     function (bi)
 		{
 			if (this.pPlatforms != null)
 				this.pPlatforms.removeObject(bi);
 		},
-		addBackdrop:          function (bi)
+		addBackdrop:     function (bi)
 		{
 			if (this.addedBackdrops == null)
 				this.addedBackdrops = new CArrayList();
@@ -31361,7 +31361,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.addedBackdrops = null;
 			this.planeBack.removeAll();
 		},
-		createPlanes:         function (xOffset, yOffset)
+		createPlanes:     function (xOffset, yOffset)
 		{
 			this.planeBack = new Sprite();
 			this.planeBack.x = xOffset;
@@ -31389,7 +31389,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.showHide();
 		},
 
-		setAngle:  function (angle)
+		setAngle: function (angle)
 		{
 			this.angle = angle;
 			this.planeBack.angle = angle;
@@ -31410,21 +31410,21 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.planeQuickDisplay.scaleY = scale;
 			this.planeSprites.scaleY = scale;
 		},
-		setXSpot:  function (spot)
+		setXSpot: function (spot)
 		{
 			this.xSpot = spot;
 			this.planeBack.xSpot = spot;
 			this.planeQuickDisplay.xSpot = spot;
 			this.planeSprites.xSpot = spot;
 		},
-		setYSpot:  function (spot)
+		setYSpot: function (spot)
 		{
 			this.ySpot = spot;
 			this.planeBack.ySpot = spot;
 			this.planeQuickDisplay.ySpot = spot;
 			this.planeSprites.ySpot = spot;
 		},
-		setXDest:  function (spot)
+		setXDest: function (spot)
 		{
 			spot = this.app.gaCxWin - spot;
 			this.xDest = spot;
@@ -31432,7 +31432,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.planeQuickDisplay.xDest = spot;
 			this.planeSprites.xDest = spot;
 		},
-		setYDest:  function (spot)
+		setYDest: function (spot)
 		{
 			spot = this.app.gaCyWin - spot;
 			this.yDest = spot;
@@ -31440,7 +31440,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.planeQuickDisplay.yDest = spot;
 			this.planeSprites.yDest = spot;
 		},
-		setZoom:   function (zoom)
+		setZoom:  function (zoom)
 		{
 			this.bZoom = zoom;
 			this.planeBack.bZoom = zoom;
@@ -31464,14 +31464,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			// TODO!
 		},
 
-		showHide:               function ()
+		showHide:        function ()
 		{
 			if (this.dwOptions & CLayer.FLOPT_VISIBLE)
 				this.show();
 			else
 				this.hide();
 		},
-		hide:                   function ()
+		hide:          function ()
 		{
 			this.dwOptions &= ~CLayer.FLOPT_TOHIDE;
 			if (this.bVisible)
@@ -31482,7 +31482,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.bVisible = false;
 			}
 		},
-		show:                   function ()
+		show:          function ()
 		{
 			if (this.bVisible == false)
 			{
@@ -31492,7 +31492,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.bVisible = true;
 			}
 		},
-		deletePlanes:           function ()
+		deletePlanes:      function ()
 		{
 			if (this.planeBack != null)
 			{
@@ -31510,7 +31510,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.planeSprites = null;
 			}
 		},
-		deleteAddedBackdrops:   function ()
+		deleteAddedBackdrops:  function ()
 		{
 			var n;
 			if (this.addedBackdrops != null)
@@ -31538,9 +31538,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				for (n = 0; n < this.addedBackdrops.size(); n++)
 				{
 					var bi = this.addedBackdrops.get(n);
-					if (xx >= bi.x && xx < bi.x + bi.width)
+					if (xx>= bi.x && xx < bi.x + bi.width)
 					{
-						if (yy >= bi.y && yy < bi.y + bi.height)
+						if (yy>= bi.y && yy < bi.y + bi.height)
 						{
 							var flag = true;
 							if (fine)
@@ -31575,7 +31575,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.pLadders.add(rc);
 		},
 
-		ladderSub:   function (x1, y1, x2, y2)
+		ladderSub:  function (x1, y1, x2, y2)
 		{
 			if (pLadders != null)
 			{
@@ -31611,9 +31611,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				for (i = 0; i < this.pLadders.size(); i++)
 				{
 					rc = this.pLadders.get(i);
-					if (xx >= rc.left)
+					if (xx>= rc.left)
 					{
-						if (yy >= rc.top)
+						if (yy>= rc.top)
 						{
 							if (xx < rc.right)
 							{
@@ -31628,7 +31628,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return null;
 		},
-		testMask:    function (mask, xx, yy, htFoot, plan)
+		testMask:  function (mask, xx, yy, htFoot, plan)
 		{
 			var xLeft = xx + this.x - mask.xSpot;
 			var yTop = yy + this.y - mask.ySpot;
@@ -31651,9 +31651,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (o = 0; o < list.size(); o++)
 			{
 				bi = list.get(o);
-				if (bi.x < xRight && bi.x + bi.width > xLeft)
+				if (bi.x < xRight && bi.x + bi.width> xLeft)
 				{
-					if (bi.y < yBottom && bi.y + bi.height > yFoot)
+					if (bi.y < yBottom && bi.y + bi.height> yFoot)
 					{
 						if (bi.testMask(mask, xLeft, yTop, htFoot))
 						{
@@ -31664,7 +31664,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return null;
 		},
-		testRect:    function (x1, y1, x2, y2, htFoot, plan)
+		testRect:  function (x1, y1, x2, y2, htFoot, plan)
 		{
 			var list;
 			if (plan == CColMask.CM_TEST_OBSTACLE)
@@ -31685,9 +31685,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (o = 0; o < list.size(); o++)
 			{
 				var bi = list.get(o);
-				if (bi.x < x2 && bi.x + bi.width > x1)
+				if (bi.x < x2 && bi.x + bi.width> x1)
 				{
-					if (bi.y < y2 && bi.y + bi.height > y1)
+					if (bi.y < y2 && bi.y + bi.height> y1)
 					{
 						if (bi.testRect(x1, y1, x2, y2))
 						{
@@ -31698,7 +31698,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return null;
 		},
-		testPoint:   function (x1, y1, plan)
+		testPoint:  function (x1, y1, plan)
 		{
 			var list;
 			if (plan == CColMask.CM_TEST_OBSTACLE)
@@ -31715,9 +31715,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (o = 0; o < list.size(); o++)
 			{
 				var bi = list.get(o);
-				if (x1 >= bi.x && x1 < bi.x + bi.width)
+				if (x1>= bi.x && x1 < bi.x + bi.width)
 				{
-					if (y1 >= bi.y && y1 < bi.y + bi.height)
+					if (y1>= bi.y && y1 < bi.y + bi.height)
 					{
 						if (bi.testPoint(x1, y1))
 						{
@@ -31775,7 +31775,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.width = this.imageUsed.width;
 				this.height = this.imageUsed.height;
 			}
-			else if (this.type >= 32)
+			else if (this.type>= 32)
 			{
 				var rhPtr = this.app.run;
 				var hoPtr = null;
@@ -31822,7 +31822,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CBackInstance.prototype =
 	{
-		draw:        function (context, xx, yy)
+		draw:    function (context, xx, yy)
 		{
 			if (this.levelObject != null)
 			{
@@ -31920,7 +31920,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							break;
 					}
 
-					if (this.borderWidth > 0)
+					if (this.borderWidth> 0)
 					{
 						switch (pCOCQB.ocShape)
 						{
@@ -31964,20 +31964,20 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				else if (this.type == COI.OBJ_BKD)
 				{
-				    context.renderImageWithSubPixelCorrection(this.imageUsed, xx + this.x + this.imageUsed.xSpot, yy + this.y + this.imageUsed.ySpot, 0, 1.0, 1.0, this.effect, this.effectParam);
+				  context.renderImageWithSubPixelCorrection(this.imageUsed, xx + this.x + this.imageUsed.xSpot, yy + this.y + this.imageUsed.ySpot, 0, 1.0, 1.0, this.effect, this.effectParam);
 				}
 				else
 				{
-				    if ( this.ho != null )
-					    this.ho.draw(context, xx, yy);
+				  if ( this.ho != null )
+					  this.ho.draw(context, xx, yy);
 				}
 			}
 			else
 			{
-			    context.renderImage(this.imageUsed, xx + this.x + this.imageUsed.xSpot, yy + this.y + this.imageUsed.ySpot, 0, 1.0, 1.0, this.effect, this.effectParam);
+			  context.renderImage(this.imageUsed, xx + this.x + this.imageUsed.xSpot, yy + this.y + this.imageUsed.ySpot, 0, 1.0, 1.0, this.effect, this.effectParam);
 			}
 		},
-		setEffect:   function (e, ep)
+		setEffect:  function (e, ep)
 		{
 			this.effect = e;
 			this.effectParam = ep;
@@ -32020,7 +32020,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 		},
 
-		testMask:  function (mask, xx, yy, htFoot)
+		testMask: function (mask, xx, yy, htFoot)
 		{
 			var flags;
 			var mask2;
@@ -32061,7 +32061,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return false;
 		},
-		testRect:  function (x1, y1, x2, y2)
+		testRect: function (x1, y1, x2, y2)
 		{
 			var flags;
 			var mask;
@@ -32073,7 +32073,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						var yTop = this.y;
 						var yBottom = this.y + Math.min(this.height, CRunFrame.HEIGHT_PLATFORM);
-						if (yTop < y2 && yBottom > y1)
+						if (yTop < y2 && yBottom> y1)
 						{
 							return true;
 						}
@@ -32119,7 +32119,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						var yTop = y + this.height - CRunFrame.HEIGHT_PLATFORM;
 						var yBottom = this.y + this.height;
-						if (y1 >= yTop && y1 < yBottom)
+						if (y1>= yTop && y1 < yBottom)
 						{
 							return true;
 						}
@@ -32227,7 +32227,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	COI.prototype =
 	{
-		loadHeader:   function (file)
+		loadHeader:  function (file)
 		{
 			this.oiHandle = file.readAShort();
 			this.oiType = file.readAShort();
@@ -32236,7 +32236,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.oiInkEffect = file.readAInt();
 			this.oiInkEffectParam = file.readAInt();
 		},
-		load:         function (file)
+		load:     function (file)
 		{
 			file.seek(this.oiFileOffset);
 
@@ -32255,7 +32255,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.oiOC.load(file, this.oiType);
 			this.oiLoadFlags = 0;
 		},
-		unLoad:       function ()
+		unLoad:    function ()
 		{
 			this.oiOC = null;
 		},
@@ -32279,7 +32279,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	COIList.prototype =
 	{
-		preLoad:         function (file)
+		preLoad:     function (file)
 		{
 			// Alloue la table de OI
 			this.oiMaxIndex = file.readAInt();
@@ -32308,7 +32308,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						case 0x4444:
 							this.ois[index] = new COI();
 							this.ois[index].loadHeader(file);
-							if (this.ois[index].oiHandle >= this.oiMaxHandle)
+							if (this.ois[index].oiHandle>= this.oiMaxHandle)
 								this.oiMaxHandle = (this.ois[index].oiHandle + 1);
 							break;
 						case 0x4445:
@@ -32341,11 +32341,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			return this.ois[this.oiHandleToIndex[handle]];
 		},
-		getOIFromIndex:  function (index)
+		getOIFromIndex: function (index)
 		{
 			return this.ois[index];
 		},
-		resetOICurrent:  function ()
+		resetOICurrent: function ()
 		{
 			var n;
 			for (n = 0; n < this.oiMaxIndex; n++)
@@ -32353,11 +32353,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.ois[n].oiFlags &= ~COI.OILF_CURFRAME;
 			}
 		},
-		setOICurrent:    function (handle)
+		setOICurrent:  function (handle)
 		{
 			this.ois[this.oiHandleToIndex[handle]].oiFlags |= COI.OILF_CURFRAME;
 		},
-		getFirstOI:      function ()
+		getFirstOI:   function ()
 		{
 			var n;
 			for (n = 0; n < this.oiMaxIndex; n++)
@@ -32370,7 +32370,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return null;
 		},
-		getNextOI:       function ()
+		getNextOI:    function ()
 		{
 			if (this.currentOI < this.oiMaxIndex)
 			{
@@ -32387,7 +32387,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return null;
 		},
 
-		resetToLoad:  function ()
+		resetToLoad: function ()
 		{
 			var n;
 			for (n = 0; n < this.oiMaxHandle; n++)
@@ -32395,11 +32395,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.oiToLoad[n] = 0;
 			}
 		},
-		setToLoad:    function (n)
+		setToLoad:  function (n)
 		{
 			this.oiToLoad[n] = 1;
 		},
-		load:         function (file)
+		load:     function (file)
 		{
 			var h;
 			for (h = 0; h < this.oiMaxHandle; h++)
@@ -32615,7 +32615,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CObjectCommon.prototype =
 	{
-		load:         function (file, type)
+		load:     function (file, type)
 		{
 			// Position de debut
 			var debut = file.getFilePointer();
@@ -32624,12 +32624,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 			// Lis le header
 			var n;
 			file.skipBytes(4);
-			file.skipBytes(2);      // var oMovements = file.readAShort();
-			var oData = file.readAShort();  // var oAnimations = file.readAShort();
+			file.skipBytes(2);   // var oMovements = file.readAShort();
+			var oData = file.readAShort(); // var oAnimations = file.readAShort();
 			file.skipBytes(2);
 			var oCounter = file.readAShort();
 			var oAnimations = file.readAShort(); // var oData = file.readAShort();
-			var oMovements = file.readAShort();    // file.skipBytes(2);
+			var oMovements = file.readAShort();  // file.skipBytes(2);
 			this.ocOEFlags = file.readAInt();
 			for (n = 0; n < 8; n++)
 			{
@@ -32658,7 +32658,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				file.seek(debut + oValues);
 				this.ocValues = new CDefValues();
 				this.ocValues.load(file, (this.ocFlags2 & CObjectCommon.OCFLAGS2_INITFLAGS) != 0);
-	        }
+	    }
 			if (oStrings != 0)
 			{
 				file.seek(debut + oStrings);
@@ -32727,7 +32727,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.ocObject.load(file);
 						this.ocOEFlags &= ~(CObjectCommon.OEFLAG_SPRITES | CObjectCommon.OEFLAG_QUICKDISPLAY | CObjectCommon.OEFLAG_BACKSAVE);
 						break;
-					case 9:         // OBJ_CCA
+					case 9:     // OBJ_CCA
 						this.ocObject = new CDefCCA();
 						this.ocObject.load(file);
 						break;
@@ -32764,7 +32764,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CDefCCA.prototype =
 	{
-		load:         function (file)
+		load:     function (file)
 		{
 			file.skipBytes(4);
 			this.odCx = file.readAInt();
@@ -32772,7 +32772,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.odVersion = file.readAShort();
 			this.odNStartFrame = file.readAShort();
 			this.odOptions = file.readAInt();
-			file.skipBytes(4 + 4);                  // odFree+pad bytes
+			file.skipBytes(4 + 4);         // odFree+pad bytes
 			this.odName = file.readAString();
 		},
 		enumElements: function (enumImages, enumFonts)
@@ -32790,7 +32790,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CDefCounter.prototype =
 	{
-		load:         function (file)
+		load:     function (file)
 		{
 			file.skipBytes(2);
 			this.ctInit = file.readAInt();
@@ -32911,7 +32911,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					if (enumFonts != null)
 					{
 						num = enumFonts.enumerate(this.odFont);
-						/*			    	if (num!=-1)
+						/*			  	if (num!=-1)
 						 {
 						 this.odFont=num;
 						 }
@@ -32936,7 +32936,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CDefRtf.prototype =
 	{
-		load:         function (file)
+		load:     function (file)
 		{
 			this.odDWSize = file.readAInt();
 			this.odVersion = file.readAInt();
@@ -32972,7 +32972,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CDefText.prototype =
 	{
-		load:         function (file)
+		load:     function (file)
 		{
 			this.tsFont = file.readShort();
 			this.tsFlags = file.readAShort();
@@ -32984,7 +32984,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (enumFonts != null)
 			{
 				var num = enumFonts.enumerate(this.tsFont);
-				/*		    if (num!=-1)
+				/*		  if (num!=-1)
 				 {
 				 this.tsFont=num;
 				 }
@@ -33004,10 +33004,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CDefTexts.prototype =
 	{
-		load:         function (file)
+		load:     function (file)
 		{
 			var debut = file.getFilePointer();
-			file.skipBytes(4);          // Size
+			file.skipBytes(4);     // Size
 			this.otCx = file.readAInt();
 			this.otCy = file.readAInt();
 			this.otNumberOfText = file.readAInt();
@@ -33112,15 +33112,15 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CObject.prototype =
 	{
-		setScale:  function (fScaleX, fScaleY)
+		setScale: function (fScaleX, fScaleY)
 		{
 			if (this.roc.rcScaleX != fScaleX || this.roc.rcScaleY != fScaleY)
 			{
-				if (fScaleX >= 0)
+				if (fScaleX>= 0)
 				{
 					this.roc.rcScaleX = fScaleX;
 				}
-				if (fScaleY >= 0)
+				if (fScaleY>= 0)
 				{
 					this.roc.rcScaleY = fScaleY;
 				}
@@ -33137,7 +33137,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var nLayer = this.hoLayer;
 			var num = this.hoAdRunHeader.f_CreateObject(p.cdpHFII, p.cdpOi, x, y, dir, CRun.COF_NOMOVEMENT | CRun.COF_HIDDEN, nLayer, -1);
-			if (num >= 0)
+			if (num>= 0)
 			{
 				var pHo = this.hoAdRunHeader.rhObjectList[num];
 				if (pHo.rom != null)
@@ -33298,7 +33298,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CActive.prototype = CServices.extend(new CObject(),
 		{
-			handle:           function ()
+			handle:      function ()
 			{
 				this.ros.handle();
 				if (this.roc.rcChanged)
@@ -33306,14 +33306,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.roc.rcChanged = false;
 				}
 			},
-			addSprite:        function (xx, yy, ii, layer, bShow)
+			addSprite:    function (xx, yy, ii, layer, bShow)
 			{
 				this.nLayer = layer;
 				this.pLayer = this.hoAdRunHeader.rhFrame.layers[layer];
 				this.bShown = bShow;
 				this.pLayer.planeSprites.addChild(this);
 			},
-			draw:             function (context, xx, yy)
+			draw:       function (context, xx, yy)
 			{
 				if (this.bShown)
 				{
@@ -33345,19 +33345,19 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 				}
 			},
-			delSprite:        function ()
+			delSprite:    function ()
 			{
 				return this.pLayer.planeSprites.removeChild(this);
 			},
-			showSprite:       function ()
+			showSprite:    function ()
 			{
 				this.bShown = true;
 			},
-			hideSprite:       function ()
+			hideSprite:    function ()
 			{
 				this.bShown = false;
 			},
-			getChildIndex:    function ()
+			getChildIndex:  function ()
 			{
 				return this.pLayer.planeSprites.getChildIndex(this);
 			},
@@ -33365,9 +33365,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				return this.pLayer.planeSprites.children.length;
 			},
-			setChildIndex:    function (index)
+			setChildIndex:  function (index)
 			{
-				if (index >= this.pLayer.planeSprites.children.length)
+				if (index>= this.pLayer.planeSprites.children.length)
 				{
 					index = this.pLayer.planeSprites.children.length;
 				}
@@ -33433,7 +33433,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CCCA.prototype = CServices.extend(new CObject(),
 		{
-			//    init:function(ocPtr, cob)
+			//  init:function(ocPtr, cob)
 			startCCA: function (ocPtr, bInit, nStartFrame)
 			{
 				var defCCA = ocPtr.ocObject;
@@ -33461,7 +33461,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return;
 				if ((this.odOptions & CCCA.CCAF_INTERNAL) == 0)
 					return;
-				if (nStartFrame >= this.hoAdRunHeader.rhApp.gaNbFrames)
+				if (nStartFrame>= this.hoAdRunHeader.rhApp.gaNbFrames)
 					return;
 				if (nStartFrame == this.hoAdRunHeader.rhApp.currentFrame)
 					return;
@@ -33482,12 +33482,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				this.subApp.digest();
 
-			    //Register itself as the modal subapp
+			  //Register itself as the modal subapp
 				if ((this.odOptions & CCCA.CCAF_MODAL) != 0) {
-				    if (this.hoAdRunHeader.rhApp.modalSubappObject == null) {
-				        this.hoAdRunHeader.rhApp.modalSubappObject = this;
-				        this.hoAdRunHeader.rhApp.run.pause();
-				    }
+				  if (this.hoAdRunHeader.rhApp.modalSubappObject == null) {
+				    this.hoAdRunHeader.rhApp.modalSubappObject = this;
+				    this.hoAdRunHeader.rhApp.run.pause();
+				  }
 				}
 
 				this.subApp.startApplication();
@@ -33520,10 +33520,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						this.destroyObject();
 						if ((this.odOptions & CCCA.CCAF_MODAL) != 0 && this.subApp.parentApp != null) {
-						    if (this.subApp.parentApp.modalSubappObject == this) {
-						        this.subApp.parentApp.modalSubappObject = null;
-						        this.subApp.parentApp.run.resume();
-						    }
+						  if (this.subApp.parentApp.modalSubappObject == this) {
+						    this.subApp.parentApp.modalSubappObject = null;
+						    this.subApp.parentApp.run.resume();
+						  }
 						}
 						this.subApp = null;
 						return;
@@ -33544,21 +33544,21 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			kill: function (bFast)
 			{
-				if (this.subApp != null)    
+				if (this.subApp != null)  
 				{
 					switch (this.subApp.appRunningState)
 					{
-						case 3:	    // SL_FRAMELOOP:
+						case 3:	  // SL_FRAMELOOP:
 							this.subApp.endFrame();
 							break;
 					}
 					this.destroyObject();
 					this.subApp.endApplication();
 					if ((this.odOptions & CCCA.CCAF_MODAL) != 0 && this.subApp.parentApp != null) {
-					    if (this.subApp.parentApp.modalSubappObject == this) {
-					        this.subApp.parentApp.modalSubappObject = null;
-					        this.subApp.parentApp.run.resume();
-					    }
+					  if (this.subApp.parentApp.modalSubappObject == this) {
+					    this.subApp.parentApp.modalSubappObject = null;
+					    this.subApp.parentApp.run.resume();
+					  }
 					}
 					this.subApp = null;
 				}
@@ -33601,12 +33601,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.subApp.run.rhQuit = CRun.LOOPEXIT_ENDGAME;
 					}
 					if ((this.odOptions & CCCA.CCAF_MODAL) != 0 && this.subApp.parentApp != null) {
-					    if (this.subApp.parentApp.modalSubappObject == this) {
-					        this.subApp.parentApp.modalSubappObject = null;
-					        this.subApp.parentApp.run.resume();
-					    }
+					  if (this.subApp.parentApp.modalSubappObject == this) {
+					    this.subApp.parentApp.modalSubappObject = null;
+					    this.subApp.parentApp.run.resume();
+					  }
 					}
-	            }
+	      }
 			},
 
 			hide: function ()
@@ -33625,7 +33625,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					if (this.subApp.run != null)
 					{
-						if (frame >= 0 && frame < 4096)
+						if (frame>= 0 && frame < 4096)
 						{
 							this.subApp.run.rhQuit = CRun.LOOPEXIT_GOTOLEVEL;
 							this.subApp.run.rhQuitParam = 0x8000 | frame;
@@ -33776,25 +33776,25 @@ window['Runtime'] = (function Runtime(__can, __path){
 			},
 
 			updateChildControlPos: function () {
-			    if (this.subApp != null && this.subApp.run != null) {
-			        var rh = this.subApp.run;
-			        var count = 0;
-			        var no;
-			        for (no = 0; no < rh.rhNObjects; no++) {
-			            while (rh.rhObjectList[count] == null)
-			                count++;
-			            var hoPtr = rh.rhObjectList[count];
-			            count++;
-			            hoPtr.forcePosition();
-			        }
+			  if (this.subApp != null && this.subApp.run != null) {
+			    var rh = this.subApp.run;
+			    var count = 0;
+			    var no;
+			    for (no = 0; no < rh.rhNObjects; no++) {
+			      while (rh.rhObjectList[count] == null)
+			        count++;
+			      var hoPtr = rh.rhObjectList[count];
+			      count++;
+			      hoPtr.forcePosition();
 			    }
+			  }
 			},
 
 			autoResize: function () {
-			    this.subApp.setMouseOffsets((this.hoAdRunHeader.rhApp.xMouseOffset + this.appSprite.x) * this.hoAdRunHeader.rhApp.scaleX,
+			  this.subApp.setMouseOffsets((this.hoAdRunHeader.rhApp.xMouseOffset + this.appSprite.x) * this.hoAdRunHeader.rhApp.scaleX,
 					(this.hoAdRunHeader.rhApp.yMouseOffset + this.appSprite.y) * this.hoAdRunHeader.rhApp.scaleY);
-			    if (this.subApp != null)
-			        this.subApp.resizeCanvas();
+			  if (this.subApp != null)
+			    this.subApp.resizeCanvas();
 			}
 
 		});
@@ -33831,10 +33831,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 	{
 		init: function ()
 		{
-		    this.rcScaleX = 1.0;
-		    this.rcScaleY = 1.0;
-		    this.rcAngle = 0;
-		    this.rcMovementType = -1;
+		  this.rcScaleX = 1.0;
+		  this.rcScaleY = 1.0;
+		  this.rcAngle = 0;
+		  this.rcMovementType = -1;
 		},
 		kill: function (bFast)
 		{
@@ -33996,7 +33996,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					var value = CServices.floatToInt(pValue);
 					if (value < this.rsMini)
 						value = this.rsMini;
-					if (value > this.rsMaxi)
+					if (value> this.rsMaxi)
 						value = this.rsMaxi;
 					if (value != Math.round(this.rsValue))
 					{
@@ -34009,7 +34009,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					if (pValue < this.rsMini)
 						pValue = this.rsMini;
-					if (pValue > this.rsMaxi)
+					if (pValue> this.rsMaxi)
 						pValue = this.rsMaxi;
 					if (pValue != this.rsValue)
 					{
@@ -34233,7 +34233,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						var ifo;
 						var dx = 0, dy = 0;
 
-						for (i = s.length - 1; i >= 0; i--)
+						for (i = s.length - 1; i>= 0; i--)
 						{
 							c = s.charCodeAt(i);
 							img = 0;
@@ -34245,9 +34245,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 								img = adCta.frames[11];
 							else if (c == 101 || c == 69)
 								img = adCta.frames[13];
-							else if (c >= 48 && c <= 57)
+							else if (c>= 48 && c <= 57)
 								img = adCta.frames[c - 48];
-							if (img >= 0)
+							if (img>= 0)
 							{
 								ifo = this.hoAdRunHeader.rhApp.imageBank.getImageFromHandle(img);
 								if (ifo != null)
@@ -34287,7 +34287,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							this.textSurface = new CTextSurface(this.hoAdRunHeader.rhApp, this.hoImgWidth, this.hoImgHeight);
 						else
 						{
-							if (this.hoImgWidth > this.textSurface.width || this.hoImgHeight > this.textSurface.height)
+							if (this.hoImgWidth> this.textSurface.width || this.hoImgHeight> this.textSurface.height)
 								this.textSurface.resize(this.hoImgWidth, this.hoImgHeight);
 						}
 						var rect = new CRect(0, 0, 1000, 1000);
@@ -34297,7 +34297,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.computed = true;
 			},
 
-			draw:            function (context, xx, yy)
+			draw:      function (context, xx, yy)
 			{
 				if (!this.bShown || !this.computed) return;
 
@@ -34356,7 +34356,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								img = adCta.frames[11];
 							else if (c == 69 || c == 101)
 								img = adCta.frames[13];
-							else if (c >= 48 && c <= 57)
+							else if (c>= 48 && c <= 57)
 								img = adCta.frames[c - 48];
 							ifo = this.hoAdRunHeader.rhApp.imageBank.getImageFromHandle(img);
 							if (ifo != null)
@@ -34605,7 +34605,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						var ifo;
 						var dx = 0, dy = 0;
 
-						for (i = s.length - 1; i >= 0; i--)
+						for (i = s.length - 1; i>= 0; i--)
 						{
 							c = s.charCodeAt(i);
 							img = 0;
@@ -34617,9 +34617,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 								img = adCta.frames[11];
 							else if (c == 101 || c == 69)
 								img = adCta.frames[13];
-							else if (c >= 48 && c <= 57)
+							else if (c>= 48 && c <= 57)
 								img = adCta.frames[c - 48];
-							if (img >= 0)
+							if (img>= 0)
 							{
 								ifo = this.hoAdRunHeader.rhApp.imageBank.getImageFromHandle(img);
 								dx += ifo.width;
@@ -34649,7 +34649,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							this.textSurface = new CTextSurface(this.hoAdRunHeader.rhApp, this.hoImgWidth, this.hoImgHeight);
 						else
 						{
-							if (this.hoImgWidth > this.textSurface.width || this.hoImgHeight > this.textSurface.height)
+							if (this.hoImgWidth> this.textSurface.width || this.hoImgHeight> this.textSurface.height)
 								this.textSurface.resize(this.hoImgWidth, this.hoImgHeight);
 						}
 						var rect = new CRect(0, 0, 1000, 1000);
@@ -34658,7 +34658,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			},
 
-			draw:            function (context, xx, yy)
+			draw:      function (context, xx, yy)
 			{
 				if (!this.bShown || !this.computed) return;
 
@@ -34689,7 +34689,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								img = adCta.frames[11];
 							else if (c == 69 || c == 101)
 								img = adCta.frames[13];
-							else if (c >= 48 && c <= 57)
+							else if (c>= 48 && c <= 57)
 								img = adCta.frames[c - 48];
 							ifo = this.hoAdRunHeader.rhApp.imageBank.getImageFromHandle(img);
 							context.renderImage(ifo, x + ifo.xSpot, y + ifo.ySpot, 0, 1.0, 1.0, this.ros.rsEffect, this.ros.rsEffectParam);
@@ -34952,7 +34952,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						var ifo;
 						var dx = 0, dy = 0;
 						var s = CServices.intToString(this.rsValue, this.displayFlags);
-						for (i = s.length - 1; i >= 0; i--)
+						for (i = s.length - 1; i>= 0; i--)
 						{
 							c = s.charCodeAt(i);
 							img = 0;
@@ -34964,9 +34964,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 								img = adCta.frames[11];
 							else if (c == 101 || c == 69)
 								img = adCta.frames[13];
-							else if (c >= 48 && c <= 57)
+							else if (c>= 48 && c <= 57)
 								img = adCta.frames[c - 48];
-							if (img >= 0)
+							if (img>= 0)
 							{
 								ifo = this.hoAdRunHeader.rhApp.imageBank.getImageFromHandle(img);
 								dx += ifo.width;
@@ -34997,7 +34997,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							this.textSurface = new CTextSurface(this.hoAdRunHeader.rhApp, this.hoImgWidth, this.hoImgHeight);
 						else
 						{
-							if (this.hoImgWidth > this.textSurface.width || this.hoImgHeight > this.textSurface.height)
+							if (this.hoImgWidth> this.textSurface.width || this.hoImgHeight> this.textSurface.height)
 								this.textSurface.resize(this.hoImgWidth, this.hoImgHeight);
 						}
 						var rect = new CRect(0, 0, 1000, 1000);
@@ -35006,7 +35006,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			},
 
-			draw:            function (context, xx, yy)
+			draw:      function (context, xx, yy)
 			{
 				if (!this.bShown || !this.computed) return;
 
@@ -35037,7 +35037,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								img = adCta.frames[11];
 							else if (c == 69 || c == 101)
 								img = adCta.frames[13];
-							else if (c >= 48 && c <= 57)
+							else if (c>= 48 && c <= 57)
 								img = adCta.frames[c - 48];
 							ifo = this.hoAdRunHeader.rhApp.imageBank.getImageFromHandle(img);
 							context.renderImage(ifo, x + ifo.xSpot, y + ifo.ySpot, 0, 1.0, 1.0, this.ros.rsEffect, this.ros.rsEffectParam);
@@ -35053,9 +35053,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 							var y1 = y;
 							var vInt = this.rsValue;
 							var ifo = this.hoAdRunHeader.rhApp.imageBank.getImageFromHandle(adCta.frames[0]);
-							for (y = y1; y < y2 && vInt > 0; y += ifo.height)
+							for (y = y1; y < y2 && vInt> 0; y += ifo.height)
 							{
-								for (x = x1; x < x2 && vInt > 0; x += ifo.width, vInt -= 1)
+								for (x = x1; x < x2 && vInt> 0; x += ifo.width, vInt -= 1)
 								{
 									context.renderImage(ifo, x + ifo.xSpot, y + ifo.ySpot, 0, 1.0, 1.0, this.ros.rsEffect, this.ros.rsEffectParam);
 								}
@@ -35112,7 +35112,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				this.rsMaxi = txt.otNumberOfText;
 				this.rsTextColor = 0;
-				if (txt.otTexts.length > 0)
+				if (txt.otTexts.length> 0)
 					this.rsTextColor = txt.otTexts[0].tsColor;
 
 				this.rsTextBuffer = null;
@@ -35122,7 +35122,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.rsHidden = cob.cobFlags;
 				if ((cob.cobFlags & CRun.COF_FIRSTTEXT) != 0)
 				{
-					if (txt.otTexts.length > 0)
+					if (txt.otTexts.length> 0)
 					{
 						this.rsTextBuffer = txt.otTexts[0].tsText;
 					}
@@ -35130,7 +35130,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				var nFont = this.rsFont;
 				if (nFont == -1)
 				{
-					if (txt.otTexts.length > 0)
+					if (txt.otTexts.length> 0)
 						nFont = txt.otTexts[0].tsFont;
 				}
 				this.font = this.hoAdRunHeader.rhApp.fontBank.getFontFromHandle(nFont);
@@ -35259,14 +35259,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				if (num < -1)
 					num = -1;
-				if (num >= this.rsMaxi)
+				if (num>= this.rsMaxi)
 					num = this.rsMaxi - 1;
 				if (num == this.rsMini)
 					return false;
 
 				this.rsMini = num;
 
-				if (num >= 0)
+				if (num>= 0)
 				{
 					var txt = this.hoCommon.ocObject;
 					this.txtSetString(txt.otTexts[this.rsMini].tsText);
@@ -35306,7 +35306,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.rect.bottom = this.hoImgHeight;
 
 				var s;
-				if (this.rsMini >= 0)
+				if (this.rsMini>= 0)
 					s = txt.otTexts[this.rsMini].tsText;
 				else
 				{
@@ -35320,14 +35320,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 					CServices.DT_SINGLELINE));
 				var ht = this.textSurface.setText(s, dtflags, this.rect, this.font, this.rsTextColor);
 				if ((dtflags & (CServices.DT_BOTTOM | CServices.DT_VCENTER)) == 0)
-				    this.hoImgHeight = ht;
+				  this.hoImgHeight = ht;
 			},
-			setTransparency:   function (t)
+			setTransparency:  function (t)
 			{
 				this.ros.rsEffect = CRSpr.BOP_BLEND;
 				this.ros.rsEffectParam = t;
 			},
-			draw:              function (context, xx, yy)
+			draw:       function (context, xx, yy)
 			{
 				if (!this.bShown || !this.computed) return;
 				var x = xx + this.hoX - this.hoAdRunHeader.rhWindowX + this.pLayer.x;
@@ -35358,7 +35358,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 			},
 
-			handle:         function ()
+			handle:     function ()
 			{
 				this.hoAdRunHeader.pause();
 				this.hoAdRunHeader.questionObjectOn = this;
@@ -35366,7 +35366,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				layer.planeSprites.addChild(this);
 				this.computeTexts();
 			},
-			destroyObject:  function ()
+			destroyObject: function ()
 			{
 				var layer = this.hoAdRunHeader.rhFrame.layers[this.hoAdRunHeader.rhFrame.nLayers - 1];
 				layer.planeSprites.removeChild(this);
@@ -35426,9 +35426,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					for (i = 1; i < this.rcA.length; i++)
 					{
-						if (xMouse >= this.rcA[i].left && xMouse < this.rcA[i].right)
+						if (xMouse>= this.rcA[i].left && xMouse < this.rcA[i].right)
 						{
-							if (yMouse > this.rcA[i].top && yMouse < this.rcA[i].bottom)
+							if (yMouse> this.rcA[i].top && yMouse < this.rcA[i].bottom)
 							{
 								return i;
 							}
@@ -35546,7 +35546,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				for (i = 1; i < defTexts.otTexts.length; i++)
 				{
 					ptta = defTexts.otTexts[i];
-					if (ptta.tsText.length > 0)
+					if (ptta.tsText.length> 0)
 					{
 						tm = this.measureTextSurface.measureText(ptta.tsText, fontAnswers);
 						this.lgBox = Math.max(this.lgBox, tm + this.xa_margin * 2 + 4);
@@ -35572,9 +35572,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				tm = this.measureTextSurface.measureText(ptts.tsText, fontQuestion);
 				this.htq = Math.floor(fontQuestion.getHeight() * 3 / 2);
 				this.lgBox = Math.max(this.lgBox, tm + xq_margin * 2 + 4);
-				if (this.lgBox > prh.rhApp.gaCxWin)
+				if (this.lgBox> prh.rhApp.gaCxWin)
 					this.lgBox = prh.rhApp.gaCxWin;
-				else if (this.lgBox > prh.rhFrame.leWidth)
+				else if (this.lgBox> prh.rhFrame.leWidth)
 					this.lgBox = prh.rhFrame.leWidth;
 				rc.right = this.lgBox;
 				rc.bottom = this.htq;
@@ -35582,7 +35582,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.textSurfaces[0].manualDrawText(ptts.tsText, CServices.DT_CENTER | CServices.DT_VCENTER,
 					rc, colorA, fontQuestion, flgRelief ? 1 : 0, 0xFFFFFF);
 			},
-			draw:         function (context, xDraw, yDraw)
+			draw:     function (context, xDraw, yDraw)
 			{
 				var defTexts = this.hoCommon.ocObject;
 				var prh = this.hoAdRunHeader;
@@ -35692,10 +35692,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			delSprite: function ()
 			{
-			    //return this.plane.removeChild(this);
+			  //return this.plane.removeChild(this);
 
 				if (this.bAddedToPlane == false)
-				    return -1;
+				  return -1;
 				this.bAddedToPlane = false;
 				var index = this.plane.getChildIndex(this);
 				this.plane.removeChild(this);
@@ -35735,7 +35735,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				this.ext.createFont();
 			},
-			draw:       function (context, xDraw, yDraw)
+			draw:    function (context, xDraw, yDraw)
 			{
 				if (this.bShown)
 				{
@@ -35806,7 +35806,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			setChildIndex: function (index)
 			{
-				if (index >= this.plane.children.length)
+				if (index>= this.plane.children.length)
 					index = this.plane.children.length;
 				if (index < 0)
 					index = 0;
@@ -35906,12 +35906,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				this.hoImgHeight = height;
 			},
-			setSize:   function (width, height)
+			setSize:  function (width, height)
 			{
 				this.hoImgWidth = width;
 				this.hoImgHeight = height;
 			},
-			reHandle:  function ()
+			reHandle: function ()
 			{
 				this.noHandle = false;
 			},
@@ -36290,9 +36290,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			case 64:
 				param = new PARAM_STRING(app);
 				break;
-		    case 67:
-		        param = new PARAM_SHORT(app);
-		        break;
+		  case 67:
+		    param = new PARAM_SHORT(app);
+		    break;
 		}
 		param.code = c;
 		app.file.seek(debut + size);
@@ -36349,7 +36349,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (code == 0)
 				break;
 			size = app.file.readAShort();
-			if (size > 6)
+			if (size> 6)
 				app.file.skipBytes(size - 6);
 		}
 
@@ -36364,7 +36364,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		var size = app.file.readAShort();
 		app.file.skipBytes(4);
 		this.data = 0;
-		if (size > 6)
+		if (size> 6)
 		{
 			this.data = app.file.getFilePointer();
 			app.file.skipBytes(size - 6);
@@ -36427,7 +36427,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				pInfo.x = this.posX;
 				pInfo.y = this.posY;
 				var nLayer = this.posLayer;
-				if (nLayer > rhPtr.rhFrame.nLayers - 1)
+				if (nLayer> rhPtr.rhFrame.nLayers - 1)
 					nLayer = rhPtr.rhFrame.nLayers - 1;
 				pInfo.layer = nLayer;
 				pInfo.bRepeat = false;
@@ -36448,7 +36448,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					if ((pHo.hoOEFlags & CObjectCommon.OEFLAG_ANIMATIONS) != 0)
 					{
-						if (pHo.roc.rcImage >= 0)
+						if (pHo.roc.rcImage>= 0)
 						{
 							var ifo;
 							var angle = pHo.roc.rcAngle;
@@ -36489,9 +36489,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			if ((getDir & 0x02) != 0)
 			{
-				if (pInfo.x < rhPtr.rh3XMinimumKill || pInfo.x > rhPtr.rh3XMaximumKill)
+				if (pInfo.x < rhPtr.rh3XMinimumKill || pInfo.x> rhPtr.rh3XMaximumKill)
 					return false;
-				if (pInfo.y < rhPtr.rh3YMinimumKill || pInfo.y > rhPtr.rh3YMaximumKill)
+				if (pInfo.y < rhPtr.rh3YMinimumKill || pInfo.y> rhPtr.rh3YMaximumKill)
 					return false;
 			}
 			return true;
@@ -36658,10 +36658,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (y < curClip.y)
 					y = curClip.y;
 
-				if ((x + w) > (curClip.x + curClip.w))
+				if ((x + w)> (curClip.x + curClip.w))
 					w = (curClip.x + curClip.w) - x;
 
-				if ((y + h) > (curClip.y + curClip.h))
+				if ((y + h)> (curClip.y + curClip.h))
 					h = (curClip.y + curClip.h) - y;
 			}
 
@@ -36700,13 +36700,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 	 */
 	function StandardRenderer(element)
 	{
-	    this.xScale = 1.0;
-	    this.yScale = 1.0;
-	    this.oldEffect = -1;
+	  this.xScale = 1.0;
+	  this.yScale = 1.0;
+	  this.oldEffect = -1;
 		this.smoothing = false;
 		this.oldSmoothing = false;
-		this.dxw = 0.0;               // sub-pixel margin size for destination rectangle
-		this.dyw = 0.0;               // sub-pixel margin size for destination rectangle
+		this.dxw = 0.0;        // sub-pixel margin size for destination rectangle
+		this.dyw = 0.0;        // sub-pixel margin size for destination rectangle
 
 		if (!(this._context = element.getContext('2d')))
 			throw new Error("Failed to init standard renderer");
@@ -36731,21 +36731,21 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				this._context.scale(sx, sy);
 
-			    // Adjust subpixel correction according to scale, to avoid seams between backdrop objects
-	            // todo: should it depend on the browser?
+			  // Adjust subpixel correction according to scale, to avoid seams between backdrop objects
+	      // todo: should it depend on the browser?
 				this.xScale = sx;
 				this.yScale = sy;
-				this.dxw = 0.0;             // no sub-pixel correction if no scaling
+				this.dxw = 0.0;       // no sub-pixel correction if no scaling
 				this.dyw = 0.0;
 
-				if (this.xScale > 1.0)
-				    this.dxw = 1.0;         // 1 pixel correction if zoom > 1.0
-			    else if (this.xScale > 0.0 && this.xScale < 1.0)
-			        this.dxw = 1.0 / this.xScale;   // 1/scale pixel correction if zoom < 1.0
-				if (this.yScale > 1.0)
-				    this.dyw = 1.0;
-				if (this.yScale > 0.0 && this.yScale < 1.0)
-				    this.dyw = 1.0 / this.yScale;
+				if (this.xScale> 1.0)
+				  this.dxw = 1.0;     // 1 pixel correction if zoom> 1.0
+			  else if (this.xScale> 0.0 && this.xScale < 1.0)
+			    this.dxw = 1.0 / this.xScale;  // 1/scale pixel correction if zoom < 1.0
+				if (this.yScale> 1.0)
+				  this.dyw = 1.0;
+				if (this.yScale> 0.0 && this.yScale < 1.0)
+				  this.dyw = 1.0 / this.yScale;
 			},
 
 			clearBackground: function (x, y, w, h)
@@ -36807,13 +36807,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			renderImage: function (image, x, y, angle, scaleX, scaleY, inkEffect, inkEffectParam)
 			{
-				//        if(! (image instanceof CImage))
-				//            throw new Error("renderImage: bad image type: " + (typeof image));
+				//    if(! (image instanceof CImage))
+				//      throw new Error("renderImage: bad image type: " + (typeof image));
 				var context = this._context;
 				var xi = x - image.xSpot;
 				var yi = y - image.ySpot;
-				//        if (xi+image.width<0 || xi>context.width || yi+image.height<0 || yi>context.height)
-				//        	return;
+				//    if (xi+image.width<0 || xi>context.width || yi+image.height<0 || yi>context.height)
+				//    	return;
 
 				this.setInkEffect(inkEffect, inkEffectParam);
 
@@ -36823,17 +36823,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						if (image.img != null)
 						{
-						    context.drawImage(image.img, xi, yi);
-	                    }
+						  context.drawImage(image.img, xi, yi);
+	          }
 					}
 					else
 					{
-					    context.drawImage(image.app.imageBank.mosaics[image.mosaic],
+					  context.drawImage(image.app.imageBank.mosaics[image.mosaic],
 							image.mosaicX, image.mosaicY,
 							image.width, image.height,
-	                        xi, yi,
+	            xi, yi,
 							image.width, image.height);
-	                }
+	        }
 				}
 				else
 				{
@@ -36849,7 +36849,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 					if (image.mosaic == 0)
 					{
-					    if (image.img != null && image.width != 0 && image.height != 0)
+					  if (image.img != null && image.width != 0 && image.height != 0)
 						{
 							context.drawImage(image.img, 0, 0, image.width, image.height,
 								0, 0, image.width, image.height);
@@ -36867,71 +36867,71 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			},
 
-		    // This function is used by backdrop objects only, to avoid seams between objects
-	        // Limited to backdrop objects as it can affect rendering of small objects
+		  // This function is used by backdrop objects only, to avoid seams between objects
+	    // Limited to backdrop objects as it can affect rendering of small objects
 			renderImageWithSubPixelCorrection: function (image, x, y, angle, scaleX, scaleY, inkEffect, inkEffectParam) {
-			    //        if(! (image instanceof CImage))
-			    //            throw new Error("renderImage: bad image type: " + (typeof image));
-			    var context = this._context;
-			    var xi = x - image.xSpot;
-			    var yi = y - image.ySpot;
-			    //        if (xi+image.width<0 || xi>context.width || yi+image.height<0 || yi>context.height)
-			    //        	return;
+			  //    if(! (image instanceof CImage))
+			  //      throw new Error("renderImage: bad image type: " + (typeof image));
+			  var context = this._context;
+			  var xi = x - image.xSpot;
+			  var yi = y - image.ySpot;
+			  //    if (xi+image.width<0 || xi>context.width || yi+image.height<0 || yi>context.height)
+			  //    	return;
 
-			    this.setInkEffect(inkEffect, inkEffectParam);
+			  this.setInkEffect(inkEffect, inkEffectParam);
 
-			    if (angle == 0 && scaleX == 1 && scaleY == 1)
+			  if (angle == 0 && scaleX == 1 && scaleY == 1)
+			  {
+			    if (image.mosaic == 0)
 			    {
-			        if (image.mosaic == 0)
-			        {
-			            if (image.img != null)
-			            {
-			                context.drawImage(image.img,
-	                            0, 0,
-	                            image.width, image.height,
-	                            xi, yi,
-	                            image.width + this.dxw, image.height + this.dyw);
-			            }
-			        }
-			        else
-			        {
-			            context.drawImage(image.app.imageBank.mosaics[image.mosaic],
-							image.mosaicX, image.mosaicY,
-							image.width, image.height,
-	                        xi, yi,
-							image.width + this.dxw, image.height + this.dyw);
-			        }
+			      if (image.img != null)
+			      {
+			        context.drawImage(image.img,
+	              0, 0,
+	              image.width, image.height,
+	              xi, yi,
+	              image.width + this.dxw, image.height + this.dyw);
+			      }
 			    }
 			    else
 			    {
-			        context.save();
+			      context.drawImage(image.app.imageBank.mosaics[image.mosaic],
+							image.mosaicX, image.mosaicY,
+							image.width, image.height,
+	            xi, yi,
+							image.width + this.dxw, image.height + this.dyw);
+			    }
+			  }
+			  else
+			  {
+			    context.save();
 
-			        context.translate(x, y);
+			    context.translate(x, y);
 
-			        if (angle != 0)
-			            context.rotate(-angle * 0.0174532925);
+			    if (angle != 0)
+			      context.rotate(-angle * 0.0174532925);
 
-			        context.scale(Math.max(0.001, scaleX), Math.max(0.001, scaleY));
-			        context.translate(-image.xSpot, -image.ySpot);
+			    context.scale(Math.max(0.001, scaleX), Math.max(0.001, scaleY));
+			    context.translate(-image.xSpot, -image.ySpot);
 
-			        if (image.mosaic == 0)
-			        {
-			            if (image.img != null)
-			            {
-			                context.drawImage(image.img, 0, 0, image.width, image.height,
+			    if (image.mosaic == 0)
+			    {
+			      if (image.img != null)
+			      {
+			        context.drawImage(image.img, 0, 0, image.width, image.height,
 								0, 0, image.width, image.height);
-			            }
-			        }
-			        else
-			        {
-			            context.drawImage(image.app.imageBank.mosaics[image.mosaic],
+			      }
+			    }
+			    else
+			    {
+			      context.drawImage(image.app.imageBank.mosaics[image.mosaic],
 							image.mosaicX, image.mosaicY,
 							image.width, image.height, 0, 0,
 							image.width, image.height);
-			        }
-
-			        context.restore();
 			    }
+
+			    context.restore();
+			  }
 			},
 
 			renderSimpleImage: function (image, x, y, width, height, inkEffect, inkEffectParam)
@@ -36939,8 +36939,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.setInkEffect(inkEffect, inkEffectParam);
 				this._context.drawImage(image, x, y, width, height);
 
-			    // Not sure if we should add sub-pixel margin to this routine as it's not used by backdrops
-	            // Do it later if necessary only
+			  // Not sure if we should add sub-pixel margin to this routine as it's not used by backdrops
+	      // Do it later if necessary only
 				//this._context.drawImage(image, x, y, width + this.dxw, height + this.dyw);
 			},
 
@@ -36974,21 +36974,21 @@ window['Runtime'] = (function Runtime(__can, __path){
 							{
 	//							context.drawImage(image.img, x + nX * iSx, y + nY * iSy);
 
-							    context.drawImage(image.img,
-	                                0, 0,
-	                                image.width, image.height,
-	                                x + nX * iSx, y + nY * iSy,
-	                                image.width + this.dxw, image.height + this.dyw);
+							  context.drawImage(image.img,
+	                0, 0,
+	                image.width, image.height,
+	                x + nX * iSx, y + nY * iSy,
+	                image.width + this.dxw, image.height + this.dyw);
 							}
 						}
 						else
 						{
-						    context.drawImage(image.app.imageBank.mosaics[image.mosaic],
+						  context.drawImage(image.app.imageBank.mosaics[image.mosaic],
 								image.mosaicX, image.mosaicY,
 								image.width, image.height,
-	                            x + nX * iSx, y + nY * iSy,
+	              x + nX * iSx, y + nY * iSy,
 								image.width + this.dxw, image.height + this.dyw);
-	                    }
+	          }
 					}
 				}
 				context.restore();
@@ -37101,7 +37101,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				Renderer.prototype.popClip.apply(this, arguments);
 
-				if (this.clips.length > 0)
+				if (this.clips.length> 0)
 				{
 					var clip = this.clips[this.clips.length - 1];
 
@@ -37140,10 +37140,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 					context["webkitImageSmoothingEnabled"] = smoothing;
 					context["mozImageSmoothingEnabled"] = smoothing;
 					context["msImageSmoothingEnabled"] = smoothing;
-	            }
+	      }
 
 				if ((effect & CRSpr.BOP_RGBAFILTER) != 0)
-					context.globalAlpha = (((effectParam >>> 24) & 0xFF) / 255.0);
+					context.globalAlpha = (((effectParam>>> 24) & 0xFF) / 255.0);
 				else if (effectMasked == CRSpr.BOP_BLEND)
 					context.globalAlpha = ((128 - effectParam) / 128.0);
 				else
@@ -37306,9 +37306,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (this.m_running)
 			{
 				var date = new Date();
-				if (date.getTime() >= this.m_endTime)
+				if (date.getTime()>= this.m_endTime)
 					return true;
-				return (date.getTime() >= this.m_endTime);
+				return (date.getTime()>= this.m_endTime);
 			}
 			return true;
 		},
@@ -37317,7 +37317,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var date = new Date();
 			this.m_currentTime = date.getTime();
-			if (this.m_currentTime > this.m_endTime)
+			if (this.m_currentTime> this.m_endTime)
 				this.m_currentTime = this.m_endTime;
 			return (this.m_currentTime - this.m_initTime);
 		},
@@ -37339,7 +37339,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.destContext.globalCompositeOperation = "source-atop";
 			if (arguments.length == 1)
 				this.destContext.drawImage(source, 0, 0);
-			else if (width > 0 && height > 0)
+			else if (width> 0 && height> 0)
 				this.destContext.drawImage(source, xSrce, ySrce, width, height, xDest, yDest, width, height);
 		},
 
@@ -37347,7 +37347,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			if (this.m_objectFadeOut)
 				this.destContext.globalCompositeOperation = "source-atop";
-			if (wDest > 0 && hDest > 0 && wSrce > 0 && hSrce > 0)
+			if (wDest> 0 && hDest> 0 && wSrce> 0 && hSrce> 0)
 				this.destContext.drawImage(source, xSrce, ySrce, wSrce, hSrce, xDest, yDest, wDest, hDest);
 		},
 
@@ -37373,7 +37373,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransitionManager.prototype =
 	{
-		startObjectFade:  function (hoPtr, bFadeOut)
+		startObjectFade: function (hoPtr, bFadeOut)
 		{
 			var pData = hoPtr.hoCommon.ocFadeIn;
 			if (bFadeOut)
@@ -37399,7 +37399,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						image.width, image.height);
 				}
 			}
-			else if (hoPtr.hoType >= 32)
+			else if (hoPtr.hoType>= 32)
 			{
 				img = document.createElement("canvas");
 				img.width = hoPtr.hoImgWidth;
@@ -37473,7 +37473,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return pTrans;
 		},
-		copyColorMask:    function (dest, source, couleur)
+		copyColorMask:  function (dest, source, couleur)
 		{
 			var context = dest.getContext("2d");
 			context.drawImage(source, 0, 0);
@@ -37482,8 +37482,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var pixels = context.getImageData(0, 0, width, height);
 			var x, y, alpha;
 			var color = couleur & 0x00FFFFFF;
-			var r = (couleur & 0x00FF0000) >> 16;
-			var g = (couleur & 0x0000FF00) >> 8;
+			var r = (couleur & 0x00FF0000)>> 16;
+			var g = (couleur & 0x0000FF00)>> 8;
 			var b = couleur & 0x000000FF;
 			for (y = 0; y < height; y++)
 			{
@@ -37578,11 +37578,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				var id = data.transID;
 				var idChars = "";
 				idChars += String.fromCharCode(id & 0xFF);
-				id >>= 8;
+				id>>= 8;
 				idChars += String.fromCharCode(id & 0xFF);
-				id >>= 8;
+				id>>= 8;
 				idChars += String.fromCharCode(id & 0xFF);
-				id >>= 8;
+				id>>= 8;
 				idChars += String.fromCharCode(id & 0xFF);
 
 				// Recherche dans la liste
@@ -37678,7 +37678,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransAdvancedScrolling.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.start(data, display, source, dest);
@@ -37700,7 +37700,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);													// completed
 				}
@@ -37823,7 +37823,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -37838,7 +37838,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransBack.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.start(data, display, source, dest);
@@ -37855,7 +37855,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);												// completed
 				}
@@ -37958,7 +37958,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -37974,7 +37974,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransBand.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.bpNbBands = file.readAShort();
 				this.bpDirection = file.readAShort();
@@ -38023,7 +38023,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				else
 				{
 					var rw = this.m_wbande * this.getDeltaTime() / this.m_duration;
-					if (rw > this.m_rw)
+					if (rw> this.m_rw)
 					{
 						var x = 0, y = 0, w = 0, h = 0;
 						for (n = 0; n < this.bpNbBands; n++)
@@ -38062,7 +38062,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return this.m_prc;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38078,7 +38078,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransCell.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwPos = file.readAInt();
 				this.dwPos2 = file.readAInt();
@@ -38095,7 +38095,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);					// completed
 				}
@@ -38124,7 +38124,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38138,7 +38138,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransDoor.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.m_direction = file.readAShort();
 				this.start(data, display, source, dest);
@@ -38169,7 +38169,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					var x = 0, y = 0, w = 0, h = 0;
 					var rw = this.m_wbande * this.getDeltaTime() / this.m_duration;
-					if (rw > this.m_rw)
+					if (rw> this.m_rw)
 					{
 						// 1st band
 						switch (this.m_direction)
@@ -38222,7 +38222,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38234,7 +38234,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransFade.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.start(data, display, source, dest);
 			},
@@ -38268,7 +38268,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.destContext.globalAlpha = 1.0;
 				this.finish();
@@ -38286,7 +38286,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransLine.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwPos = file.readAInt();
 				this.dwStyle = file.readAInt();
@@ -38305,9 +38305,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
-					this.blit(this.source2);      // completed
+					this.blit(this.source2);   // completed
 				}
 				else
 				{
@@ -38414,7 +38414,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38436,7 +38436,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransMosaic.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.m_spotPercent = file.readAInt();
 				this.start(data, display, source, dest);
@@ -38518,10 +38518,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 												r = true;
 												break;
 											}
-											if (++xb >= this.m_nbBlockPerLine)
+											if (++xb>= this.m_nbBlockPerLine)
 											{
 												xb = 0;
-												if (++yb >= this.m_nbBlockPerCol)
+												if (++yb>= this.m_nbBlockPerCol)
 													break;
 											}
 										}
@@ -38547,10 +38547,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 												r = true;
 												break;
 											}
-											if (++xb >= this.m_nbBlockPerLine)
+											if (++xb>= this.m_nbBlockPerLine)
 											{
 												xb = 0;
-												if (++yb >= this.m_nbBlockPerCol)
+												if (++yb>= this.m_nbBlockPerCol)
 													break;
 											}
 										}
@@ -38572,7 +38572,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38587,7 +38587,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransOpen.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.start(data, display, source, dest);
@@ -38606,7 +38606,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var pourcentage = elapsedTime / this.m_duration;
 
-				if (pourcentage > 1.0)
+				if (pourcentage> 1.0)
 				{
 					this.blit(this.source2);					// completed
 				}
@@ -38658,7 +38658,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38674,7 +38674,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransPush.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.start(data, display, source, dest);
@@ -38693,7 +38693,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				var elapsedTime = this.getDeltaTime();
 
 				var pourcentage = elapsedTime / this.m_duration;
-				if (pourcentage > 1.0)
+				if (pourcentage> 1.0)
 				{
 					this.blit(this.source2);
 				}
@@ -38738,7 +38738,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 
 					// Second Scrolling
-					if (pourcentage > 0.5)
+					if (pourcentage> 0.5)
 					{
 						if (this.m_refresh == false)
 						{
@@ -38771,7 +38771,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38786,7 +38786,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransScroll.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.m_direction = file.readAInt();
 				this.start(data, display, source, dest);
@@ -38814,11 +38814,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 
 				if (this.m_duration == 0)
-					this.blit(this.source2);  // termine
+					this.blit(this.source2); // termine
 				else
 				{
 					var rw = this.m_wbande * this.getDeltaTime() / this.m_duration;
-					if (rw > this.m_rw)
+					if (rw> this.m_rw)
 					{
 						var x = 0, y = 0;
 
@@ -38847,7 +38847,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38864,7 +38864,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransSquare.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.dwPos = file.readAInt();
@@ -38883,7 +38883,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if (elapsedTime / this.m_duration > 1.0)
+				if (elapsedTime / this.m_duration> 1.0)
 				{
 					this.blit(this.source2);													// completed
 				}
@@ -38925,7 +38925,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -38940,7 +38940,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransStretch.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.start(data, display, source, dest);
@@ -38957,7 +38957,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);					// completed
 				}
@@ -39065,7 +39065,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -39081,7 +39081,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransStretch2.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.start(data, display, source, dest);
@@ -39099,7 +39099,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);					// completed
 				}
@@ -39120,7 +39120,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, 0, 0, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39142,7 +39142,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, 0, 0, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39164,7 +39164,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, this.m_source2Width - w, 0, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39186,7 +39186,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, 0, 0, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39207,7 +39207,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, this.m_source2Width / 2 - w / 2, 0, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39228,7 +39228,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, 0, this.m_source2Height / 2 - h / 2, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39250,7 +39250,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, this.m_source2Width / 2 - w / 2, this.m_source2Height / 2 - h / 2, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39272,7 +39272,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, this.m_source2Width - w, 0, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39294,7 +39294,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, 0, this.m_source2Height - h, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39316,7 +39316,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, 0, this.m_source2Height - h, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39338,7 +39338,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 								this.stretch(this.source1, this.m_source2Width - w, this.m_source2Height - h, w, h, 0, 0, this.m_source2Width, this.m_source2Height);
 
-								if (elapsedTime >= this.m_duration / 2)
+								if (elapsedTime>= this.m_duration / 2)
 									this.m_phase = 1;
 							}
 							else
@@ -39354,7 +39354,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -39371,7 +39371,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransTrame.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.start(data, display, source, dest);
@@ -39390,7 +39390,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);					// completed
 				}
@@ -39480,7 +39480,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -39498,7 +39498,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransTurn.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwPos = file.readAInt();
 				this.dwCheck1 = file.readAInt();
@@ -39518,7 +39518,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);			// completed
 				}
@@ -39555,7 +39555,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -39572,7 +39572,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransTurn2.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwPos = file.readAInt();
 				this.dwCheck1 = file.readAInt();
@@ -39591,7 +39591,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);				// completed
 				}
@@ -39617,7 +39617,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 					if (this.dwCheck1 == 0)
 					{
-						if (angle >= 6.28318)
+						if (angle>= 6.28318)
 							this.m_curcircle++;
 					}
 					else
@@ -39628,7 +39628,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -39656,7 +39656,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransZigZag.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.zpSpotPercent = file.readAInt();
 				this.zpStartPoint = file.readAShort();
@@ -39721,7 +39721,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.m_starting = false;
 				}
 
-				if (this.m_spotSize >= sw || this.m_spotSize >= sh)
+				if (this.m_spotSize>= sw || this.m_spotSize>= sh)
 					this.blit(this.source2);	// termine
 				else
 				{
@@ -39744,7 +39744,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								{
 									case CTrans.TOP_LEFT:
 										this.m_curx += this.m_spotSize;
-										if (this.m_curx >= this.m_right)
+										if (this.m_curx>= this.m_right)
 										{
 											this.m_curx -= this.m_spotSize;
 											this.m_cury += this.m_spotSize;
@@ -39754,7 +39754,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 										break;
 									case CTrans.TOP_RIGHT:
 										this.m_cury += this.m_spotSize;
-										if (this.m_cury >= this.m_bottom)
+										if (this.m_cury>= this.m_bottom)
 										{
 											this.m_cury -= this.m_spotSize;
 											this.m_curx -= this.m_spotSize;
@@ -39794,7 +39794,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 										{
 											case CTrans.TOP_LEFT:
 												this.m_curx += this.m_spotSize;
-												if (this.m_curx >= sw)
+												if (this.m_curx>= sw)
 												{
 													this.m_curx -= this.m_spotSize;
 													this.m_cury += this.m_spotSize;
@@ -39812,7 +39812,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 												break;
 											case CTrans.BOTTOM_LEFT:
 												this.m_curx += this.m_spotSize;
-												if (this.m_curx >= sw)
+												if (this.m_curx>= sw)
 												{
 													this.m_curx -= this.m_spotSize;
 													this.m_cury -= this.m_spotSize;
@@ -39837,7 +39837,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 										{
 											case CTrans.TOP_LEFT:
 												this.m_cury += this.m_spotSize;
-												if (this.m_cury >= sh)
+												if (this.m_cury>= sh)
 												{
 													this.m_cury -= this.m_spotSize;
 													this.m_curx += this.m_spotSize;
@@ -39846,7 +39846,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 												break;
 											case CTrans.TOP_RIGHT:
 												this.m_cury += this.m_spotSize;
-												if (this.m_cury >= sh)
+												if (this.m_cury>= sh)
 												{
 													this.m_cury -= this.m_spotSize;
 													this.m_curx -= this.m_spotSize;
@@ -39880,7 +39880,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -39898,7 +39898,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransZigZag2.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwStyle = file.readAInt();
 				this.dwPos = file.readAInt();
@@ -39918,7 +39918,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);					// completed
 				}
@@ -39952,7 +39952,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.blit(this.source2, x, y, x, y, w, h);
 
 						// End of line
-						if (w >= this.m_source2Width)
+						if (w>= this.m_source2Width)
 						{
 							this.m_linepos++;
 							this.m_dir++;
@@ -39985,7 +39985,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.blit(this.source2, x, y, x, y, w, h);
 
 						// End of line
-						if (h >= this.m_source2Height)
+						if (h>= this.m_source2Height)
 						{
 							this.m_linepos++;
 							this.m_dir++;
@@ -39996,7 +39996,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -40008,7 +40008,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransZoom.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.start(data, display, source, dest);
 			},
@@ -40061,7 +40061,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -40076,7 +40076,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CTransZoom2.prototype = CServices.extend(new CTrans(),
 		{
-			init:     function (data, file, display, source, dest)
+			init:   function (data, file, display, source, dest)
 			{
 				this.dwPos = file.readAInt();
 				this.start(data, display, source, dest);
@@ -40093,7 +40093,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				var elapsedTime = this.getDeltaTime();
 
-				if ((elapsedTime / this.m_duration) > 1.0)
+				if ((elapsedTime / this.m_duration)> 1.0)
 				{
 					this.blit(this.source2);		// completed
 				}
@@ -40124,7 +40124,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return null;
 			},
-			end:      function ()
+			end:   function ()
 			{
 				this.finish();
 			}
@@ -40158,8 +40158,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 	{
 		// object containing the files :
 		// {
-		//   "folder/" : {...},
-		//   "folder/data.txt" : {...}
+		//  "folder/" : {...},
+		//  "folder/data.txt" : {...}
 		// }
 		this.files = {};
 
@@ -40173,20 +40173,20 @@ window['Runtime'] = (function Runtime(__can, __path){
 	};
 
 	JSZip.signature = {
-		LOCAL_FILE_HEADER:               "\x50\x4b\x03\x04",
-		CENTRAL_FILE_HEADER:             "\x50\x4b\x01\x02",
-		CENTRAL_DIRECTORY_END:           "\x50\x4b\x05\x06",
+		LOCAL_FILE_HEADER:        "\x50\x4b\x03\x04",
+		CENTRAL_FILE_HEADER:       "\x50\x4b\x01\x02",
+		CENTRAL_DIRECTORY_END:      "\x50\x4b\x05\x06",
 		ZIP64_CENTRAL_DIRECTORY_LOCATOR: "\x50\x4b\x06\x07",
-		ZIP64_CENTRAL_DIRECTORY_END:     "\x50\x4b\x06\x06",
-		DATA_DESCRIPTOR:                 "\x50\x4b\x07\x08"
+		ZIP64_CENTRAL_DIRECTORY_END:   "\x50\x4b\x06\x06",
+		DATA_DESCRIPTOR:         "\x50\x4b\x07\x08"
 	};
 
 	// Default properties for a new file
 	JSZip.defaults = {
-		base64:      false,
-		binary:      false,
-		dir:         false,
-		date:        null,
+		base64:   false,
+		binary:   false,
+		dir:     false,
+		date:    null,
 		compression: null
 	};
 
@@ -40212,7 +40212,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * Return the content as UTF8 string.
 			 * @return {string} the UTF8 string.
 			 */
-			asText:        function ()
+			asText:    function ()
 			{
 				var result = this.data;
 				if (result === null || typeof result === "undefined")
@@ -40233,7 +40233,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * Returns the binary content.
 			 * @return {string} the content as binary.
 			 */
-			asBinary:      function ()
+			asBinary:   function ()
 			{
 				var result = this.data;
 				if (result === null || typeof result === "undefined")
@@ -40254,7 +40254,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * Returns the content as an Uint8Array.
 			 * @return {Uint8Array} the content as an Uint8Array.
 			 */
-			asUint8Array:  function ()
+			asUint8Array: function ()
 			{
 				return JSZip.utils.string2Uint8Array(this.asBinary());
 			},
@@ -40281,7 +40281,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (i = 0; i < bytes; i++)
 			{
 				hex += String.fromCharCode(dec & 0xff);
-				dec = dec >>> 8;
+				dec = dec>>> 8;
 			}
 			return hex;
 		};
@@ -40397,7 +40397,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				path = path.substring(0, path.length - 1);
 			}
 			var lastSlash = path.lastIndexOf('/');
-			return (lastSlash > 0) ? path.substring(0, lastSlash) : "";
+			return (lastSlash> 0) ? path.substring(0, lastSlash) : "";
 		};
 
 		/**
@@ -40499,7 +40499,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			header += "\x00\x00";
 
 			return {
-				header:         header,
+				header:     header,
 				compressedData: compressedData
 			};
 		};
@@ -40510,9 +40510,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			/**
 			 * Read an existing zip and merge the data in the current JSZip object.
 			 * The implementation is in jszip-load.js, don't forget to include it.
-			 * @param {String|ArrayBuffer|Uint8Array} stream  The stream to load
+			 * @param {String|ArrayBuffer|Uint8Array} stream The stream to load
 			 * @param {Object} options Options for loading the stream.
-			 *  options.base64 : is the stream in base64 ? default : false
+			 * options.base64 : is the stream in base64 ? default : false
 			 * @return {JSZip} the current JSZip object
 			 */
 			load: function (stream, options)
@@ -40551,11 +40551,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			/**
 			 * Add a file to the zip file, or search a file.
-			 * @param   {string|RegExp} name The name of the file to add (if data is defined),
+			 * @param  {string|RegExp} name The name of the file to add (if data is defined),
 			 * the name of the file to find (if no data) or a regex to match files.
-			 * @param   {String|ArrayBuffer|Uint8Array} data  The file data, either raw or base64 encoded
-			 * @param   {Object} o     File options
-			 * @return  {JSZip|Object|Array} this JSZip object (when adding a file),
+			 * @param  {String|ArrayBuffer|Uint8Array} data The file data, either raw or base64 encoded
+			 * @param  {Object} o   File options
+			 * @return {JSZip|Object|Array} this JSZip object (when adding a file),
 			 * a file (when searching by string) or an array of files (when searching by regex).
 			 */
 			file: function (name, data, o)
@@ -40588,8 +40588,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			/**
 			 * Add a directory to the zip file, or search.
-			 * @param   {String|RegExp} arg The name of the directory to add, or a regex to search folders.
-			 * @return  {JSZip} an object with the new directory as the root, or an array containing matching folders.
+			 * @param  {String|RegExp} arg The name of the directory to add, or a regex to search folders.
+			 * @return {JSZip} an object with the new directory as the root, or an array containing matching folders.
 			 */
 			folder: function (arg)
 			{
@@ -40670,9 +40670,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			generate: function (options)
 			{
 				options = extend(options || {}, {
-					base64:      true,
+					base64:   true,
 					compression: "STORE",
-					type:        "base64"
+					type:    "base64"
 				});
 				var compression = options.compression.toUpperCase();
 
@@ -40739,7 +40739,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					decToHex(files.length, 2) +
 					// total number of entries in the central directory
 					decToHex(files.length, 2) +
-					// size of the central directory   4 bytes
+					// size of the central directory  4 bytes
 					decToHex(dirData.length, 4) +
 					// offset of start of central directory with respect to the starting disk number
 					decToHex(fileData.length, 4) +
@@ -40766,8 +40766,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			/**
 			 *
-			 *  Javascript crc32
-			 *  http://www.webtoolkit.info/
+			 * Javascript crc32
+			 * http://www.webtoolkit.info/
 			 *
 			 */
 			crc32: function (str, crc)
@@ -40857,7 +40857,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					y = ( crc ^ str.charCodeAt(i) ) & 0xFF;
 					x = table[y];
-					crc = ( crc >>> 8 ) ^ x;
+					crc = ( crc>>> 8 ) ^ x;
 				}
 
 				return crc ^ (-1);
@@ -40894,15 +40894,15 @@ window['Runtime'] = (function Runtime(__can, __path){
 					{
 						utftext += String.fromCharCode(c);
 					}
-					else if ((c > 127) && (c < 2048))
+					else if ((c> 127) && (c < 2048))
 					{
-						utftext += String.fromCharCode((c >> 6) | 192);
+						utftext += String.fromCharCode((c>> 6) | 192);
 						utftext += String.fromCharCode((c & 63) | 128);
 					}
 					else
 					{
-						utftext += String.fromCharCode((c >> 12) | 224);
-						utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+						utftext += String.fromCharCode((c>> 12) | 224);
+						utftext += String.fromCharCode(((c>> 6) & 63) | 128);
 						utftext += String.fromCharCode((c & 63) | 128);
 					}
 
@@ -40930,7 +40930,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						string += String.fromCharCode(c);
 						i++;
 					}
-					else if ((c > 191) && (c < 224))
+					else if ((c> 191) && (c < 224))
 					{
 						c2 = utftext.charCodeAt(i + 1);
 						string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
@@ -40955,9 +40955,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 	 * Compression methods
 	 * This object is filled in as follow :
 	 * name : {
-	 *    magic // the 2 bytes indentifying the compression method
-	 *    compress // function, take the uncompressed content and return it compressed.
-	 *    uncompress // function, take the compressed content and return it uncompressed.
+	 *  magic // the 2 bytes indentifying the compression method
+	 *  compress // function, take the uncompressed content and return it compressed.
+	 *  uncompress // function, take the compressed content and return it uncompressed.
 	 * }
 	 *
 	 * STORE is the default compression method, so it's included in this file.
@@ -40965,8 +40965,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 	 */
 	JSZip.compressions = {
 		"STORE": {
-			magic:      "\x00\x00",
-			compress:   function (content)
+			magic:   "\x00\x00",
+			compress:  function (content)
 			{
 				return content; // no compression
 			},
@@ -40987,12 +40987,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return typeof ArrayBuffer !== "undefined" && typeof Uint8Array !== "undefined";
 		})(),
 		// contains true if JSZip can read/generate Uint8Array, false otherwise.
-		uint8array:  (function ()
+		uint8array: (function ()
 		{
 			return typeof Uint8Array !== "undefined";
 		})(),
 		// contains true if JSZip can read/generate Blob, false otherwise.
-		blob:        (function ()
+		blob:    (function ()
 		{
 			// the spec started with BlobBuilder then replaced it with a construtor for Blob.
 			// Result : we have browsers that :
@@ -41035,7 +41035,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 * @param {string} str the string to transform.
 		 * @return {String} the binary string.
 		 */
-		string2binary:     function (str)
+		string2binary:   function (str)
 		{
 			var result = "";
 			for (var i = 0; i < str.length; i++)
@@ -41092,7 +41092,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 * @return {Blob} the string.
 		 * @throws {Error} an Error if the browser doesn't support the requested feature.
 		 */
-		string2Blob:       function (str)
+		string2Blob:    function (str)
 		{
 			if (!JSZip.support.blob)
 			{
@@ -41128,10 +41128,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 	/**
 	 *
-	 *  Base64 encode / decode
-	 *  http://www.webtoolkit.info/
+	 * Base64 encode / decode
+	 * http://www.webtoolkit.info/
 	 *
-	 *  Hacked so that it doesn't utf8 en/decode everything
+	 * Hacked so that it doesn't utf8 en/decode everything
 	 **/
 	var JSZipBase64 = (function ()
 	{
@@ -41153,9 +41153,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					chr2 = input.charCodeAt(i++);
 					chr3 = input.charCodeAt(i++);
 
-					enc1 = chr1 >> 2;
-					enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-					enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+					enc1 = chr1>> 2;
+					enc2 = ((chr1 & 3) << 4) | (chr2>> 4);
+					enc3 = ((chr2 & 15) << 2) | (chr3>> 6);
 					enc4 = chr3 & 63;
 
 					if (isNaN(chr2))
@@ -41194,8 +41194,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 					enc3 = _keyStr.indexOf(input.charAt(i++));
 					enc4 = _keyStr.indexOf(input.charAt(i++));
 
-					chr1 = (enc1 << 2) | (enc2 >> 4);
-					chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+					chr1 = (enc1 << 2) | (enc2>> 4);
+					chr2 = ((enc2 & 15) << 4) | (enc3>> 2);
 					chr3 = ((enc3 & 3) << 6) | enc4;
 
 					output = output + String.fromCharCode(chr1);
@@ -41236,7 +41236,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 	/*
 	 * Original:
-	 *   http://www.onicos.com/staff/iz/amuse/javascript/expert/inflate.txt
+	 *  http://www.onicos.com/staff/iz/amuse/javascript/expert/inflate.txt
 	 */
 
 	(function ()
@@ -41306,7 +41306,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6,
 			7, 7, 8, 8, 9, 9, 10, 10, 11, 11,
 			12, 12, 13, 13);
-		var zip_border = new Array(  // Order of the bit length code lengths
+		var zip_border = new Array( // Order of the bit length code lengths
 			16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15);
 		/* objects (inflate) */
 
@@ -41334,7 +41334,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			mm	// maximum lookup bits
 			)
 		{
-			this.BMAX = 16;   // maximum bit length of any code
+			this.BMAX = 16;  // maximum bit length of any code
 			this.N_MAX = 288; // maximum number of codes in any set
 			this.status = 0;	// 0: success, 1: incomplete table, 2: bad input
 			this.root = null;	// (zip_HuftList) starting table
@@ -41363,7 +41363,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				var pidx;		// index of p
 				var q;			// (zip_HuftNode) points to current table
 				var r = new zip_HuftNode(); // table entry for structure assignment
-				var u = new Array(this.BMAX); // zip_HuftNode[BMAX][]  table stack
+				var u = new Array(this.BMAX); // zip_HuftNode[BMAX][] table stack
 				var v = new Array(this.N_MAX); // values in order of bit length
 				var w;
 				var x = new Array(this.BMAX + 1);// bit offsets, then code stack
@@ -41386,14 +41386,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 					x[i] = 0;
 
 				// Generate counts for each bit length
-				el = n > 256 ? b[256] : this.BMAX; // set length of EOB code, if any
+				el = n> 256 ? b[256] : this.BMAX; // set length of EOB code, if any
 				p = b;
 				pidx = 0;
 				i = n;
 				do {
 					c[p[pidx]]++;	// assume all entries <= BMAX
 					pidx++;
-				} while (--i > 0);
+				} while (--i> 0);
 				if (c[0] == n)
 				{	// null input--all zero length codes
 					this.root = null;
@@ -41413,7 +41413,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					if (c[i] != 0)
 						break;
 				g = i;			// maximum code length
-				if (mm > i)
+				if (mm> i)
 					mm = i;
 
 				// Adjust last length count to fill out codes, if needed
@@ -41437,7 +41437,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				p = c;
 				pidx = 1;
 				xp = 2;
-				while (--i > 0)		// note that i == g from above
+				while (--i> 0)		// note that i == g from above
 					x[xp++] = (j += p[pidx++]);
 
 				// Make a table of values in order of bit lengths
@@ -41463,18 +41463,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 				for (; k <= g; k++)
 				{
 					a = c[k];
-					while (a-- > 0)
+					while (a--> 0)
 					{
 						// here i is the Huffman code of length k bits for value p[pidx]
 						// make tables up to required level
-						while (k > w + lx[1 + h])
+						while (k> w + lx[1 + h])
 						{
 							w += lx[1 + h]; // add bits already decoded
 							h++;
 
 							// compute minimum size table less than or equal to *m bits
-							z = (z = g - w) > mm ? mm : z; // upper limit
-							if ((f = 1 << (j = k - w)) > a + 1)
+							z = (z = g - w)> mm ? mm : z; // upper limit
+							if ((f = 1 << (j = k - w))> a + 1)
 							{ // try a k-w bit table
 								// too few codes for k-w bit table
 								f -= a + 1;	// deduct codes from patterns left
@@ -41486,7 +41486,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 									f -= c[xp];	// else deduct codes from patterns
 								}
 							}
-							if (w + j > el && w < el)
+							if (w + j> el && w < el)
 								j = el - w;	// make EOB code end at table
 							z = 1 << j;	// table entries for j-bit table
 							lx[1 + h] = j; // set table size in stack
@@ -41507,13 +41507,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 							u[h] = q;	// table starts after link
 
 							/* connect to last table, if there is one */
-							if (h > 0)
+							if (h> 0)
 							{
 								x[h] = i;		// save pattern for backing up
 								r.b = lx[h];	// bits to dump before this table
 								r.e = 16 + j;	// bits in this table
 								r.t = q;		// pointer to this table
-								j = (i & ((1 << w) - 1)) >> (w - lx[h]);
+								j = (i & ((1 << w) - 1))>> (w - lx[h]);
 								u[h - 1][j].e = r.e;
 								u[h - 1][j].b = r.b;
 								u[h - 1][j].n = r.n;
@@ -41523,7 +41523,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 						// set up table entry in r
 						r.b = k - w;
-						if (pidx >= n)
+						if (pidx>= n)
 							r.e = 99;		// out of values--invalid code
 						else if (p[pidx] < s)
 						{
@@ -41538,7 +41538,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 						// fill code-like entries with r //
 						f = 1 << (k - w);
-						for (j = i >> w; j < z; j += f)
+						for (j = i>> w; j < z; j += f)
 						{
 							q[j].e = r.e;
 							q[j].b = r.b;
@@ -41547,7 +41547,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 
 						// backwards increment the k-bit code i
-						for (j = 1 << (k - 1); (i & j) != 0; j >>= 1)
+						for (j = 1 << (k - 1); (i & j) != 0; j>>= 1)
 							i ^= j;
 						i ^= j;
 
@@ -41595,7 +41595,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		function zip_DUMPBITS(n)
 		{
-			zip_bit_buf >>= n;
+			zip_bit_buf>>= n;
 			zip_bit_len -= n;
 		}
 
@@ -41617,7 +41617,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				zip_NEEDBITS(zip_bl);
 				t = zip_tl.list[zip_GETBITS(zip_bl)];
 				e = t.e;
-				while (e > 16)
+				while (e> 16)
 				{
 					if (e == 99)
 						return -1;
@@ -41654,7 +41654,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				t = zip_td.list[zip_GETBITS(zip_bd)];
 				e = t.e;
 
-				while (e > 16)
+				while (e> 16)
 				{
 					if (e == 99)
 						return -1;
@@ -41670,7 +41670,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				zip_DUMPBITS(e);
 
 				// do the copy
-				while (zip_copy_leng > 0 && n < size)
+				while (zip_copy_leng> 0 && n < size)
 				{
 					zip_copy_leng--;
 					zip_copy_dist &= zip_WSIZE - 1;
@@ -41709,7 +41709,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			zip_copy_leng = n;
 
 			n = 0;
-			while (zip_copy_leng > 0 && n < size)
+			while (zip_copy_leng> 0 && n < size)
 			{
 				zip_copy_leng--;
 				zip_wp &= zip_WSIZE - 1;
@@ -41726,7 +41726,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		function zip_inflate_fixed(buff, off, size)
 		{
-			/* decompress an inflated type 1 (fixed Huffman codes) block.  We should
+			/* decompress an inflated type 1 (fixed Huffman codes) block. We should
 			 either replace this with a custom decoder, or at least precompute the
 			 Huffman tables. */
 
@@ -41764,7 +41764,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				zip_fixed_bd = 5;
 
 				h = new zip_HuftBuild(l, 30, 0, zip_cpdist, zip_cpdext, zip_fixed_bd);
-				if (h.status > 1)
+				if (h.status> 1)
 				{
 					zip_fixed_tl = null;
 					alert("HufBuild error: " + h.status);
@@ -41808,7 +41808,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			zip_NEEDBITS(4);
 			nb = 4 + zip_GETBITS(4);	// number of bit length codes
 			zip_DUMPBITS(4);
-			if (nl > 286 || nd > 30)
+			if (nl> 286 || nd> 30)
 				return -1;		// bad lengths
 
 			// read in bit-length-code lengths
@@ -41847,9 +41847,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					zip_NEEDBITS(2);
 					j = 3 + zip_GETBITS(2);
 					zip_DUMPBITS(2);
-					if (i + j > n)
+					if (i + j> n)
 						return -1;
-					while (j-- > 0)
+					while (j--> 0)
 						ll[i++] = l;
 				}
 				else if (j == 17)
@@ -41857,9 +41857,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					zip_NEEDBITS(3);
 					j = 3 + zip_GETBITS(3);
 					zip_DUMPBITS(3);
-					if (i + j > n)
+					if (i + j> n)
 						return -1;
-					while (j-- > 0)
+					while (j--> 0)
 						ll[i++] = 0;
 					l = 0;
 				}
@@ -41868,9 +41868,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					zip_NEEDBITS(7);
 					j = 11 + zip_GETBITS(7);
 					zip_DUMPBITS(7);
-					if (i + j > n)
+					if (i + j> n)
 						return -1;
-					while (j-- > 0)
+					while (j--> 0)
 						ll[i++] = 0;
 					l = 0;
 				}
@@ -41897,8 +41897,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 			zip_td = h.root;
 			zip_bd = h.m;
 
-			if (zip_bd == 0 && nl > 257)
-			{   // lengths but no distances
+			if (zip_bd == 0 && nl> 257)
+			{  // lengths but no distances
 				// **incomplete distance tree**
 				return -1;
 			}
@@ -41940,12 +41940,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (zip_eof && zip_method == -1)
 					return n;
 
-				if (zip_copy_leng > 0)
+				if (zip_copy_leng> 0)
 				{
 					if (zip_method != zip_STORED_BLOCK)
 					{
 						// STATIC_TREES or DYN_TREES
-						while (zip_copy_leng > 0 && n < size)
+						while (zip_copy_leng> 0 && n < size)
 						{
 							zip_copy_leng--;
 							zip_copy_dist &= zip_WSIZE - 1;
@@ -41956,7 +41956,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 					else
 					{
-						while (zip_copy_leng > 0 && n < size)
+						while (zip_copy_leng> 0 && n < size)
 						{
 							zip_copy_leng--;
 							zip_wp &= zip_WSIZE - 1;
@@ -42037,7 +42037,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			buff = new Array(1024);
 			out = "";
-			while ((i = zip_inflate_internal(buff, 0, buff.length)) > 0)
+			while ((i = zip_inflate_internal(buff, 0, buff.length))> 0)
 			{
 				for (j = 0; j < i; j++)
 					out += String.fromCharCode(buff[j]);
@@ -42054,7 +42054,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		if (!JSZip.compressions["DEFLATE"])
 		{
 			JSZip.compressions["DEFLATE"] = {
-				magic:      "\x08\x00",
+				magic:   "\x08\x00",
 				uncompress: zip_inflate
 			}
 		}
@@ -42162,7 +42162,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * @param {string} newIndex the index to check.
 			 * @throws {Error} an Error if the index is out of bounds.
 			 */
-			checkIndex:  function (newIndex)
+			checkIndex: function (newIndex)
 			{
 				if (this.stream.length < newIndex || newIndex < 0)
 				{
@@ -42176,7 +42176,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * @param {number} newIndex The new index.
 			 * @throws {Error} if the new index is out of the stream.
 			 */
-			setIndex:    function (newIndex)
+			setIndex:  function (newIndex)
 			{
 				this.checkIndex(newIndex);
 				this.index = newIndex;
@@ -42186,7 +42186,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * @param {number} n the number of bytes to skip.
 			 * @throws {Error} if the new index is out of the stream.
 			 */
-			skip:        function (n)
+			skip:    function (n)
 			{
 				this.setIndex(this.index + n);
 			},
@@ -42195,7 +42195,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * @param {number} i the index to use.
 			 * @return {number} a byte.
 			 */
-			byteAt:      function (i)
+			byteAt:   function (i)
 			{
 				return this.stream.charCodeAt(i);
 			},
@@ -42204,11 +42204,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * @param {number} size the number of bytes to read.
 			 * @return {number} the corresponding number.
 			 */
-			readInt:     function (size)
+			readInt:   function (size)
 			{
 				var result = 0, i;
 				this.checkOffset(size);
-				for (i = this.index + size - 1; i >= this.index; i--)
+				for (i = this.index + size - 1; i>= this.index; i--)
 				{
 					result = (result << 8) + this.byteAt(i);
 				}
@@ -42220,7 +42220,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * @param {number} size the number of bytes to read.
 			 * @return {string} the corresponding string.
 			 */
-			readString:  function (size)
+			readString: function (size)
 			{
 				this.checkOffset(size);
 				// this will work because the constructor applied the "& 0xff" mask.
@@ -42232,15 +42232,15 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * Get the next date.
 			 * @return {Date} the date.
 			 */
-			readDate:    function ()
+			readDate:  function ()
 			{
 				var dostime = this.readInt(4);
 				return new Date(
-					((dostime >> 25) & 0x7f) + 1980, // year
-					((dostime >> 21) & 0x0f) - 1, // month
-					(dostime >> 16) & 0x1f, // day
-					(dostime >> 11) & 0x1f, // hour
-					(dostime >> 5) & 0x3f, // minute
+					((dostime>> 25) & 0x7f) + 1980, // year
+					((dostime>> 21) & 0x0f) - 1, // month
+					(dostime>> 16) & 0x1f, // day
+					(dostime>> 11) & 0x1f, // hour
+					(dostime>> 5) & 0x3f, // minute
 					(dostime & 0x1f) << 1); // second
 			}
 		};
@@ -42264,7 +42264,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * say if the file is encrypted.
 			 * @return {boolean} true if the file is encrypted, false otherwise.
 			 */
-			isEncrypted:   function ()
+			isEncrypted:  function ()
 			{
 				// bit 1 is set
 				return (this.bitFlag & 0x0001) === 0x0001;
@@ -42273,7 +42273,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * say if the file has utf-8 filename/comment.
 			 * @return {boolean} true if the filename/comment is in utf-8, false otherwise.
 			 */
-			useUTF8:       function ()
+			useUTF8:    function ()
 			{
 				// bit 11 is set
 				return (this.bitFlag & 0x0800) === 0x0800;
@@ -42288,7 +42288,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				// we already know everything from the central dir !
 				// If the central dir data are false, we are doomed.
-				// On the bright side, the local part is scary  : zip64, data descriptors, both, etc.
+				// On the bright side, the local part is scary : zip64, data descriptors, both, etc.
 				// The less data we get here, the more reliable this should be.
 				// Let's skip the whole header and dash to the data !
 				reader.skip(22);
@@ -42338,7 +42338,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * Read the central part of a zip file and add the info in this object.
 			 * @param {StreamReader} reader the reader to use.
 			 */
-			readCentralPart:      function (reader)
+			readCentralPart:   function (reader)
 			{
 				this.versionMadeBy = reader.readString(2);
 				this.versionNeeded = reader.readInt(2);
@@ -42407,7 +42407,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * Read the central part of a zip file and add the info in this object.
 			 * @param {StreamReader} reader the reader to use.
 			 */
-			readExtraFields:      function (reader)
+			readExtraFields:   function (reader)
 			{
 				var start = reader.index,
 					extraFieldId,
@@ -42423,16 +42423,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 					extraFieldValue = reader.readString(extraFieldLength);
 
 					this.extraFields[extraFieldId] = {
-						id:     extraFieldId,
+						id:   extraFieldId,
 						length: extraFieldLength,
-						value:  extraFieldValue
+						value: extraFieldValue
 					};
 				}
 			},
 			/**
 			 * Apply an UTF8 transformation if needed.
 			 */
-			handleUTF8:           function ()
+			handleUTF8:      function ()
 			{
 				if (this.useUTF8())
 				{
@@ -42443,7 +42443,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		};
 		// }}} end of ZipEntry
 
-		//  class ZipEntries {{{
+		// class ZipEntries {{{
 		/**
 		 * All the entries in the zip file.
 		 * @constructor
@@ -42466,7 +42466,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * @param {string} expectedSignature the expected signature.
 			 * @throws {Error} if it is an other signature.
 			 */
-			checkSignature:                    function (expectedSignature)
+			checkSignature:          function (expectedSignature)
 			{
 				var signature = this.reader.readString(4);
 				if (signature !== expectedSignature)
@@ -42478,7 +42478,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			/**
 			 * Read the end of the central directory.
 			 */
-			readBlockEndOfCentral:             function ()
+			readBlockEndOfCentral:       function ()
 			{
 				this.diskNumber = this.reader.readInt(2);
 				this.diskWithCentralDirStart = this.reader.readInt(2);
@@ -42496,7 +42496,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * The end of central can coexist with its Zip64 brother,
 			 * I don't want to read the wrong number of bytes !
 			 */
-			readBlockZip64EndOfCentral:        function ()
+			readBlockZip64EndOfCentral:    function ()
 			{
 				this.zip64EndOfCentralSize = this.reader.readInt(8);
 				this.versionMadeBy = this.reader.readString(2);
@@ -42520,9 +42520,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					extraFieldLength = this.reader.readInt(4);
 					extraFieldValue = this.reader.readString(extraFieldLength);
 					this.zip64ExtensibleData[extraFieldId] = {
-						id:     extraFieldId,
+						id:   extraFieldId,
 						length: extraFieldLength,
-						value:  extraFieldValue
+						value: extraFieldValue
 					};
 				}
 			},
@@ -42534,7 +42534,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.diskWithZip64CentralDirStart = this.reader.readInt(4);
 				this.relativeOffsetEndOfZip64CentralDir = this.reader.readInt(8);
 				this.disksCount = this.reader.readInt(4);
-				if (this.disksCount > 1)
+				if (this.disksCount> 1)
 				{
 					throw new Error("Multi-volumes zip are not supported");
 				}
@@ -42542,7 +42542,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			/**
 			 * Read the local files, based on the offset read in the central part.
 			 */
-			readLocalFiles:                    function ()
+			readLocalFiles:          function ()
 			{
 				var i, file;
 				for (i = 0; i < this.files.length; i++)
@@ -42557,7 +42557,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			/**
 			 * Read the central directory.
 			 */
-			readCentralDir:                    function ()
+			readCentralDir:          function ()
 			{
 				var file;
 
@@ -42574,7 +42574,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			/**
 			 * Read the end of central directory.
 			 */
-			readEndOfCentral:                  function ()
+			readEndOfCentral:         function ()
 			{
 				var offset = this.reader.stream.lastIndexOf(JSZip.signature.CENTRAL_DIRECTORY_END);
 				if (offset === -1)
@@ -42587,11 +42587,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 
 				/* extract from the zip spec :
-				 4)  If one of the fields in the end of central directory
+				 4) If one of the fields in the end of central directory
 				 record is too small to hold required data, the field
 				 should be set to -1 (0xFFFF or 0xFFFFFFFF) and the
 				 ZIP64 format record should be created.
-				 5)  The end of central directory record and the
+				 5) The end of central directory record and the
 				 Zip64 end of central directory locator record must
 				 reside on the same disk when splitting or spanning
 				 an archive.
@@ -42635,7 +42635,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 * Read a zip file and create ZipEntries.
 			 * @param {String|ArrayBuffer|Uint8Array} data the binary string representing a zip file.
 			 */
-			load:                              function (data)
+			load:               function (data)
 			{
 				this.reader = new StreamReader(data);
 
@@ -42651,7 +42651,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 * It uses the above classes to decode a zip file, and load every files.
 		 * @param {String|ArrayBuffer|Uint8Array} data the data to load.
 		 * @param {Object} options Options for loading the stream.
-		 *  options.base64 : is the stream in base64 ? default : false
+		 * options.base64 : is the stream in base64 ? default : false
 		 */
 		JSZip.prototype.load = function (data, options)
 		{
@@ -42668,10 +42668,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				input = files[i];
 				this.file(input.fileName, input.uncompressedFileData, {
-					binary:                true,
+					binary:        true,
 					optimizedBinaryString: true,
-					date:                  input.date,
-					dir:                   input.dir
+					date:         input.date,
+					dir:          input.dir
 				});
 			}
 
@@ -42784,7 +42784,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		addChildIndex: function (child, index)
 		{
-			if (index >= this.children.length)
+			if (index>= this.children.length)
 			{
 				this.children.push(child);
 			}
@@ -42800,7 +42800,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.children.length = 0;
 		},
 
-		removeChild:    function (child)
+		removeChild:  function (child)
 		{
 			var n;
 			for (n = 0; n < this.children.length; n++)
@@ -42813,7 +42813,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return -1;
 		},
-		getChildIndex:  function (child)
+		getChildIndex: function (child)
 		{
 			var n;
 			for (n = 0; n < this.children.length; n++)
@@ -42829,7 +42829,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			return this.children.length;
 		},
-		setChildIndex:  function (child, index)
+		setChildIndex: function (child, index)
 		{
 			var n;
 			var object = null;
@@ -42844,11 +42844,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (object != null)
 			{
 				this.children.splice(n, 1);
-				if (index > n)
+				if (index> n)
 					index--;
 				if (index < 0)
 					index = 0;
-				if (index >= this.children.length)
+				if (index>= this.children.length)
 					this.children.push(child);
 				else
 					this.children.splice(index, 0, child);
@@ -42961,7 +42961,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			else
 			{
-			    context.drawImage(app.imageBank.mosaics[image.mosaic],
+			  context.drawImage(app.imageBank.mosaics[image.mosaic],
 					image.mosaicX, image.mosaicY,
 					image.width, image.height, 0, 0,
 					image.width, image.height);
@@ -42970,24 +42970,24 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			if ((nFlags & CMask.GCMF_PLATFORM) == 0)
 			{
-			    for (y = 0; y < this.height; y++) {
-			        var bitmapoffset = y * image.width * 4 + 3;
-			        var maskoffset = y * maskWidth;
-			        var bitmask = 0x8000;
-			        for (x = 0; x < this.width; x++) {
-			            if (imageData.data[bitmapoffset] != 0) {
-			                this.mask[maskoffset] |= bitmask;
-			            }
+			  for (y = 0; y < this.height; y++) {
+			    var bitmapoffset = y * image.width * 4 + 3;
+			    var maskoffset = y * maskWidth;
+			    var bitmask = 0x8000;
+			    for (x = 0; x < this.width; x++) {
+			      if (imageData.data[bitmapoffset] != 0) {
+			        this.mask[maskoffset] |= bitmask;
+			      }
 
-			            bitmapoffset += 4;
-			            bitmask >>>= 1;
+			      bitmapoffset += 4;
+			      bitmask>>>= 1;
 
-			            if (bitmask == 0) {
-			                bitmask = 0x8000;
-			                maskoffset++;
-			            }
-			        }
+			      if (bitmask == 0) {
+			        bitmask = 0x8000;
+			        maskoffset++;
+			      }
 			    }
+			  }
 			}
 			else
 			{
@@ -43004,7 +43004,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					if (y < this.height)
 					{
 						endY = Math.min(this.height, y + CColMask.HEIGHT_PLATFORM);
-						bm = (0x8000 >> (x & 15));
+						bm = (0x8000>> (x & 15));
 						for (; y < endY; y++)
 						{
 							if (imageData.data[(y * image.width + x) * 4 + 3] != 0)
@@ -43127,7 +43127,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			else
 				this.mask = new Array(dMaskWidthShorts * newCy + 1);
 			var n;
-			for (n = dMaskWidthShorts * newCy; n >= 0; n--)
+			for (n = dMaskWidthShorts * newCy; n>= 0; n--)
 				this.mask[n] = 0;
 
 			this.lineWidth = dMaskWidthShorts;
@@ -43174,13 +43174,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					var bd = 0;
 
 					// 1
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x8000;
@@ -43190,13 +43190,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 2
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x4000;
@@ -43206,13 +43206,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 3
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x2000;
@@ -43222,13 +43222,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 4
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x1000;
@@ -43238,13 +43238,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 5
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0800;
@@ -43254,13 +43254,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 6
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0400;
@@ -43270,13 +43270,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 7
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0200;
@@ -43286,13 +43286,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 8
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0100;
@@ -43302,13 +43302,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 9
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0080;
@@ -43318,13 +43318,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 10
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0040;
@@ -43334,13 +43334,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 11
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0020;
@@ -43350,13 +43350,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 12
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0010;
@@ -43366,13 +43366,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 13
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0008;
@@ -43382,13 +43382,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 14
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0004;
@@ -43398,13 +43398,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 15
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0002;
@@ -43414,13 +43414,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 					tys += nsina;
 
 					// 16
-					if (txs >= 0 && txs < cxs)
+					if (txs>= 0 && txs < cxs)
 					{
-						if (tys >= 0 && tys < cys)
+						if (tys>= 0 && tys < cys)
 						{
 							xs = Math.floor(txs / 65536);
 							ys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (xs % 16));
+							bMask = (0x8000>>> (xs % 16));
 							b = pMask.mask[Math.floor(ys * sMaskWidthWords + xs / 16)];
 							if ((b & bMask) != 0)
 								bd |= 0x0001;
@@ -43436,13 +43436,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					var bdMask = 0x8000;
 					var bdbd = 0;
-					for (x = 0; x < newCxMod16; x++, bdMask = ((bdMask >> 1) & 0x7FFF))
+					for (x = 0; x < newCxMod16; x++, bdMask = ((bdMask>> 1) & 0x7FFF))
 					{
-						if (txs >= 0 && txs < cxs && tys >= 0 && tys < cys)
+						if (txs>= 0 && txs < cxs && tys>= 0 && tys < cys)
 						{
 							var bdxs = Math.floor(txs / 65536);
 							var bdys = Math.floor(tys / 65536);
-							bMask = (0x8000 >>> (bdxs % 16));
+							bMask = (0x8000>>> (bdxs % 16));
 							b = pMask.mask[Math.floor(bdys * sMaskWidthWords + bdxs / 16)];
 							if ((b & bMask) != 0)
 								bdbd |= bdMask;
@@ -43461,7 +43461,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return true;
 		},
-		testMask:          function (x1, y1, yBase1, pMask2, x2, y2, yBase2)
+		testMask:     function (x1, y1, yBase1, pMask2, x2, y2, yBase2)
 		{
 			var pLeft;
 			var pRight;
@@ -43508,14 +43508,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 				y1Right += pRight.height - yBaseRight;
 				startYRight = pRight.height - yBaseRight;
 			}
-			//        syLeft = pLeft.height - yBaseLeft;
-			//        syRight = pRight.height - yBaseRight;
+			//    syLeft = pLeft.height - yBaseLeft;
+			//    syRight = pRight.height - yBaseRight;
 
-			if (x1Left >= x1Right + pRight.width || x1Left + pLeft.width <= x1Right)
+			if (x1Left>= x1Right + pRight.width || x1Left + pLeft.width <= x1Right)
 			{
 				return false;
 			}
-			if (y1Left >= y1Right + syRight || y1Left + syLeft < y1Right)
+			if (y1Left>= y1Right + syRight || y1Left + syLeft < y1Right)
 			{
 				return false;
 			}
@@ -43548,7 +43548,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			offsetYRight = deltaYRight * pRight.lineWidth;
 			if (shiftX != 0)
 			{
-			    switch (countX)
+			  switch (countX)
 				{
 					case 1:
 						for (y = 0; y < countY; y++)
@@ -43563,7 +43563,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							if (offsetX + 1 < pLeft.lineWidth)
 							{
 								middleX = pLeft.mask[offsetYLeft + offsetX + 1] << shiftX;
-								middleX >>>= 16;
+								middleX>>>= 16;
 								if ((middleX & pRight.mask[offsetYRight]) != 0)
 								{
 									return true;
@@ -43571,7 +43571,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							}
 							offsetYLeft += pLeft.lineWidth;
 							offsetYRight += pRight.lineWidth;
-	                    }
+	          }
 						break;
 					case 2:
 						for (y = 0; y < countY; y++)
@@ -43583,7 +43583,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								return true;
 							}
 							middleX = pLeft.mask[offsetYLeft + offsetX + 1] << shiftX;
-							shortX = (middleX >>> 16);
+							shortX = (middleX>>> 16);
 							if ((shortX & pRight.mask[offsetYRight]) != 0)
 							{
 								return true;
@@ -43597,8 +43597,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 							if (offsetX + 2 < pLeft.lineWidth)
 							{
-							    middleX = pLeft.mask[offsetYLeft + offsetX + 2] << shiftX;
-								middleX >>>= 16;
+							  middleX = pLeft.mask[offsetYLeft + offsetX + 2] << shiftX;
+								middleX>>>= 16;
 								if ((middleX & pRight.mask[offsetYRight + 1]) != 0)
 								{
 									return true;
@@ -43606,7 +43606,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							}
 							offsetYLeft += pLeft.lineWidth;
 							offsetYRight += pRight.lineWidth;
-	                    }
+	          }
 						break;
 					default:
 						for (y = 0; y < countY; y++)
@@ -43621,7 +43621,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							for (x = 0; x < countX - 1; x++)
 							{
 								middleX = pLeft.mask[offsetYLeft + offsetX + x + 1] << shiftX;
-								shortX = (middleX >>> 16);
+								shortX = (middleX>>> 16);
 								if ((shortX & pRight.mask[offsetYRight + x]) != 0)
 								{
 									return true;
@@ -43637,7 +43637,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							if (offsetX + x + 1 < pLeft.lineWidth)
 							{
 								middleX = pLeft.mask[offsetYLeft + offsetX + x + 1] << shiftX;
-								middleX >>>= 16;
+								middleX>>>= 16;
 								if ((middleX & pRight.mask[offsetYRight + x]) != 0)
 								{
 									return true;
@@ -43645,7 +43645,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							}
 							offsetYLeft += pLeft.lineWidth;
 							offsetYRight += pRight.lineWidth;
-	                    }
+	          }
 						break;
 				}
 			}
@@ -43663,7 +43663,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 					offsetYLeft += pLeft.lineWidth;
 					offsetYRight += pRight.lineWidth;
-	            }
+	      }
 			}
 			return false;
 		},
@@ -43677,7 +43677,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			var startYMask = 0;
 			var syMask = this.height;
-			if (htFoot1 > 0)
+			if (htFoot1> 0)
 			{
 				startYMask = this.height - htFoot1;
 				y1Mask += startYMask;
@@ -43685,17 +43685,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			var startYRect = 0;
 			var syRect = rHeight;
-			if (htFoot2 > 0)
+			if (htFoot2> 0)
 			{
 				startYRect = rHeight - htFoot2;
 				y1Rect += startYRect;
 				syRect = htFoot2;
 			}
-			if (x1Mask >= x1Rect + rWidth || x1Mask + this.width <= x1Rect)
+			if (x1Mask>= x1Rect + rWidth || x1Mask + this.width <= x1Rect)
 			{
 				return false;
 			}
-			if (y1Mask >= y1Rect + syRect || y1Mask + syMask < y1Rect)
+			if (y1Mask>= y1Rect + syRect || y1Mask + syMask < y1Rect)
 			{
 				return false;
 			}
@@ -43787,7 +43787,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 x1 = 0;
 		 }
 		 var y1 = yy;
-		 if (yBase1 != 0 && y1 >= 0)
+		 if (yBase1 != 0 && y1>= 0)
 		 {
 		 y1 = yBase1 + y1;
 		 h = height - y1;
@@ -43798,12 +43798,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 		 y1 = 0;
 		 }
 		 var x2 = x1 + w;
-		 if (x2 > this.width)
+		 if (x2> this.width)
 		 {
 		 x2 = this.width;
 		 }
 		 var y2 = y1 + h;
-		 if (y2 > this.height)
+		 if (y2> this.height)
 		 {
 		 y2 = this.height;
 		 }
@@ -43869,13 +43869,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var xx = Math.floor(x1 - x1Mask);
 			var yy = Math.floor(y1 - y1Mask);
-			if (xx < 0 || xx >= this.width || yy < 0 || yy >= this.height)
+			if (xx < 0 || xx>= this.width || yy < 0 || yy>= this.height)
 			{
 				return false;
 			}
 
 			var offset = (yy * this.lineWidth) + Math.floor(xx / 16);
-			var m = ((0x8000) >>> (xx & 15));
+			var m = ((0x8000)>>> (xx & 15));
 			var data = this.mask[offset];
 			if ((this.mask[offset] & m) != 0)
 			{
@@ -43884,64 +43884,64 @@ window['Runtime'] = (function Runtime(__can, __path){
 			return false;
 		},
 
-	    // Test a point in the mask
+	  // Test a point in the mask
 		// DeltaX/Y = screen coordinates relative to the mask's hot spot
 		testPointEx: function (deltaX, deltaY, angle, xScale, yScale)
 		{
-		    var xx = Math.floor(deltaX);
-		    var yy = Math.floor(deltaY);
-		    var xo = xx;
-		    var yo = yy;
+		  var xx = Math.floor(deltaX);
+		  var yy = Math.floor(deltaY);
+		  var xo = xx;
+		  var yo = yy;
 
-		    // Convert screen coordinates to mask coordinates
-		    if (angle == 0)
+		  // Convert screen coordinates to mask coordinates
+		  if (angle == 0)
+		  {
+		    // Scaling?
+		    if ( xScale != 1.0 || yScale != 1.0 )
 		    {
-		        // Scaling?
-		        if ( xScale != 1.0 || yScale != 1.0 )
-		        {
-		            xo = Math.floor(xo / xScale);
-		            yo = Math.floor(yo / yScale);
-		        }
+		      xo = Math.floor(xo / xScale);
+		      yo = Math.floor(yo / yScale);
+		    }
 
-		        xo += this.xSpot;
-		        yo += this.ySpot;
-	        }
-		    else
+		    xo += this.xSpot;
+		    yo += this.ySpot;
+	    }
+		  else
+		  {
+		    // Rotate position
+		    var alpha = angle * 3.141592653589 / 180.0;
+		    var cosa = Math.cos(alpha);
+		    var sina = Math.sin(alpha);
+
+		    xo = xx * cosa - yy * sina;
+		    yo = yy * cosa + xx * sina;
+
+		    // Scaling?
+		    if ( xScale != 1.0 || yScale != 1.0 )
 		    {
-		        // Rotate position
-		        var alpha = angle * 3.141592653589 / 180.0;
-		        var cosa = Math.cos(alpha);
-		        var sina = Math.sin(alpha);
-
-		        xo = xx * cosa - yy * sina;
-		        yo = yy * cosa + xx * sina;
-
-		        // Scaling?
-		        if ( xScale != 1.0 || yScale != 1.0 )
-		        {
-		            xo /= xScale;
-		            yo /= yScale;
-		        }
-
-		        // Get position relative to top-left corner of rectangle
-		        xo += this.xSpot;
-		        yo += this.ySpot;
+		      xo /= xScale;
+		      yo /= yScale;
 		    }
 
-	        // Test pixel at mask coordinates
-		    xx = Math.floor(xo);
-		    yy = Math.floor(yo);
-		    if (xx < 0 || xx >= this.width || yy < 0 || yy >= this.height) {
-		        return false;
-		    }
+		    // Get position relative to top-left corner of rectangle
+		    xo += this.xSpot;
+		    yo += this.ySpot;
+		  }
 
-		    var offset = (yy * this.lineWidth) + Math.floor(xx / 16);
-		    var m = ((0x8000) >>> (xx & 15));
-		    var data = this.mask[offset];
-		    if ((this.mask[offset] & m) != 0) {
-		        return true;
-		    }
+	    // Test pixel at mask coordinates
+		  xx = Math.floor(xo);
+		  yy = Math.floor(yo);
+		  if (xx < 0 || xx>= this.width || yy < 0 || yy>= this.height) {
 		    return false;
+		  }
+
+		  var offset = (yy * this.lineWidth) + Math.floor(xx / 16);
+		  var m = ((0x8000)>>> (xx & 15));
+		  var data = this.mask[offset];
+		  if ((this.mask[offset] & m) != 0) {
+		    return true;
+		  }
+		  return false;
 		}
 
 	}
@@ -44038,7 +44038,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.rsEffectParam = this.hoPtr.hoOiList.oilEffectParam;
 			var globalAlpha = 1;
 			if ((this.rsEffect & CRSpr.BOP_RGBAFILTER) != 0)
-				globalAlpha = (((this.rsEffectParam >>> 24) & 0xFF) / 255.0);
+				globalAlpha = (((this.rsEffectParam>>> 24) & 0xFF) / 255.0);
 			else if ((this.rsEffect & CRSpr.BOP_MASK) == CRSpr.BOP_BLEND)
 				globalAlpha = ((128 - this.rsEffectParam) / 128.0);
 			this.rsTransparency = 128 - globalAlpha * 128;
@@ -44113,18 +44113,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return;
 				if ((this.hoPtr.hoOEFlags & CObjectCommon.OEFLAG_NEVERSLEEP) != 0)
 				{
-				    // Build 285.1: handle "Destroy if too far" even if "Inactivate if too far" is set to No
-				    if ((this.hoPtr.hoOEFlags & CObjectCommon.OEFLAG_NEVERKILL) == 0 && (rhPtr.rhApp.dwOptions & CRunApp.AH2OPT_DESTROYIFNOINACTIVATE) != 0 )
-				    {
-				        x1 = this.hoPtr.hoX - this.hoPtr.hoImgXSpot;
-				        y1 = this.hoPtr.hoY - this.hoPtr.hoImgYSpot;
-				        x2 = x1 + this.hoPtr.hoImgWidth;
-				        y2 = y1 + this.hoPtr.hoImgHeight;
+				  // Build 285.1: handle "Destroy if too far" even if "Inactivate if too far" is set to No
+				  if ((this.hoPtr.hoOEFlags & CObjectCommon.OEFLAG_NEVERKILL) == 0 && (rhPtr.rhApp.dwOptions & CRunApp.AH2OPT_DESTROYIFNOINACTIVATE) != 0 )
+				  {
+				    x1 = this.hoPtr.hoX - this.hoPtr.hoImgXSpot;
+				    y1 = this.hoPtr.hoY - this.hoPtr.hoImgYSpot;
+				    x2 = x1 + this.hoPtr.hoImgWidth;
+				    y2 = y1 + this.hoPtr.hoImgHeight;
 
-				        if (x2<rhPtr.rh3XMinimumKill || x1>rhPtr.rh3XMaximumKill || y2<rhPtr.rh3YMinimumKill || y1>rhPtr.rh3YMaximumKill)
-				            rhPtr.destroy_Add(this.hoPtr.hoNumber);
-				    }
-				    return;
+				    if (x2<rhPtr.rh3XMinimumKill || x1>rhPtr.rh3XMaximumKill || y2<rhPtr.rh3YMinimumKill || y1>rhPtr.rh3YMaximumKill)
+				      rhPtr.destroy_Add(this.hoPtr.hoNumber);
+				  }
+				  return;
 				}
 
 				x1 = this.hoPtr.hoX - this.hoPtr.hoImgXSpot;
@@ -44132,10 +44132,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				x2 = x1 + this.hoPtr.hoImgWidth;
 				y2 = y1 + this.hoPtr.hoImgHeight;
 
-				if (x2 >= rhPtr.rh3XMinimum && x1 <= rhPtr.rh3XMaximum && y2 >= rhPtr.rh3YMinimum && y1 <= rhPtr.rh3YMaximum)
+				if (x2>= rhPtr.rh3XMinimum && x1 <= rhPtr.rh3XMaximum && y2>= rhPtr.rh3YMinimum && y1 <= rhPtr.rh3YMaximum)
 					return;
 
-				if (x2 >= rhPtr.rh3XMinimumKill && x1 <= rhPtr.rh3XMaximumKill && y2 >= rhPtr.rh3YMinimumKill && y1 <= rhPtr.rh3YMaximumKill)
+				if (x2>= rhPtr.rh3XMinimumKill && x1 <= rhPtr.rh3XMaximumKill && y2>= rhPtr.rh3YMinimumKill && y1 <= rhPtr.rh3YMaximumKill)
 				{
 					this.rsFlags |= CRSpr.RSFLAG_SLEEPING;
 					this.rsZOrder = this.hoPtr.delSprite();
@@ -44156,7 +44156,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				y1 = this.hoPtr.hoY - this.hoPtr.hoImgYSpot;
 				x2 = x1 + this.hoPtr.hoImgWidth;
 				y2 = y1 + this.hoPtr.hoImgHeight;
-				if (x2 >= rhPtr.rh3XMinimum && x1 <= rhPtr.rh3XMaximum && y2 >= rhPtr.rh3YMinimum && y1 <= rhPtr.rh3YMaximum)
+				if (x2>= rhPtr.rh3XMinimum && x1 <= rhPtr.rh3XMaximum && y2>= rhPtr.rh3YMinimum && y1 <= rhPtr.rh3YMaximum)
 				{
 					this.rsFlags &= ~CRSpr.RSFLAG_SLEEPING;
 					this.init2(false);
@@ -44224,7 +44224,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.hoFlags &= ~CObject.HOF_FADEIN;
 					this.hoPtr.transitionImage = null;
 					this.rsTrans = null;
-					if (this.hoPtr.hoType >= 32)
+					if (this.hoPtr.hoType>= 32)
 					{
 						hoPtr.ext.continueRunObject();
 					}
@@ -44295,7 +44295,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		setSemiTransparency: function (trans)
 		{
-			if (trans >= 0 && trans <= 128)
+			if (trans>= 0 && trans <= 128)
 			{
 				this.rsTransparency = trans;
 				this.hoPtr.setTransparency(trans);
@@ -44376,8 +44376,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CDefValues.prototype =
 	{
-	    load: function (file, initFlags)
-	    {
+	  load: function (file, initFlags)
+	  {
 			this.nValues = file.readAShort();
 			this.values = new Array(this.nValues);
 			var n;
@@ -44386,8 +44386,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.values[n] = file.readAInt();
 			}
 			if (initFlags)
-			    this.flags = file.readAInt();
-	    }
+			  this.flags = file.readAInt();
+	  }
 	}
 
 	// CRVal object
@@ -44402,7 +44402,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CRVal.prototype =
 	{
-		init:      function (ho, ocPtr, cob)
+		init:   function (ho, ocPtr, cob)
 		{
 			this.rvValueFlags = 0;
 			this.rvValues = new Array(CRVal.VALUES_NUMBEROF_ALTERABLE);
@@ -44415,8 +44415,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			if (ocPtr.ocValues != null)
 			{
-			    this.rvValueFlags = ocPtr.ocValues.flags;
-			    for (n = 0; n < ocPtr.ocValues.nValues; n++)
+			  this.rvValueFlags = ocPtr.ocValues.flags;
+			  for (n = 0; n < ocPtr.ocValues.nValues; n++)
 					this.rvValues[n] = ocPtr.ocValues.values[n];
 			}
 			if (ocPtr.ocStrings != null)
@@ -44425,7 +44425,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.rvStrings[n] = ocPtr.ocStrings.strings[n];
 			}
 		},
-		kill:      function (bFast)
+		kill:   function (bFast)
 		{
 			var n;
 			for (n = 0; n < this.rvValues.length; n++)
@@ -44433,7 +44433,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			for (n = 0; n < this.rvStrings.length; n++)
 				this.rvStrings[n] = null;
 		},
-		getValue:  function (n)
+		getValue: function (n)
 		{
 			if (n < this.rvValues.length)
 				return this.rvValues[n];
@@ -44447,19 +44447,19 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 		setString: function (n, s)
 		{
-			if (n > this.rov.rvStrings.length)
+			if (n> this.rov.rvStrings.length)
 				this.growStrings(n + 10);
 			this.rvStrings[n] = s;
 		},
-		setValue:  function (n, v)
+		setValue: function (n, v)
 		{
-			if (n > this.rov.rvValues.length)
+			if (n> this.rov.rvValues.length)
 				this.growValues(n + 10);
 			this.rvValues[n] = v;
 		},
 		growValues: function(num)
 		{
-			if (num >= this.rvValues.length)
+			if (num>= this.rvValues.length)
 			{
 				var n;
 				for (n = 0; n < num; n++)
@@ -44468,7 +44468,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		},
 		growStrings: function(num)
 		{
-			if (num >= this.rvStrings.length)
+			if (num>= this.rvStrings.length)
 			{
 				var n;
 				for (n = 0; n < num; n++)
@@ -44509,36 +44509,36 @@ window['Runtime'] = (function Runtime(__can, __path){
 	CExtLoader.prototype =
 	{
 
-	    createList: function (file) {
+	  createList: function (file) {
 
-	        var extMaxHandle = 2;
-	        if (extMaxHandle) {
-	            this.extensions = new Array(extMaxHandle);
-	            this.numOfConditions = new Array(extMaxHandle);
-	            var n;
-	            for (n = 0; n < extMaxHandle; n++) {
-	                this.extensions[n] = null;
-	                this.numOfConditions[n] = 0;
-	            }
+	    var extMaxHandle = 2;
+	    if (extMaxHandle) {
+	      this.extensions = new Array(extMaxHandle);
+	      this.numOfConditions = new Array(extMaxHandle);
+	      var n;
+	      for (n = 0; n < extMaxHandle; n++) {
+	        this.extensions[n] = null;
+	        this.numOfConditions[n] = 0;
+	      }
 
-	            var e;
-	            // START_ADDEXT
-	            e = new CExtLoad();
-	            e.handle = 0;
-	            this.addExt(e);
-	            // INCLUDE_ADDEXT
-	        }
-	    },
+	      var e;
+	      // START_ADDEXT
+	      e = new CExtLoad();
+	      e.handle = 0;
+	      this.addExt(e);
+	      // INCLUDE_ADDEXT
+	    }
+	  },
 
 		addExt: function (e)
 		{
-		    var ext = e.loadRunObject();
-		    if (ext != null) {
-		        this.extensions[e.handle] = e;
-		        this.numOfConditions[e.handle] = ext.getNumberOfConditions();
-		    }
-	    },
-		    
+		  var ext = e.loadRunObject();
+		  if (ext != null) {
+		    this.extensions[e.handle] = e;
+		    this.numOfConditions[e.handle] = ext.getNumberOfConditions();
+		  }
+	  },
+		  
 		loadRunObject: function (type)
 		{
 			type -= CExtLoader.KPX_BASE;
@@ -44574,18 +44574,18 @@ window['Runtime'] = (function Runtime(__can, __path){
 	CExtLoad.prototype =
 	{
 
-	    loadRunObject: function ()
+	  loadRunObject: function ()
 		{
-	        switch (this.handle) {
-	            // START_NEWEXT
-	        case 0:
-	        return new CRunkcini();
-	            // INCLUDE_NEWEXT
-	        }
+	    switch (this.handle) {
+	      // START_NEWEXT
+	    case 0:
+	    return new CRunkcini();
+	      // INCLUDE_NEWEXT
+	    }
 
 
 			return null;
-	        /*
+	    /*
 			 if (document.debug==undefined)
 			 {
 			 var type = CExtLoad.types[this.name];
@@ -44595,7 +44595,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			 else
 			 return new window['CRun' + this.name];
 			 */
-	    }
+	  }
 	}
 
 	// CRUNEXTENSION Object
@@ -44637,10 +44637,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 		destroyRunObject: function (bFast)
 		{
 		},
-		createFont:       function ()
+		createFont:    function ()
 		{
 		},
-		pauseRunObject:   function ()
+		pauseRunObject:  function ()
 		{
 		},
 
@@ -44713,7 +44713,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				rhPtr.rh4Results[rhPtr.rh4PosPile] = 0;
 				return;
 			}
-			var exp = (this.code >> 16) - CEventProgram.EVENTS_EXTBASE;				// Vire le type
+			var exp = (this.code>> 16) - CEventProgram.EVENTS_EXTBASE;				// Vire le type
 			rhPtr.currentPtr = this;
 			rhPtr.rh4Results[rhPtr.rh4PosPile] = pHo.expression(exp);
 		}
@@ -44733,7 +44733,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			if (pHo == null)
 				return;
 
-			var act = (this.evtCode >>> 16) - CEventProgram.EVENTS_EXTBASE;
+			var act = (this.evtCode>>> 16) - CEventProgram.EVENTS_EXTBASE;
 			rhPtr.currentPtr = this;
 			pHo.action(act, this);
 		},
@@ -44807,7 +44807,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var position = this.evtParams[num];
 			var pInfo = new CPositionInfo();
 			if (position.read_Position(rhPtr, 0, pInfo))
-			    pInfo.found = true;
+			  pInfo.found = true;
 			return pInfo;
 		},
 
@@ -44920,7 +44920,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return this.eva2(rhPtr);
 
 			pHo.hoFlags |= CObject.HOF_TRUEEVENT;
-			var cond = -(this.evtCode >> 16) - CEventProgram.EVENTS_EXTBASE - 1;
+			var cond = -(this.evtCode>> 16) - CEventProgram.EVENTS_EXTBASE - 1;
 			rhPtr.currentPtr = this;
 			if (pHo.condition(cond, this))
 			{
@@ -44934,7 +44934,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			var pHo = rhPtr.rhEvtProg.evt_FirstObject(this.evtOiList);
 			var cpt = rhPtr.rhEvtProg.evtNSelectedObjects;
-			var cond = -(this.evtCode >> 16) - CEventProgram.EVENTS_EXTBASE - 1;
+			var cond = -(this.evtCode>> 16) - CEventProgram.EVENTS_EXTBASE - 1;
 
 			rhPtr.currentPtr = this;
 			while (pHo != null)
@@ -45024,11 +45024,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 		getParamPosition: function (rhPtr, num)
 		{
 			//return this.evtParams[num];
-		    var position = this.evtParams[num];
-		    var pInfo = new CPositionInfo();
-		    if (position.read_Position(rhPtr, 0, pInfo))
-		        pInfo.found = true;
-		    return pInfo;
+		  var position = this.evtParams[num];
+		  var pInfo = new CPositionInfo();
+		  if (position.read_Position(rhPtr, 0, pInfo))
+		    pInfo.found = true;
+		  return pInfo;
 		},
 
 		getParamJoyDirection: function (rhPtr, num)
@@ -45103,12 +45103,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				this.setPosition(this.ho.hoX, this.ho.hoY);
 			},
-			autoResize:    function ()
+			autoResize:  function ()
 			{
 				this.setPosition(this.ho.hoX, this.ho.hoY);
 				this.setSize(this.ho.hoImgWidth, this.ho.hoImgHeight);
 			},
-			setElement:    function (e, visible)
+			setElement:  function (e, visible)
 			{
 				this.element = e;
 
@@ -45139,17 +45139,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				container.appendChild(e);
 			},
-			getXOffset:    function ()
+			getXOffset:  function ()
 			{
-			    if (this.rh.rhApp.canvas)
-			        return this.rh.rhApp.canvas.offsetLeft;
-			    return 0;
+			  if (this.rh.rhApp.canvas)
+			    return this.rh.rhApp.canvas.offsetLeft;
+			  return 0;
 			},
-			getYOffset:    function ()
+			getYOffset:  function ()
 			{
-			    if (this.rh.rhApp.canvas)
-			        return this.rh.rhApp.canvas.offsetTop;
-			    return 0;
+			  if (this.rh.rhApp.canvas)
+			    return this.rh.rhApp.canvas.offsetTop;
+			  return 0;
 			},
 
 			setX: function (x)
@@ -45169,7 +45169,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.ho.setY(y);
 
 				if (this.element)
-				    this.element.style.top = this.getYOffset() + this.rh.rhApp.yMouseOffset + (this.ho.hoY - this.ho.hoAdRunHeader.rhWindowY) * this.rh.rhApp.scaleY + 'px';
+				  this.element.style.top = this.getYOffset() + this.rh.rhApp.yMouseOffset + (this.ho.hoY - this.ho.hoAdRunHeader.rhWindowY) * this.rh.rhApp.scaleY + 'px';
 			},
 
 			setPosition: function (x, y)
@@ -45181,8 +45181,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				if (this.element)
 				{
-				    this.element.style.left = this.getXOffset() + this.rh.rhApp.xMouseOffset + (this.ho.hoX - this.ho.hoAdRunHeader.rhWindowX) * this.rh.rhApp.scaleX + 'px';
-				    this.element.style.top = this.getYOffset() + this.rh.rhApp.yMouseOffset + (this.ho.hoY - this.ho.hoAdRunHeader.rhWindowY) * this.rh.rhApp.scaleY + 'px';
+				  this.element.style.left = this.getXOffset() + this.rh.rhApp.xMouseOffset + (this.ho.hoX - this.ho.hoAdRunHeader.rhWindowX) * this.rh.rhApp.scaleX + 'px';
+				  this.element.style.top = this.getYOffset() + this.rh.rhApp.yMouseOffset + (this.ho.hoY - this.ho.hoAdRunHeader.rhWindowY) * this.rh.rhApp.scaleY + 'px';
 				}
 			},
 
@@ -45532,7 +45532,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.mdLength = file.readAShort();
 			this.mdPause = file.readAShort();
 			var name = file.readAString();
-			if (name.length > 0)
+			if (name.length> 0)
 				this.mdName = name;
 		}
 	}
@@ -45609,7 +45609,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CMoveDefExtension.prototype = CServices.extend(new CMoveDef(),
 		{
-			load:          function (file, length)
+			load:     function (file, length)
 			{
 				file.skipBytes(14);
 				this.data = file.getFilePointer();
@@ -45728,12 +45728,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				speedShift = speed << 5;
 			}
-			while (speedShift > 2048)
+			while (speedShift> 2048)
 			{
-			    x = this.hoPtr.hoX * 65536 + (this.hoPtr.hoCalculX & 0x0000FFFF);
-			    y = this.hoPtr.hoY * 65536 + (this.hoPtr.hoCalculY & 0x0000FFFF);
-			    x += CMove.Cosinus32[angle] * 2048;
-			    y += CMove.Sinus32[angle] * 2048;
+			  x = this.hoPtr.hoX * 65536 + (this.hoPtr.hoCalculX & 0x0000FFFF);
+			  y = this.hoPtr.hoY * 65536 + (this.hoPtr.hoCalculY & 0x0000FFFF);
+			  x += CMove.Cosinus32[angle] * 2048;
+			  y += CMove.Sinus32[angle] * 2048;
 				this.hoPtr.hoCalculX = x & 0x0000FFFF;
 				this.hoPtr.hoX = Math.floor(x / 65536);
 				this.hoPtr.hoCalculY = y & 0x0000FFFF;
@@ -45752,8 +45752,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 			;
 			if (!this.hoPtr.rom.rmMoveFlag)
 			{
-			    x = this.hoPtr.hoX * 65536 + (this.hoPtr.hoCalculX & 0x0000FFFF);
-			    y = this.hoPtr.hoY * 65536 + (this.hoPtr.hoCalculY & 0x0000FFFF);
+			  x = this.hoPtr.hoX * 65536 + (this.hoPtr.hoCalculX & 0x0000FFFF);
+			  y = this.hoPtr.hoY * 65536 + (this.hoPtr.hoCalculY & 0x0000FFFF);
 				x += CMove.Cosinus32[angle] * speedShift;
 				y += CMove.Sinus32[angle] * speedShift;
 				this.hoPtr.hoCalculX = x & 0x0000FFFF;
@@ -45802,7 +45802,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			switch (this.hoPtr.hoAdRunHeader.rhEvtProg.rhCurCode & 0xFFFF0000)
 			{
-				case (-12 << 16):         // CNDL_EXTOUTPLAYFIELD:
+				case (-12 << 16):     // CNDL_EXTOUTPLAYFIELD:
 					var x = this.hoPtr.hoX - this.hoPtr.hoImgXSpot;
 					var y = this.hoPtr.hoY - this.hoPtr.hoImgYSpot;
 					var dir = this.hoPtr.hoAdRunHeader.quadran_Out(x, y, x + this.hoPtr.hoImgWidth, y + this.hoPtr.hoImgHeight);
@@ -45819,9 +45819,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.hoX = x;
 					this.hoPtr.hoY = y;
 					return;
-				case (-13 << 16):	    // CNDL_EXTCOLBACK:
-				case (-14 << 16):	    // CNDL_EXTCOLLISION:
-					var index = (this.hoPtr.hoAdRunHeader.getDir(this.hoPtr) >> 2) * 18;
+				case (-13 << 16):	  // CNDL_EXTCOLBACK:
+				case (-14 << 16):	  // CNDL_EXTCOLLISION:
+					var index = (this.hoPtr.hoAdRunHeader.getDir(this.hoPtr)>> 2) * 18;
 					do
 					{
 						if (this.tst_Position(this.hoPtr.hoX + CMove.mvap_TableDirs[index], this.hoPtr.hoY + CMove.mvap_TableDirs[index + 1], flag))
@@ -45851,7 +45851,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			switch (this.hoPtr.hoAdRunHeader.rhEvtProg.rhCurCode & 0xFFFF0000)
 			{
-				case (-12 << 16):         // CNDL_EXTOUTPLAYFIELD:
+				case (-12 << 16):     // CNDL_EXTOUTPLAYFIELD:
 					var x = this.hoPtr.hoX - this.hoPtr.hoImgXSpot;
 					var y = this.hoPtr.hoY - this.hoPtr.hoImgYSpot;
 					var dir = this.hoPtr.hoAdRunHeader.quadran_Out(x, y, x + this.hoPtr.hoImgWidth, y + this.hoPtr.hoImgHeight);
@@ -45869,8 +45869,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.hoY = y;
 					return;
 
-				case (-13 << 16):	    // CNDL_EXTCOLBACK:
-				case (-14 << 16):	    // CNDL_EXTCOLLISION:
+				case (-13 << 16):	  // CNDL_EXTCOLBACK:
+				case (-14 << 16):	  // CNDL_EXTCOLLISION:
 					var pt = new CPoint();
 					if (this.mbApproachSprite(this.hoPtr.hoX, this.hoPtr.hoY, this.hoPtr.roc.rcOldX, this.hoPtr.roc.rcOldY, flag, pt))
 					{
@@ -45878,7 +45878,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.hoPtr.hoY = pt.y;
 						return;
 					}
-					var index = (this.hoPtr.hoAdRunHeader.getDir(this.hoPtr) >> 2) * 18;
+					var index = (this.hoPtr.hoAdRunHeader.getDir(this.hoPtr)>> 2) * 18;
 					do
 					{
 						if (this.tst_Position(this.hoPtr.hoX + CMove.mvap_TableDirs[index], this.hoPtr.hoY + CMove.mvap_TableDirs[index + 1], flag))
@@ -45945,7 +45945,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (oi != sprOi)
 				{
 					var ll;
-					for (ll = oilPtr.oilLimitList; lb[ll] >= 0; ll++)
+					for (ll = oilPtr.oilLimitList; lb[ll]>= 0; ll++)
 					{
 						if (lb[ll] == oi)
 							return false;
@@ -45995,7 +45995,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (oi != sprOi)
 				{
 					var ll;
-					for (ll = oilPtr.oilLimitList; lb[ll] >= 0; ll++)
+					for (ll = oilPtr.oilLimitList; lb[ll]>= 0; ll++)
 					{
 						if (lb[ll] == oi) return false;
 					}
@@ -46130,14 +46130,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 			} while (true);
 		},
 
-		setAcc:      function (acc)
+		setAcc:   function (acc)
 		{
 			this.rmAcc = acc;
 			this.rmAccValue = this.getAccelerator(acc);
 			if (this.hoPtr.roc.rcMovementType == CMoveDef.MVTYPE_EXT)
 				this.movement.setAcc(acc);
 		},
-		setDec:      function (dec)
+		setDec:   function (dec)
 		{
 			this.rmDec = dec;
 			this.rmDecValue = this.getAccelerator(dec);
@@ -46148,7 +46148,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			if (this.hoPtr.roc.rcMovementType == CMoveDef.MVTYPE_RACE)
 			{
-				if (speed > 250) speed = 250;
+				if (speed> 250) speed = 250;
 				if (speed < 0) speed = 0;
 				this.setRotSpeed(speed);
 			}
@@ -46168,7 +46168,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			if (this.hoPtr.roc.rcMovementType == CMoveDef.MVTYPE_PLATFORM)
 			{
-				if (gravity > 250) gravity = 250;
+				if (gravity> 250) gravity = 250;
 				if (gravity < 0) gravity = 0;
 				this.setGravity(gravity);
 			}
@@ -46176,13 +46176,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.movement.setGravity(gravity);
 		},
 
-		getSpeed:   function ()
+		getSpeed:  function ()
 		{
 			if (this.hoPtr.roc.rcMovementType == CMoveDef.MVTYPE_EXT)
 				return this.movement.getSpeed();
 			return this.hoPtr.roc.rcSpeed;
 		},
-		getDir:     function ()
+		getDir:   function ()
 		{
 			if (this.hoPtr.roc.rcMovementType == CMoveDef.MVTYPE_EXT)
 			{
@@ -46193,13 +46193,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 			}
 			return this.hoPtr.roc.rcDir;
 		},
-		getAcc:     function ()
+		getAcc:   function ()
 		{
 			if (this.hoPtr.roc.rcMovementType == CMoveDef.MVTYPE_EXT)
 				return this.movement.getAcceleration();
 			return this.rmAcc;
 		},
-		getDec:     function ()
+		getDec:   function ()
 		{
 			if (this.hoPtr.roc.rcMovementType == CMoveDef.MVTYPE_EXT)
 				return this.movement.getDeceleration();
@@ -46213,10 +46213,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				return this.movement.getGravity();
 			return 0;
 		},
-		kill:       function (bFast)
+		kill:    function (bFast)
 		{
 		},
-		start:      function ()
+		start:   function ()
 		{
 		}
 	}
@@ -46303,7 +46303,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (this.rmDecValue != 0)
 				{
 					var speed = this.MB_Speed;
-					if (speed > 0)
+					if (speed> 0)
 					{
 						var dSpeed = this.rmDecValue;
 						if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
@@ -46312,7 +46312,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						if (speed < 0)
 							speed = 0;
 						this.MB_Speed = speed;
-						speed >>= 8;
+						speed>>= 8;
 						this.hoPtr.roc.rcSpeed = speed;
 					}
 				}
@@ -46329,7 +46329,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			},
 
-			start:  function ()
+			start: function ()
 			{
 				var speed = this.rmStopSpeed;
 				if (speed != 0)
@@ -46415,7 +46415,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				var rnd = this.hoPtr.hoAdRunHeader.random(100);
 				if (rnd < this.MB_Bounce)
 				{
-					rnd >>= 2;
+					rnd>>= 2;
 					if (rnd < 25)
 					{
 						rnd -= 12;
@@ -46457,7 +46457,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.hoPtr.rom.rmMoveFlag = true;
 			},
 
-			mvb_Test:    function (dir)
+			mvb_Test:  function (dir)
 			{
 				var calculX = this.hoPtr.hoX * 65536 + (this.hoPtr.hoCalculX & 0x0000FFFF);
 				var calculY = this.hoPtr.hoY * 65536 + (this.hoPtr.hoCalculY & 0x0000FFFF);
@@ -46467,14 +46467,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 				y = Math.floor(y / 65536);
 				return this.tst_Position(x, y, false);
 			},
-			setDir:      function (dir)
+			setDir:   function (dir)
 			{
 			},
-			setSpeed:    function (speed)
+			setSpeed:  function (speed)
 			{
 				if (speed < 0)
 					speed = 0;
-				if (speed > 250)
+				if (speed> 250)
 					speed = 250;
 				this.hoPtr.roc.rcSpeed = speed;
 				this.MB_Speed = speed << 8;
@@ -46486,7 +46486,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.setSpeed(speed);
 			},
 
-			reverse:      function ()
+			reverse:   function ()
 			{
 				if (this.rmStopSpeed == 0)
 				{
@@ -46526,7 +46526,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CMoveBullet.prototype = CServices.extend(new CMove(),
 		{
-			init:         function (ho, mvPtr)
+			init:     function (ho, mvPtr)
 			{
 				this.hoPtr = ho;
 				this.rhPtr = ho.hoAdRunHeader;
@@ -46547,17 +46547,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.hoPtr.roc.rcCheckCollides = true;
 				this.hoPtr.roc.rcChanged = true;
 			},
-			init2:        function (parent)
+			init2:    function (parent)
 			{
 				this.hoPtr.roc.rcMaxSpeed = this.hoPtr.roc.rcSpeed;
 				this.hoPtr.roc.rcMinSpeed = this.hoPtr.roc.rcSpeed;
 				this.MBul_ShootObject = parent;
 			},
-			kill:         function (bFast)
+			kill:     function (bFast)
 			{
 				this.freeBullet(this.hoPtr);
 			},
-			move:         function ()
+			move:     function ()
 			{
 				if (this.MBul_Wait)
 				{
@@ -46573,7 +46573,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.roa.animate();
 				this.newMake_Move(this.hoPtr.roc.rcSpeed, this.hoPtr.hoAdRunHeader.getDir(this.hoPtr));
 
-				if (this.hoPtr.hoX < -64 || this.hoPtr.hoX > this.hoPtr.hoAdRunHeader.rhLevelSx + 64 || this.hoPtr.hoY < -64 || this.hoPtr.hoY > this.hoPtr.hoAdRunHeader.rhLevelSy + 64)
+				if (this.hoPtr.hoX < -64 || this.hoPtr.hoX> this.hoPtr.hoAdRunHeader.rhLevelSx + 64 || this.hoPtr.hoY < -64 || this.hoPtr.hoY> this.hoPtr.hoAdRunHeader.rhLevelSy + 64)
 				{
 					this.hoPtr.hoCallRoutine = false;
 					this.hoPtr.hoAdRunHeader.destroy_Add(this.hoPtr.hoNumber);
@@ -46584,7 +46584,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.hoAdRunHeader.newHandle_Collisions(this.hoPtr);
 				}
 			},
-			startBullet:  function ()
+			startBullet: function ()
 			{
 				if (this.hoPtr.ros != null)
 					this.hoPtr.ros.setColFlag(true);
@@ -46615,7 +46615,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.MBul_Wait = false;
 				this.MBul_ShootObject = null;
 			},
-			freeBullet:   function (hoPtr)
+			freeBullet:  function (hoPtr)
 			{
 				if (this.MBul_Body != null)
 				{
@@ -46649,25 +46649,25 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.roc.rcCheckCollides = true;
 				}
 			},
-			setDir:       function (dir)
+			setDir:    function (dir)
 			{
 			},
-			reverse:      function (dir)
+			reverse:   function (dir)
 			{
 			},
-			stop:         function ()
+			stop:     function ()
 			{
 			},
-			start:        function ()
+			start:    function ()
 			{
 			},
-			bounce:       function ()
+			bounce:    function ()
 			{
 			},
-			setSpeed:     function (speed)
+			setSpeed:   function (speed)
 			{
 			},
-			setMaxSpeed:  function (speed)
+			setMaxSpeed: function (speed)
 			{
 			}
 		});
@@ -46679,11 +46679,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CMoveDisappear.prototype = CServices.extend(new CMove(),
 		{
-			init:         function (ho, mvPtr)
+			init:     function (ho, mvPtr)
 			{
 				this.hoPtr = ho;
 			},
-			move:         function ()
+			move:     function ()
 			{
 				if ((this.hoPtr.hoFlags & CObject.HOF_FADEOUT) == 0)
 				{
@@ -46715,25 +46715,25 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.roc.rcChanged = true;
 				}
 			},
-			setDir:       function (dir)
+			setDir:    function (dir)
 			{
 			},
-			reverse:      function (dir)
+			reverse:   function (dir)
 			{
 			},
-			stop:         function ()
+			stop:     function ()
 			{
 			},
-			start:        function ()
+			start:    function ()
 			{
 			},
-			bounce:       function ()
+			bounce:    function ()
 			{
 			},
-			setSpeed:     function (speed)
+			setSpeed:   function (speed)
 			{
 			},
-			setMaxSpeed:  function (speed)
+			setMaxSpeed: function (speed)
 			{
 			}
 		});
@@ -46823,22 +46823,22 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 					else
 					{
-						speed8 = speed >> 8;
+						speed8 = speed>> 8;
 						if (speed8 < this.hoPtr.roc.rcMaxSpeed)
 						{
 							dSpeed = this.rmAccValue;
 							if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 								dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 							speed += dSpeed;
-							speed8 = speed >> 8;
-							if (speed8 > this.hoPtr.roc.rcMaxSpeed)
+							speed8 = speed>> 8;
+							if (speed8> this.hoPtr.roc.rcMaxSpeed)
 							{
 								speed = this.hoPtr.roc.rcMaxSpeed << 8;
 							}
 						}
 					}
 					this.MG_Speed = speed;
-					this.hoPtr.roc.rcSpeed = speed >> 8;
+					this.hoPtr.roc.rcSpeed = speed>> 8;
 
 					this.hoPtr.roc.rcDir = direction;
 
@@ -46860,7 +46860,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						{
 							return;
 						}
-						this.hoPtr.roc.rcSpeed = speed >> 8;
+						this.hoPtr.roc.rcSpeed = speed>> 8;
 						this.hoPtr.roc.rcDir = this.hoPtr.roc.rcOldDir;
 						if (this.newMake_Move(this.hoPtr.roc.rcSpeed, this.hoPtr.hoAdRunHeader.getDir(this.hoPtr)) == false)
 						{
@@ -46877,10 +46877,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 					speed = this.MG_Speed;
 					speed -= this.rmDecValue;
-					if (speed > 0)
+					if (speed> 0)
 					{
 						this.MG_Speed = speed;
-						speed >>= 8;
+						speed>>= 8;
 						this.hoPtr.roc.rcSpeed = speed;
 						dir = this.hoPtr.hoAdRunHeader.getDir(this.hoPtr);
 						if (this.MG_Bounce != 0)
@@ -46915,7 +46915,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return;
 				this.MG_LastBounce = this.hoPtr.hoAdRunHeader.rhLoopCount;
 				this.MG_Bounce++;
-				if (this.MG_Bounce >= 12)
+				if (this.MG_Bounce>= 12)
 				{
 					this.stop();
 					return;
@@ -46954,9 +46954,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 			setMaxSpeed: function (speed)
 			{
 				if (speed < 0) speed = 0;
-				if (speed > 250) speed = 250;
+				if (speed> 250) speed = 250;
 				this.hoPtr.roc.rcMaxSpeed = speed;
-				if (this.hoPtr.roc.rcSpeed > speed)
+				if (this.hoPtr.roc.rcSpeed> speed)
 				{
 					this.hoPtr.roc.rcSpeed = speed;
 					this.MG_Speed = speed << 8;
@@ -46964,11 +46964,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.hoPtr.rom.rmMoveFlag = true;
 			},
 
-			setSpeed:        function (speed)
+			setSpeed:    function (speed)
 			{
 				if (speed < 0) speed = 0;
-				if (speed > 250) speed = 250;
-				if (speed > this.hoPtr.roc.rcMaxSpeed)
+				if (speed> 250) speed = 250;
+				if (speed> this.hoPtr.roc.rcMaxSpeed)
 				{
 					speed = this.hoPtr.roc.rcMaxSpeed;
 				}
@@ -46976,7 +46976,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.MG_Speed = speed << 8;
 				this.hoPtr.rom.rmMoveFlag = true;
 			},
-			setXPosition:    function (x)
+			setXPosition:  function (x)
 			{
 				if (this.hoPtr.hoX != x)
 				{
@@ -46986,7 +46986,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.roc.rcCheckCollides = true;
 				}
 			},
-			setYPosition:    function (y)
+			setYPosition:  function (y)
 			{
 				if (this.hoPtr.hoY != y)
 				{
@@ -47047,13 +47047,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 						newX = this.hoPtr.hoAdRunHeader.rh2MouseX;
 						if (newX < this.MM_DXMouse)
 							newX = this.MM_DXMouse;
-						if (newX > this.MM_FXMouse)
+						if (newX> this.MM_FXMouse)
 							newX = this.MM_FXMouse;
 
 						newY = this.hoPtr.hoAdRunHeader.rh2MouseY;
 						if (newY < this.MM_DYMouse)
 							newY = this.MM_DYMouse;
-						if (newY > this.MM_FYMouse)
+						if (newY> this.MM_FYMouse)
 							newY = this.MM_FYMouse;
 
 						deltaX = newX - this.hoPtr.hoX;
@@ -47070,7 +47070,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							flags |= 0x02;
 						}
 						speed = (deltaX + deltaY) << 2;
-						if (speed > 250) speed = 250;
+						if (speed> 250) speed = 250;
 						this.hoPtr.roc.rcSpeed = speed;
 						if (speed != 0)
 						{
@@ -47080,7 +47080,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							deltaX /= deltaY;
 							for (index = 0; ; index += 2)
 							{
-								if (deltaX >= CMove.CosSurSin32[index])
+								if (deltaX>= CMove.CosSurSin32[index])
 									break;
 							}
 							dir = CMove.CosSurSin32[index + 1];
@@ -47109,7 +47109,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.MM_OldSpeed = this.hoPtr.roc.rcSpeed;
 				}
 				this.MM_Stopped++;
-				if (this.MM_Stopped > 10)
+				if (this.MM_Stopped> 10)
 					this.MM_OldSpeed = 0;
 				this.hoPtr.roc.rcSpeed = this.MM_OldSpeed;
 				if (this.hoPtr.roa != null)
@@ -47124,7 +47124,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.hoPtr.hoAdRunHeader.newHandle_Collisions(this.hoPtr);
 			},
 
-			stop:         function ()
+			stop:     function ()
 			{
 				if (this.rmCollisionCount == this.hoPtr.hoAdRunHeader.rh3CollisionCount)
 				{
@@ -47132,19 +47132,19 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				this.hoPtr.roc.rcSpeed = 0;
 			},
-			start:        function ()
+			start:    function ()
 			{
 				this.rmStopSpeed = 0;
 				this.hoPtr.rom.rmMoveFlag = true;
 			},
-			bounce:       function ()
+			bounce:    function ()
 			{
 				this.stop();
 			},
-			reverse:      function ()
+			reverse:   function ()
 			{
 			},
-			setDir:       function (dir)
+			setDir:    function (dir)
 			{
 			},
 			setXPosition: function (x)
@@ -47235,7 +47235,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						return;
 					}
 					pause -= this.hoPtr.hoAdRunHeader.rhTimerDelta;
-					if (pause > 0)
+					if (pause> 0)
 					{
 						this.MT_Pause = pause;
 						this.hoPtr.roc.rcSpeed = 0;
@@ -47266,7 +47266,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.hoPtr.hoAdRunHeader.rhMT_MoveStep = calculs;
 					else
 					{
-						calculs = 0x80000 >>> 5;
+						calculs = 0x80000>>> 5;
 						calculs /= this.MT_Speed;
 						this.hoPtr.hoAdRunHeader.rhMT_VBLStep = calculs;
 						this.hoPtr.hoAdRunHeader.rhMT_MoveStep = 0x80000;
@@ -47285,7 +47285,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							breakMtNewSpeed = true;
 							break;
 						}
-						if (this.hoPtr.hoAdRunHeader.rhMT_VBLCount > this.hoPtr.hoAdRunHeader.rhMT_VBLStep)
+						if (this.hoPtr.hoAdRunHeader.rhMT_VBLCount> this.hoPtr.hoAdRunHeader.rhMT_VBLStep)
 						{
 							this.hoPtr.hoAdRunHeader.rhMT_VBLCount -= this.hoPtr.hoAdRunHeader.rhMT_VBLStep;
 							calculs = this.hoPtr.hoAdRunHeader.rhMT_VBLCount;
@@ -47306,10 +47306,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 				;
 			},
 
-			mtMove:      function (step)
+			mtMove:   function (step)
 			{
 				step += this.MT_Calculs;
-				var step2 = step >>> 16;
+				var step2 = step>>> 16;
 				if (step2 < this.MT_Longueur)
 				{
 					this.MT_Calculs = step;
@@ -47327,7 +47327,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				step = (step2 << 16) | (step & 0xFFFF);
 				if (this.MT_Speed != 0)
 					step /= this.MT_Speed;
-				step >>= 5;
+				step>>= 5;
 				this.hoPtr.hoAdRunHeader.rhMT_VBLCount += step & 0xFFFF;
 
 				this.hoPtr.hoX = this.MT_XDest;
@@ -47410,7 +47410,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.hoMT_NodeName = this.MT_Movement.steps[number].mdName;
 					this.MT_Pause = this.MT_Movement.steps[number].mdPause;
 					number--;
-					if (number >= 0)
+					if (number>= 0)
 					{
 						this.mtGoArriere(number);
 						this.mtMessages();
@@ -47435,9 +47435,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 					return this.hoPtr.rom.rmMoveFlag;
 				}
 			},
-			mtGoAvant:   function (number)
+			mtGoAvant:  function (number)
 			{
-				if (number >= this.MT_Movement.steps.length)
+				if (number>= this.MT_Movement.steps.length)
 					this.stop();
 				else
 				{
@@ -47456,7 +47456,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			},
 			mtGoArriere: function (number)
 			{
-				if (number >= this.MT_Movement.steps.length)
+				if (number>= this.MT_Movement.steps.length)
 					this.stop();
 				else
 				{
@@ -47476,7 +47476,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			},
 
-			mtBranche:  function ()
+			mtBranche: function ()
 			{
 				this.MT_Longueur = this.MT_Movement.steps[this.MT_MoveNumber].mdLength;
 				var speed = this.MT_Movement.steps[this.MT_MoveNumber].mdSpeed;
@@ -47503,17 +47503,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (this.hoPtr.hoMark1 == this.hoPtr.hoAdRunHeader.rhLoopCount)
 				{
 					this.hoPtr.hoAdRunHeader.rhEvtProg.rhCurParam0 = 0;
-					this.hoPtr.hoAdRunHeader.rhEvtProg.handle_Event(this.hoPtr, (-20 << 16) | (this.hoPtr.hoType & 0xFFFF));	    // CNDL_EXTPATHNODE
-					this.hoPtr.hoAdRunHeader.rhEvtProg.handle_Event(this.hoPtr, (-35 << 16) | (this.hoPtr.hoType & 0xFFFF));	    // CNDL_EXTPATHNODENAME
+					this.hoPtr.hoAdRunHeader.rhEvtProg.handle_Event(this.hoPtr, (-20 << 16) | (this.hoPtr.hoType & 0xFFFF));	  // CNDL_EXTPATHNODE
+					this.hoPtr.hoAdRunHeader.rhEvtProg.handle_Event(this.hoPtr, (-35 << 16) | (this.hoPtr.hoType & 0xFFFF));	  // CNDL_EXTPATHNODENAME
 				}
 				if (this.hoPtr.hoMark2 == this.hoPtr.hoAdRunHeader.rhLoopCount)
 				{
 					this.hoPtr.hoAdRunHeader.rhEvtProg.rhCurParam0 = 0;
-					this.hoPtr.hoAdRunHeader.rhEvtProg.handle_Event(this.hoPtr, (-21 << 16) | (this.hoPtr.hoType & 0xFFFF));   // CNDL_EXTENDPATH
+					this.hoPtr.hoAdRunHeader.rhEvtProg.handle_Event(this.hoPtr, (-21 << 16) | (this.hoPtr.hoType & 0xFFFF));  // CNDL_EXTENDPATH
 				}
 			},
 
-			mtTheEnd:     function ()
+			mtTheEnd:   function ()
 			{
 				this.MT_Speed = 0;
 				this.rmStopSpeed = 0;
@@ -47550,7 +47550,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 							}
 							else
 							{
-								if (number > 0)
+								if (number> 0)
 								{
 									number--;
 									this.mtGoArriere(number);
@@ -47566,7 +47566,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					}
 				}
 			},
-			mtGotoNode:   function (pName)
+			mtGotoNode:  function (pName)
 			{
 				var number;
 
@@ -47586,7 +47586,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 							if (this.MT_Direction == false)
 							{
-								if (number > this.MT_MoveNumber)
+								if (number> this.MT_MoveNumber)
 								{
 									if (this.MT_Speed != 0)
 										return;
@@ -47649,7 +47649,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			},
 
-			stop:    function ()
+			stop:  function ()
 			{
 				if (this.rmStopSpeed == 0)
 				{
@@ -47658,7 +47658,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.MT_Speed = 0;
 				this.hoPtr.rom.rmMoveFlag = true;
 			},
-			start:   function ()
+			start:  function ()
 			{
 				if ((this.rmStopSpeed & 0x8000) != 0)
 				{
@@ -47707,7 +47707,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.MT_YDest = x1;
 						this.hoPtr.roc.rcDir += 16;
 						this.hoPtr.roc.rcDir &= 31;
-						var calcul = this.MT_Calculs >>> 16;
+						var calcul = this.MT_Calculs>>> 16;
 						calcul = this.MT_Longueur - calcul;
 						this.MT_Calculs = (calcul << 16) | (this.MT_Calculs & 0xFFFF);
 					}
@@ -47749,11 +47749,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.hoPtr.roc.rcCheckCollides = true;
 			},
 
-			setSpeed:    function (speed)
+			setSpeed:  function (speed)
 			{
 				if (speed < 0)
 					speed = 0;
-				if (speed > 250)
+				if (speed> 250)
 					speed = 250;
 				this.MT_Speed = speed;
 				this.hoPtr.roc.rcSpeed = speed;
@@ -47763,7 +47763,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				this.setSpeed(speed);
 			},
-			setDir:      function (dir)
+			setDir:   function (dir)
 			{
 			}
 		});
@@ -47823,7 +47823,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.MP_Gravity = mpPtr.mpGravity;
 				this.MP_Jump = mpPtr.mpJump;
 				var jump = mpPtr.mpJumpControl;
-				if (jump > 3)
+				if (jump> 3)
 					jump = CMovePlatform.MPJC_DIAGO;
 				this.MP_JumpControl = jump;
 				this.MP_YSpeed = 0;
@@ -47866,13 +47866,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 							if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 								dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 							xSpeed += dSpeed;
-							if (xSpeed > 0)
+							if (xSpeed> 0)
 								xSpeed = 0;
 						}
 						if ((joyDir & 8) != 0)
 							xSpeed = -xSpeed;
 					}
-					if (xSpeed >= 0)
+					if (xSpeed>= 0)
 					{
 						if ((joyDir & 8) != 0)
 						{
@@ -47881,10 +47881,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 								dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 							xSpeed += dSpeed;
 							speed8 = xSpeed / 256;
-							if (speed8 > this.hoPtr.roc.rcMaxSpeed)
+							if (speed8> this.hoPtr.roc.rcMaxSpeed)
 								xSpeed = this.hoPtr.roc.rcMaxSpeed * 256;
 						}
-						else if (xSpeed > 0)
+						else if (xSpeed> 0)
 						{
 							dSpeed = this.rmDecValue;
 							if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
@@ -47907,16 +47907,16 @@ window['Runtime'] = (function Runtime(__can, __path){
 				{
 					switch (this.MP_Type)
 					{
-						case 2:     // MPTYPE_FALL:
-						case 3:     // MPTYPE_JUMP:
+						case 2:   // MPTYPE_FALL:
+						case 3:   // MPTYPE_JUMP:
 							dSpeed = this.MP_Gravity << 5;
 							if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 								dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 							ySpeed = ySpeed + dSpeed;
-							if (ySpeed > 0xFA00)
+							if (ySpeed> 0xFA00)
 								ySpeed = 0xFA00;
 							break;
-						case 0:     // MPTYPE_WALK:
+						case 0:   // MPTYPE_WALK:
 							if ((joyDir & 1) != 0)
 							{
 								if (this.rhPtr.check_Ladder(this.hoPtr.hoLayer, this.hoPtr.hoX + this.MP_XMB, this.hoPtr.hoY + this.MP_YMB - 4) == CRun.INTBAD)
@@ -47934,7 +47934,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 								continue;
 							}
 							break;
-						case 1:         // MPTYPE_CLIMB:
+						case 1:     // MPTYPE_CLIMB:
 							if (flag == false)
 							{
 								this.MP_JumpStopped = 0;
@@ -47960,13 +47960,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 									if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 										dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 									ySpeed += dSpeed;
-									if (ySpeed > 0)
+									if (ySpeed> 0)
 										ySpeed = 0;
 								}
 								if ((joyDir & 2) != 0)
 									ySpeed = -ySpeed;
 							}
-							if (ySpeed >= 0)
+							if (ySpeed>= 0)
 							{
 								if ((joyDir & 2) != 0)
 								{
@@ -47975,7 +47975,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 										dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 									ySpeed += dSpeed;
 									speed8 = ySpeed / 256;
-									if (speed8 > this.hoPtr.roc.rcMaxSpeed)
+									if (speed8> this.hoPtr.roc.rcMaxSpeed)
 										ySpeed = this.hoPtr.roc.rcMaxSpeed * 256;
 								}
 								else
@@ -48019,7 +48019,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					var i;
 					for (i = 0; ; i += 2)
 					{
-						if (sX >= CMove.CosSurSin32[i])
+						if (sX>= CMove.CosSurSin32[i])
 							break;
 					}
 					dir = CMove.CosSurSin32[i + 1];
@@ -48054,7 +48054,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				if (sX < 0)
 					sX = -sX;
 				sX = sX / cosinus;
-				if (sX > 250)
+				if (sX> 250)
 					sX = 250;
 				this.hoPtr.roc.rcSpeed = sX;
 
@@ -48063,7 +48063,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					case 1:
 						if (ySpeed < 0)
 							this.hoPtr.roc.rcDir = 8;
-						else if (ySpeed > 0)
+						else if (ySpeed> 0)
 							this.hoPtr.roc.rcDir = 24;
 						break;
 					case 3:
@@ -48072,26 +48072,26 @@ window['Runtime'] = (function Runtime(__can, __path){
 					default:
 						if (xSpeed < 0)
 							this.hoPtr.roc.rcDir = 16;
-						else if (xSpeed > 0)
+						else if (xSpeed> 0)
 							this.hoPtr.roc.rcDir = 0;
 						break;
 				}
 
 				switch (this.MP_Type)
 				{
-					case 4:      // MPTYPE_CROUCH:
+					case 4:   // MPTYPE_CROUCH:
 						this.hoPtr.roc.rcAnim = CAnim.ANIMID_CROUCH;
 						break;
-					case 5:     // MPTYPE_UNCROUCH:
+					case 5:   // MPTYPE_UNCROUCH:
 						this.hoPtr.roc.rcAnim = CAnim.ANIMID_UNCROUCH;
 						break;
-					case 3:     // MPTYPE_FALL:
+					case 3:   // MPTYPE_FALL:
 						this.hoPtr.roc.rcAnim = CAnim.ANIMID_FALL;
 						break;
-					case 2:     // MPTYPE_JUMP:
+					case 2:   // MPTYPE_JUMP:
 						this.hoPtr.roc.rcAnim = CAnim.ANIMID_JUMP;
 						break;
-					case 1:     // MPTYPE_CLIMB:
+					case 1:   // MPTYPE_CLIMB:
 						this.hoPtr.roc.rcAnim = CAnim.ANIMID_CLIMB;
 						break;
 					default:
@@ -48134,12 +48134,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				switch (this.MP_Type)
 				{
-					case 2:         // MPTYPE_JUMP:
-						if (this.MP_YSpeed >= 0)
+					case 2:     // MPTYPE_JUMP:
+						if (this.MP_YSpeed>= 0)
 							this.MP_Type = CMovePlatform.MPTYPE_FALL;
 						break;
 
-					case 3:         // MPTYPE_FALL:
+					case 3:     // MPTYPE_FALL:
 						if (this.rhPtr.check_Ladder(this.hoPtr.hoLayer, this.hoPtr.hoX + this.MP_XMB, this.hoPtr.hoY + this.MP_YMB) != CRun.INTBAD)
 						{
 							this.MP_YSpeed = 0;
@@ -48148,7 +48148,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 						break;
 
-					case 0:         // MPTYPE_WALK:
+					case 0:     // MPTYPE_WALK:
 						if ((joyDir & 3) != 0 && (joyDir & 12) == 0)
 						{
 							if (this.rhPtr.check_Ladder(this.hoPtr.hoLayer, this.hoPtr.hoX + this.MP_XMB, this.hoPtr.hoY + this.MP_YMB) != CRun.INTBAD)
@@ -48191,7 +48191,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 						break;
 
-					case 1:         // MPTYPE_CLIMB:
+					case 1:     // MPTYPE_CLIMB:
 						if (this.rhPtr.check_Ladder(this.hoPtr.hoLayer, this.hoPtr.hoX + this.MP_XMB, this.hoPtr.hoY + this.MP_YMB) == CRun.INTBAD)
 						{
 							if (this.MP_YSpeed < 0)
@@ -48214,7 +48214,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 						break;
 
-					case 4:         // MPTYPE_CROUCH:
+					case 4:     // MPTYPE_CROUCH:
 						if ((joyDir & 2) == 0)
 						{
 							if (hoPtr.roa != null)
@@ -48232,7 +48232,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						}
 						break;
 
-					case 5:         // MPTYPE_UNCROUCH:
+					case 5:     // MPTYPE_UNCROUCH:
 						if (this.hoPtr.roa != null)
 						{
 							if (this.hoPtr.roa.raAnimNumberOfFrame == 0)
@@ -48295,11 +48295,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.MP_XSpeed = 0;
 				this.MP_YSpeed = 0;
 			},
-			bounce:   function ()
+			bounce:  function ()
 			{
 				this.stop();
 			},
-			stop:     function ()
+			stop:   function ()
 			{
 				this.MP_Bounce = 0;
 
@@ -48315,7 +48315,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 				switch (this.hoPtr.hoAdRunHeader.rhEvtProg.rhCurCode & 0xFFFF0000)
 				{
-					case (-12 << 16):         // CNDL_EXTOUTPLAYFIELD:
+					case (-12 << 16):     // CNDL_EXTOUTPLAYFIELD:
 						x = this.hoPtr.hoX - this.hoPtr.hoImgXSpot;
 						y = this.hoPtr.hoY - this.hoPtr.hoImgYSpot;
 						dir = this.hoPtr.hoAdRunHeader.quadran_Out(x, y, x + this.hoPtr.hoImgWidth, y + this.hoPtr.hoImgHeight);
@@ -48355,8 +48355,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 						this.MP_JumpStopped = 0;
 						return;
 
-					case (-13 << 16):	    // CNDL_EXTCOLBACK:
-					case (-14 << 16):	    // CNDL_EXTCOLLISION:
+					case (-13 << 16):	  // CNDL_EXTCOLBACK:
+					case (-14 << 16):	  // CNDL_EXTCOLLISION:
 						this.MP_NoJump = false;
 						var pt = new CPoint();
 						if (this.MP_Type == CMovePlatform.MPTYPE_FALL)
@@ -48458,8 +48458,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 			setSpeed: function (speed)
 			{
 				if (speed < 0) speed = 0;
-				if (speed > 250) speed = 250;
-				if (speed > this.hoPtr.roc.rcMaxSpeed)
+				if (speed> 250) speed = 250;
+				if (speed> this.hoPtr.roc.rcMaxSpeed)
 				{
 					speed = this.hoPtr.roc.rcMaxSpeed;
 				}
@@ -48472,10 +48472,10 @@ window['Runtime'] = (function Runtime(__can, __path){
 			setMaxSpeed: function (speed)
 			{
 				if (speed < 0) speed = 0;
-				if (speed > 250) speed = 250;
+				if (speed> 250) speed = 250;
 				this.hoPtr.roc.rcMaxSpeed = speed;
 				speed <<= 8;
-				if (this.MP_XSpeed > speed)
+				if (this.MP_XSpeed> speed)
 					this.MP_XSpeed = speed;
 				this.hoPtr.rom.rmMoveFlag = true;
 			},
@@ -48496,7 +48496,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				var ifo;
 
-				if (this.hoPtr.roc.rcImage > 0)
+				if (this.hoPtr.roc.rcImage> 0)
 					ifo = this.hoPtr.hoAdRunHeader.rhApp.imageBank.getImageInfoEx(this.hoPtr.roc.rcImage, this.hoPtr.roc.rcAngle, this.hoPtr.roc.rcScaleX, this.hoPtr.roc.rcScaleY);
 				else
 				{
@@ -48508,7 +48508,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				this.MP_XMB = 0;
 				this.MP_YMB = ifo.height - ifo.ySpot;
-				this.MP_HTFOOT = ((ifo.height * 2) + ifo.height) >>> 3;
+				this.MP_HTFOOT = ((ifo.height * 2) + ifo.height)>>> 3;
 			},
 
 			mpHandle_Background: function ()
@@ -48610,7 +48610,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 							dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 						this.MR_RotCpt += dSpeed;
-						while (this.MR_RotCpt > 100)
+						while (this.MR_RotCpt> 100)
 						{
 							this.MR_RotCpt -= 100;
 							this.MR_RotPos += add;
@@ -48652,8 +48652,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 								if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 									dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 								speed += dSpeed;
-								speed8 = speed >> 8;
-								if (speed8 > this.hoPtr.roc.rcMaxSpeed)
+								speed8 = speed>> 8;
+								if (speed8> this.hoPtr.roc.rcMaxSpeed)
 								{
 									speed = this.hoPtr.roc.rcMaxSpeed << 8;
 									this.MR_Speed = speed;
@@ -48675,8 +48675,8 @@ window['Runtime'] = (function Runtime(__can, __path){
 							if ((this.hoPtr.hoAdRunHeader.rhFrame.leFlags & CRunFrame.LEF_TIMEDMVTS) != 0)
 								dSpeed = dSpeed * this.hoPtr.hoAdRunHeader.rh4MvtTimerCoef;
 							speed += dSpeed;
-							speed8 = speed >> 8;
-							if (speed8 > this.hoPtr.roc.rcMaxSpeed)
+							speed8 = speed>> 8;
+							if (speed8> this.hoPtr.roc.rcMaxSpeed)
 							{
 								speed = this.hoPtr.roc.rcMaxSpeed << 8;
 								this.MR_Speed = speed;
@@ -48688,7 +48688,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					;
 					this.MR_OldJoy = j;
 
-					this.hoPtr.roc.rcSpeed = this.MR_Speed >> 8;
+					this.hoPtr.roc.rcSpeed = this.MR_Speed>> 8;
 					this.hoPtr.roc.rcAnim = CAnim.ANIMID_WALK;
 					if (this.hoPtr.roa != null)
 						this.hoPtr.roa.animate();
@@ -48719,7 +48719,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 						break;
 					}
 					this.MR_Speed = speed;
-					speed >>= 8;
+					speed>>= 8;
 					dir = this.hoPtr.hoAdRunHeader.getDir(this.hoPtr);
 					if (this.MR_Bounce != 0)
 					{
@@ -48735,7 +48735,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 			},
 
-			stop:   function ()
+			stop:  function ()
 			{
 				this.MR_Bounce = 0;
 				this.MR_Speed = 0;
@@ -48746,7 +48746,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.rom.rmMoveFlag = true;
 				}
 			},
-			start:  function ()
+			start: function ()
 			{
 				this.rmStopSpeed = 0;
 				this.hoPtr.rom.rmMoveFlag = true;
@@ -48762,7 +48762,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.MR_Bounce = this.hoPtr.rom.rmReverse;
 					this.hoPtr.rom.rmReverse = 0;
 					this.MR_Bounce++;
-					if (this.MR_Bounce >= 16)
+					if (this.MR_Bounce>= 16)
 					{
 						this.stop();
 						return;
@@ -48772,11 +48772,11 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			},
 
-			setSpeed:    function (speed)
+			setSpeed:  function (speed)
 			{
 				if (speed < 0) speed = 0;
-				if (speed > 250) speed = 250;
-				if (speed > this.hoPtr.roc.rcMaxSpeed)
+				if (speed> 250) speed = 250;
+				if (speed> this.hoPtr.roc.rcMaxSpeed)
 					speed = this.hoPtr.roc.rcMaxSpeed;
 				speed <<= 8;
 				this.MR_Speed = speed;
@@ -48785,17 +48785,17 @@ window['Runtime'] = (function Runtime(__can, __path){
 			setMaxSpeed: function (speed)
 			{
 				if (speed < 0) speed = 0;
-				if (speed > 250) speed = 250;
+				if (speed> 250) speed = 250;
 				this.hoPtr.roc.rcMaxSpeed = speed;
 				speed <<= 8;
-				if (this.MR_Speed > speed)
+				if (this.MR_Speed> speed)
 				{
 					this.MR_Speed = speed;
 				}
 				this.hoPtr.rom.rmMoveFlag = true;
 			},
 
-			setRotSpeed:  function (speed)
+			setRotSpeed: function (speed)
 			{
 				this.MR_RotSpeed = speed;
 			},
@@ -48834,14 +48834,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CMoveStatic.prototype = CServices.extend(new CMove(),
 		{
-			init:         function (ho, mvPtr)
+			init:     function (ho, mvPtr)
 			{
 				this.hoPtr = ho;
 				this.hoPtr.roc.rcSpeed = 0;
 				this.hoPtr.roc.rcCheckCollides = true;
 				this.hoPtr.roc.rcChanged = true;
 			},
-			move:         function ()
+			move:     function ()
 			{
 				if (this.hoPtr.roa != null)
 				{
@@ -48876,25 +48876,25 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				this.hoPtr.roc.rcCheckCollides = true;
 			},
-			setDir:       function (dir)
+			setDir:    function (dir)
 			{
 			},
-			reverse:      function (dir)
+			reverse:   function (dir)
 			{
 			},
-			stop:         function ()
+			stop:     function ()
 			{
 			},
-			start:        function ()
+			start:    function ()
 			{
 			},
-			bounce:       function ()
+			bounce:    function ()
 			{
 			},
-			setSpeed:     function (speed)
+			setSpeed:   function (speed)
 			{
 			},
-			setMaxSpeed:  function (speed)
+			setMaxSpeed: function (speed)
 			{
 			}
 		});
@@ -48908,7 +48908,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CMoveExtension.prototype = CServices.extend(new CMove(),
 		{
-			init:         function (ho, mvPtr)
+			init:     function (ho, mvPtr)
 			{
 				this.hoPtr = ho;
 
@@ -48917,13 +48917,13 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.hoPtr.roc.rcCheckCollides = true;
 				this.hoPtr.roc.rcChanged = true;
 			},
-			kill:         function ()
+			kill:     function ()
 			{
 				this.movement.kill();
 			},
-			move:         function ()
+			move:     function ()
 			{
-				/*      // FRANCOIS
+				/*   // FRANCOIS
 				 if (typeof this.movement == 'undefined')
 				 {
 				 debugger;
@@ -48935,27 +48935,27 @@ window['Runtime'] = (function Runtime(__can, __path){
 					this.hoPtr.roc.rcChanged = true;
 				}
 			},
-			stop:         function ()
+			stop:     function ()
 			{
 				this.movement.stop(this.rmCollisionCount == this.hoPtr.hoAdRunHeader.rh3CollisionCount);
 			},
-			start:        function ()
+			start:    function ()
 			{
 				this.movement.start();
 			},
-			bounce:       function ()
+			bounce:    function ()
 			{
 				this.movement.bounce(this.rmCollisionCount == this.hoPtr.hoAdRunHeader.rh3CollisionCount);
 			},
-			setSpeed:     function (speed)
+			setSpeed:   function (speed)
 			{
 				this.movement.setSpeed(speed);
 			},
-			setMaxSpeed:  function (speed)
+			setMaxSpeed: function (speed)
 			{
 				this.movement.setMaxSpeed(speed);
 			},
-			reverse:      function ()
+			reverse:   function ()
 			{
 				this.movement.reverse();
 			},
@@ -48971,7 +48971,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.hoPtr.roc.rcChanged = true;
 				this.hoPtr.roc.rcCheckCollides = true;
 			},
-			setDir:       function (dir)
+			setDir:    function (dir)
 			{
 				this.movement.setDir(dir);
 				this.hoPtr.roc.rcChanged = true;
@@ -49102,7 +49102,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 		{
 			return 0;
 		},
-		getDir:     function ()
+		getDir:   function ()
 		{
 			return this.ho.roc.rcDir;
 		},
@@ -49194,7 +49194,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 	}
 	CRMvt.prototype =
 	{
-		init:             function (nMove, hoPtr, ocPtr, cob, forcedType)
+		init:       function (nMove, hoPtr, ocPtr, cob, forcedType)
 		{
 			this.rmObject = hoPtr;
 
@@ -49266,7 +49266,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var extName = mvDef.moduleName;
 			/*
 			 var index = extName.indexOf('-');
-			 while (index > 0)
+			 while (index> 0)
 			 {
 			 extName = extName.substring(0, index) + '_' + extName.substring(index+1, extName.length);
 			 index = extName.indexOf('-');
@@ -49338,7 +49338,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			this.rmMovement.move();
 		},
 
-		nextMovement:     function (hoPtr)
+		nextMovement:   function (hoPtr)
 		{
 			var ocPtr = hoPtr.hoCommon;
 			if (ocPtr.ocMovements != null)
@@ -49357,7 +49357,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			var ocPtr = hoPtr.hoCommon;
 			if (ocPtr.ocMovements != null)
 			{
-				if (this.rmMvtNum - 1 >= 0)
+				if (this.rmMvtNum - 1>= 0)
 				{
 					this.init(this.rmMvtNum - 1, hoPtr, ocPtr, null, -1);
 					var pMovement = hoPtr.hoAdRunHeader.GetMBase(hoPtr);
@@ -49366,12 +49366,12 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 			}
 		},
-		selectMovement:   function (hoPtr, mvt)
+		selectMovement:  function (hoPtr, mvt)
 		{
 			var ocPtr = hoPtr.hoCommon;
 			if (ocPtr.ocMovements != null)
 			{
-				if (mvt >= 0 && mvt < ocPtr.ocMovements.nMovements)
+				if (mvt>= 0 && mvt < ocPtr.ocMovements.nMovements)
 				{
 					this.init(mvt, hoPtr, ocPtr, null, -1);
 					var pMovement = hoPtr.hoAdRunHeader.GetMBase(hoPtr);
@@ -49383,7 +49383,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 		dirAtStart: function (hoPtr, dirAtStart, dir)
 		{
-			if (dir < 0 || dir >= 32)
+			if (dir < 0 || dir>= 32)
 			{
 				var cpt = 0;
 				var das = dirAtStart;
@@ -49392,7 +49392,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 				for (n = 0; n < 32; n++)
 				{
 					das2 = das;
-					das >>= 1;
+					das>>= 1;
 					if ((das2 & 1) != 0)
 						cpt++;
 				}
@@ -49406,7 +49406,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 					for (dir = 0; ; dir++)
 					{
 						das2 = das;
-						das >>= 1;
+						das>>= 1;
 						if ((das2 & 1) != 0)
 						{
 							cpt--;
@@ -49468,7 +49468,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 			{
 				return 0;
 			},
-			createRunObject:       function (file, cob, version)
+			createRunObject:    function (file, cob, version)
 			{
 				this.iniFlags = file.readAShort();
 				this.iniName = CServices.parseName(file.readAString());
@@ -49485,9 +49485,9 @@ window['Runtime'] = (function Runtime(__can, __path){
 				this.changeCounter = 0;
 				return false;
 			},
-			handleRunObject:       function ()
+			handleRunObject:    function ()
 			{
-				if (this.changeCounter > 0)
+				if (this.changeCounter> 0)
 				{
 					this.changeCounter--;
 					if (this.changeCounter == 0)
@@ -49497,14 +49497,14 @@ window['Runtime'] = (function Runtime(__can, __path){
 				}
 				return 0;
 			},
-			destroyRunObject:      function (bFast)
+			destroyRunObject:   function (bFast)
 			{
 				this.ini.saveIni();
 			},
 
 			// Actions
 			// -------------------------------------------------
-			action:                function (num, act)
+			action:        function (num, act)
 			{
 				switch (num)
 				{
@@ -49669,7 +49669,7 @@ window['Runtime'] = (function Runtime(__can, __path){
 
 			// Expressions
 			// --------------------------------------------
-			expression:  function (num)
+			expression: function (num)
 			{
 				switch (num)
 				{
