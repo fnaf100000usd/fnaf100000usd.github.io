@@ -1,0 +1,141 @@
+/* ========================================
+   LEGAL PAGES - CLEAN & OPTIMIZED
+   ======================================== */
+
+.legal-hero {
+  padding: 140px 0 100px;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231a1a1a" width="1200" height="600"/><circle fill="%238B0000" cx="200" cy="150" r="3" opacity="0.3"/><circle fill="%23DC143C" cx="400" cy="200" r="2" opacity="0.4"/><circle fill="%23FFD700" cx="600" cy="100" r="2" opacity="0.2"/><circle fill="%238B0000" cx="800" cy="250" r="3" opacity="0.3"/><circle fill="%23DC143C" cx="1000" cy="180" r="2" opacity="0.4"/></svg>');
+  background-size: cover;
+  background-position: center;
+  margin-top: 20px;
+}
+
+.legal-hero h1 {
+  font-family: "Creepster", cursive;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-gold);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.legal-hero p {
+  font-size: 1.2rem;
+  color: var(--text-gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.legal-content {
+  padding: 80px 0;
+  background: var(--dark-bg);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.legal-content h2 {
+  color: var(--accent-gold);
+  font-size: 2rem;
+  margin: 2rem 0 1rem 0;
+  font-family: "Creepster", cursive;
+}
+
+.legal-content h3 {
+  color: var(--primary-red);
+  font-size: 1.5rem;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.legal-content p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.legal-content ul,
+.legal-content ol {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.legal-content li {
+  margin-bottom: 0.5rem;
+}
+
+.legal-content strong {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.legal-content a {
+  color: var(--primary-red);
+  text-decoration: none;
+}
+
+.legal-content a:hover {
+  color: var(--secondary-red);
+  text-decoration: underline;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .legal-hero {
+    padding: 120px 0 80px;
+    margin-top: 20px;
+  }
+
+  .legal-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .legal-hero p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .legal-content {
+    padding: 60px 1rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .legal-content h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .legal-hero {
+    padding: 100px 0 60px;
+    margin-top: 15px;
+  }
+
+  .legal-hero h1 {
+    font-size: 2rem;
+  }
+
+  .legal-hero p {
+    font-size: 0.9rem;
+  }
+
+  .legal-content {
+    padding: 40px 0.75rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .legal-content h3 {
+    font-size: 1.1rem;
+  }
+}

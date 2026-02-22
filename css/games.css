@@ -1,0 +1,719 @@
+/* ========================================
+   GAMES PAGE - CLEAN & OPTIMIZED
+   ======================================== */
+
+/* Iframe Error Handling */
+.iframe-error {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.iframe-error p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #ff6b6b;
+}
+
+.iframe-error ul {
+  text-align: left;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.iframe-error li {
+  margin: 0.5rem 0;
+  color: var(--text-gray);
+}
+
+.open-external-btn {
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.open-external-btn:hover {
+  background: var(--secondary-red);
+  transform: translateY(-2px);
+}
+
+/* CSS removed - using direct redirect instead of iframe */
+
+/* Why Choose Section */
+.why-choose-section {
+  padding: 4rem 0;
+  background: var(--dark-bg);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.feature-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #444;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: var(--primary-red);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-family: "Creepster", cursive;
+}
+
+.feature-card p {
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+/* How to Play Section */
+.how-to-play-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.step-number {
+  background: var(--primary-red);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.step-content h3 {
+  color: var(--primary-red);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-family: "Creepster", cursive;
+}
+
+.step-content p {
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+/* Game Descriptions Section */
+.game-descriptions-section {
+  padding: 4rem 0;
+  background: var(--dark-bg);
+}
+
+.game-descriptions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.game-description-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  transition: transform 0.3s ease;
+}
+
+.game-description-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-description-card h3 {
+  color: var(--primary-red);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-family: "Creepster", cursive;
+}
+
+.game-description-card p {
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.game-description-card ul {
+  color: var(--text-gray);
+  padding-left: 1.5rem;
+}
+
+.game-description-card li {
+  margin-bottom: 0.5rem;
+}
+
+/* Tips Section */
+.tips-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--dark-bg) 100%);
+}
+
+.tips-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.tip-category {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.tip-category h3 {
+  color: var(--primary-red);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-family: "Creepster", cursive;
+}
+
+.tip-category ul {
+  color: var(--text-gray);
+  padding-left: 1.5rem;
+}
+
+.tip-category li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Compact Features Section */
+.compact-features-section {
+  padding: 3rem 0;
+  background: var(--card-bg);
+}
+
+.compact-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.compact-feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--dark-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  transition: transform 0.3s ease;
+}
+
+.compact-feature:hover {
+  transform: translateY(-3px);
+}
+
+.compact-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.compact-content h4 {
+  color: var(--primary-red);
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  font-family: "Creepster", cursive;
+}
+
+.compact-content p {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Simple How to Play */
+.simple-how-to-play {
+  padding: 3rem 0;
+  background: var(--dark-bg);
+}
+
+.simple-steps {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.simple-step {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 25px;
+  border: 2px solid var(--primary-red);
+  color: var(--text-gray);
+  font-weight: bold;
+}
+
+.step-number {
+  background: var(--primary-red);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.step-text {
+  font-size: 1rem;
+}
+
+/* SEO Content Section */
+.seo-content-section {
+  padding: 4rem 0;
+  background: var(--dark-bg);
+}
+
+.seo-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.seo-content-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  transition: transform 0.3s ease;
+}
+
+.seo-content-card:hover {
+  transform: translateY(-3px);
+}
+
+.seo-content-card h3 {
+  color: var(--primary-red);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-family: "Creepster", cursive;
+}
+
+.seo-content-card p {
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.seo-content-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .compact-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .simple-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .simple-step {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .seo-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Games Hero Section */
+.games-hero {
+  padding: 120px 0 80px;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231a1a1a" width="1200" height="600"/><circle fill="%238B0000" cx="200" cy="150" r="3" opacity="0.3"/><circle fill="%23DC143C" cx="400" cy="200" r="2" opacity="0.4"/><circle fill="%23FFD700" cx="600" cy="100" r="2" opacity="0.2"/><circle fill="%238B0000" cx="800" cy="250" r="3" opacity="0.3"/><circle fill="%23DC143C" cx="1000" cy="180" r="2" opacity="0.4"/></svg>');
+  background-size: cover;
+  background-position: center;
+}
+
+.games-hero h1 {
+  font-family: "Creepster", cursive;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--accent-gold);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.games-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--text-gray);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* All Games Section */
+.all-games-section {
+  padding: 80px 0;
+  background: var(--dark-bg);
+}
+
+/* Quick Info Banner */
+.quick-info-banner {
+  padding: 2rem 0;
+  background: linear-gradient(135deg, var(--primary-red) 0%, #8b0000 100%);
+  border-top: 3px solid var(--accent-gold);
+  border-bottom: 3px solid var(--accent-gold);
+}
+
+/* Update Status Banner */
+.update-status-banner {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  border: 2px solid var(--primary-red);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 15px rgba(220, 20, 60, 0.2);
+}
+
+.update-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.update-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.update-icon {
+  font-size: 1.8rem;
+  background: var(--primary-red);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(220, 20, 60, 0.3);
+}
+
+.update-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.update-label {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.update-date {
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: "Creepster", cursive;
+}
+
+.update-divider {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--primary-red),
+    transparent
+  );
+  border-radius: 1px;
+}
+
+/* Responsive Design for Update Banner */
+@media (max-width: 768px) {
+  .update-info {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .update-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--primary-red),
+      transparent
+    );
+  }
+
+  .update-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .update-content {
+    align-items: center;
+  }
+}
+
+.quick-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+
+.quick-info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.quick-icon {
+  font-size: 1.5rem;
+}
+
+.all-games-section .section-title {
+  text-align: center;
+  font-family: "Creepster", cursive;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  color: var(--accent-gold);
+}
+
+/* Games Grid - 6 games per row */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Simple Game Card */
+.simple-game-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid #444;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.simple-game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+}
+
+.simple-game-image {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(45deg, var(--primary-red), var(--secondary-red));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.simple-game-image img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.simple-game-card:hover .simple-game-image img {
+  transform: scale(1.05);
+}
+
+.simple-game-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--accent-gold);
+  margin: 0;
+  padding: 0.8rem;
+  text-align: center;
+  font-family: "Creepster", cursive;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .games-hero {
+    padding: 120px 0 80px;
+    margin-top: 20px;
+  }
+
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .simple-game-image {
+    aspect-ratio: 1;
+  }
+
+  .simple-game-image img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+
+  .simple-game-title {
+    font-size: 0.8rem;
+    padding: 0.6rem;
+  }
+
+  .all-games-section {
+    padding: 100px 0 80px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .simple-game-image {
+    aspect-ratio: 1;
+  }
+
+  .simple-game-image img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  .simple-game-title {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+  }
+
+  .simple-game-image {
+    aspect-ratio: 1;
+  }
+
+  .simple-game-image img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+}
+
+/* Desktop (1025px+) */
+@media (min-width: 1025px) {
+  .games-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+  }
+
+  .simple-game-image {
+    aspect-ratio: 1;
+  }
+
+  .simple-game-image img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .simple-game-card:hover .simple-game-image img {
+    transform: scale(1.05);
+  }
+
+  .simple-game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+  }
+}
+
+/* CSS removed - using direct redirect instead of modal */
