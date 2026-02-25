@@ -96,20 +96,21 @@ const GAMES = [
   id: "counter-craft-2-zombies",
   title: "Counter Craft 2 Zombies",
   folder: "counter-craft-2-zombies",
-  logo: "../games/counter-craft-2-zombies/logo.png",
+  logo: "http://2.haleyschool.uk/10.shotting/counter-craft-2-zombies/logo.png",
   type: "other",
   gameUrl:
-   "../games/counter-craft-2-zombies/index.html",
+   "http://2.haleyschool.uk/10.shotting/counter-craft-2-zombies/index.html",
  },
  {
   id: "skibidi-toilet-shooting",
   title: "Skibidi Toilet Shooting",
   folder: "skibidi-toilet-shooting",
-  logo: "../games/skibidi-toilet-shooting/logo.png",
+  logo: "http://2.haleyschool.uk/10.shotting/skibidi-toilet-shooting/logo.png",
   type: "other",
   gameUrl:
-   "../games/skibidi-toilet-shooting/index.html",
+   "http://2.haleyschool.uk/10.shotting/skibidi-toilet-shooting/index.html",
  },
+ 
 ];
 
 // ========================================
