@@ -155,6 +155,14 @@ const GAMES = [
   type: "other",
   gameUrl: "https://1.haleyschool.uk/1.other/super-friday-night-funki-at-freddys-2/index.html",
  },
+ {
+  id: "counter-craft-sniper",
+  title: "Counter Craft Sniper",
+  folder: "counter-craft-sniper",
+  logo: "https://2.haleyschool.uk/10.shotting/counter-craft-sniper/logo.png",
+  type: "other",
+  gameUrl: "https://2.haleyschool.uk/10.shotting/counter-craft-sniper/index.html",
+ },
  
 ];
 
